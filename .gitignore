@@ -1,0 +1,24 @@
+# Raw API cache is deliberately not stored in Git; model-ready curated exports are.
+data/euroleague/*
+!data/euroleague/exports/
+data/euroleague/exports/*
+!data/euroleague/exports/.gitkeep
+!data/euroleague/exports/*.csv
+!data/euroleague/exports/*.json
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.env
+.venv/
+.streamlit/secrets.toml
+.DS_Store
+
+# Commit only tiny, validated SHADOW model audit; never store raw API cache.
+!data/euroleague/shadow_v05/
+data/euroleague/shadow_v05/*
+!data/euroleague/shadow_v05/*.json
+
+# v0.6 settlement-corrected structural model report
+!data/euroleague/shadow_v06/
+data/euroleague/shadow_v06/*
+!data/euroleague/shadow_v06/*.json
