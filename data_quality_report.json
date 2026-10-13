@@ -1,0 +1,68 @@
+{
+  "generated_at_utc": "2026-10-13T01:04:38.558987+00:00",
+  "summary": {
+    "team_rows": 80,
+    "player_rows": 959,
+    "games": 40,
+    "seasons": {
+      "2026": 40
+    },
+    "teams": 20,
+    "players": 271,
+    "date_min_utc": "2026-09-24 18:00:00+00:00",
+    "date_max_utc": "2026-10-09 20:30:00+00:00",
+    "exact_stat_checks": [
+      "PTS",
+      "FG2M",
+      "FG2A",
+      "FG3M",
+      "FG3A",
+      "FTM",
+      "FTA",
+      "AST",
+      "STL",
+      "BLK",
+      "PF",
+      "FD"
+    ],
+    "team_only_residuals": {
+      "OREB": {
+        "mean": 1.8625,
+        "max": 5.0,
+        "nonzero_team_rows": 66
+      },
+      "DREB": {
+        "mean": 1.875,
+        "max": 6.0,
+        "nonzero_team_rows": 69
+      },
+      "REB": {
+        "mean": 3.7375,
+        "max": 8.0,
+        "nonzero_team_rows": 77
+      },
+      "TO": {
+        "mean": 0.5875,
+        "max": 3.0,
+        "nonzero_team_rows": 35
+      }
+    },
+    "position_codes": {
+      "1": 400,
+      "2": 373,
+      "3": 186
+    },
+    "estimated_possessions_per_team_game_mean": 75.40950000000001,
+    "estimated_possessions_pair_discrepancy_max": 5.0,
+    "estimated_possessions_pair_discrepancy_gt_3_games": 6,
+    "missing_optional_team_MINUTES": 80
+  },
+  "fatal": [],
+  "warnings": [
+    "POSS_ESTIMATE_SIDES_DISAGREE_GT_3_IN_6_GAMES: pregame pace must be modeled separately",
+    "HISTORICAL_COVERAGE_NOT_READY: 1 seasons/40 games; model-training gate 3 seasons and 500 games"
+  ],
+  "data_integrity_passed": true,
+  "ready_for_training": false,
+  "note": "Training readiness is a data-coverage gate, not proof of predictive value or market-calibrated odds."
+}
