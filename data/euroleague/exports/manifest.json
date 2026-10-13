@@ -1,5 +1,5 @@
 {
-  "updated_at_utc": "2026-10-13T12:07:21.200337+00:00",
+  "updated_at_utc": "2026-10-13T14:05:23.945841+00:00",
   "games": 1031,
   "new_games": 0,
   "repaired_games": 0,
@@ -10,9 +10,9 @@
     2026
   ],
   "coefficient_stage": "shadow_only_not_pricing_ready",
-  "market_schema_version": "players_only_v1",
+  "market_schema_version": "official_inclusive_v2",
   "market_audit": {
-    "market_schema_version": "players_only_v1",
+    "market_schema_version": "official_inclusive_v2",
     "team_game_rows": 2062,
     "OREB": {
       "official_minus_players_total": 3616,
