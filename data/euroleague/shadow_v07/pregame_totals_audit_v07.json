@@ -1,0 +1,26 @@
+{
+  "status": "SHADOW_PREGAME_TOTALS_AUDIT",
+  "games": 194,
+  "cutoff": "2026-01-16 00:00:00+00:00",
+  "method": "v06 pregame predicted possessions x v07 trained PPP, compared with v06 structural and league rate",
+  "model_reused_holdout": true,
+  "model": {
+    "rmse": 16.610229522602882,
+    "mae": 13.41567122084138,
+    "bias": -1.134387288191185
+  },
+  "structural": {
+    "rmse": 17.427771443088936,
+    "mae": 14.086286478406178,
+    "bias": -5.072724958958799
+  },
+  "league": {
+    "rmse": 16.88350594415369,
+    "mae": 13.678103485586103,
+    "bias": -1.0134905616468366
+  },
+  "pace": {
+    "rmse": 3.983089759553091,
+    "bias": -0.1033179700278502
+  }
+}

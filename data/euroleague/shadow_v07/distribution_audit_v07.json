@@ -1,0 +1,90 @@
+{
+  "status": "SHADOW_PROBABILITY_CALIBRATION_UNVERIFIED",
+  "data_definition": "official_inclusive_v2",
+  "nominal_coverage": 0.9,
+  "draws_per_game": 1500,
+  "multiple_prior_analyses_on_this_holdout": true,
+  "production_pricing_gate": false,
+  "metrics": {
+    "PTS": {
+      "n": 388,
+      "observed_90pct_coverage": 0.9227,
+      "binomial_sampling_95pct_lower": 0.8701,
+      "binomial_sampling_95pct_upper": 0.9299,
+      "nominal_interval_coverage_flag": false,
+      "mean_error": -2.506
+    },
+    "FG3A": {
+      "n": 388,
+      "observed_90pct_coverage": 0.9098,
+      "binomial_sampling_95pct_lower": 0.8701,
+      "binomial_sampling_95pct_upper": 0.9299,
+      "nominal_interval_coverage_flag": false,
+      "mean_error": -0.823
+    },
+    "FTA": {
+      "n": 388,
+      "observed_90pct_coverage": 0.7912,
+      "binomial_sampling_95pct_lower": 0.8701,
+      "binomial_sampling_95pct_upper": 0.9299,
+      "nominal_interval_coverage_flag": true,
+      "mean_error": -0.84
+    },
+    "MARKET_OREB": {
+      "n": 388,
+      "observed_90pct_coverage": 0.9381,
+      "binomial_sampling_95pct_lower": 0.8701,
+      "binomial_sampling_95pct_upper": 0.9299,
+      "nominal_interval_coverage_flag": true,
+      "mean_error": -0.245
+    },
+    "MARKET_DREB": {
+      "n": 388,
+      "observed_90pct_coverage": 0.9948,
+      "binomial_sampling_95pct_lower": 0.8701,
+      "binomial_sampling_95pct_upper": 0.9299,
+      "nominal_interval_coverage_flag": true,
+      "mean_error": -0.459
+    },
+    "MARKET_REB": {
+      "n": 388,
+      "observed_90pct_coverage": 0.9871,
+      "binomial_sampling_95pct_lower": 0.8701,
+      "binomial_sampling_95pct_upper": 0.9299,
+      "nominal_interval_coverage_flag": true,
+      "mean_error": -0.704
+    },
+    "MARKET_TO": {
+      "n": 388,
+      "observed_90pct_coverage": 0.9304,
+      "binomial_sampling_95pct_lower": 0.8701,
+      "binomial_sampling_95pct_upper": 0.9299,
+      "nominal_interval_coverage_flag": true,
+      "mean_error": -0.33
+    },
+    "AST": {
+      "n": 388,
+      "observed_90pct_coverage": 0.8918,
+      "binomial_sampling_95pct_lower": 0.8701,
+      "binomial_sampling_95pct_upper": 0.9299,
+      "nominal_interval_coverage_flag": false,
+      "mean_error": -1.153
+    },
+    "GAME_TOTAL": {
+      "n": 194,
+      "observed_90pct_coverage": 0.9124,
+      "binomial_sampling_95pct_lower": 0.8578,
+      "binomial_sampling_95pct_upper": 0.9422,
+      "nominal_interval_coverage_flag": false,
+      "mean_error": -5.013
+    },
+    "GAME_MARGIN": {
+      "n": 194,
+      "observed_90pct_coverage": 0.9691,
+      "binomial_sampling_95pct_lower": 0.8578,
+      "binomial_sampling_95pct_upper": 0.9422,
+      "nominal_interval_coverage_flag": true,
+      "mean_error": -1.685
+    }
+  }
+}
