@@ -9,18 +9,23 @@ import streamlit as st
 from core.structural_v06 import verified_games,event_rate_rows,upcoming_pair,project_two_sides,simulate_two_sides
 from core.trader_markets_v07 import build_trader_board,threshold_counts,pricing_probabilities,evaluate_external_odds,MARKETS
 from core.efficiency_benchmark_v07 import upcoming_efficiency_benchmark
+from core.discrimination_v08 import upcoming_with_state, calculate
 
 @st.cache_data(show_spinner=False,ttl=3600)
 def load_verified(team_path,player_path,team_mtime,player_mtime):
     return verified_games(pd.read_csv(team_path),pd.read_csv(player_path))
 
 @st.cache_data(show_spinner=False,ttl=3600)
-def cached_sim(tpath,ppath,tm,pm,model_stamp,benchmark_stamp,season,home,away,asof,n,seed,model_data):
+def cached_sim(tpath,ppath,tm,pm,model_stamp,benchmark_stamp,season,home,away,asof,n,seed,model_data,challenger=None):
     data=load_verified(tpath,ppath,tm,pm)
     features=event_rate_rows(data)
-    h,a=upcoming_pair(features,season=season,home_id=home,away_id=away,asof_date=asof)
-    pred=project_two_sides(h,a,model_data)
-    sim=simulate_two_sides(h,a,model_data,n=n,seed=seed)
+    if challenger is None:
+        h,a=upcoming_pair(features,season=season,home_id=home,away_id=away,asof_date=asof)
+        pred=project_two_sides(h,a,model_data)
+        sim=simulate_two_sides(h,a,model_data,n=n,seed=seed)
+    else:
+        h,a=upcoming_with_state(features,season=season,home_id=home,away_id=away,asof_date=asof)
+        pred,sim=calculate(h,a,model_data,challenger,draws=n,seed=seed)
     return pred,sim
 
 
@@ -41,6 +46,12 @@ def render_trader_shadow(base:Path):
         st.warning('Missing one of historical team/player exports or SHADOW v0.6/v0.7 reports. Run the updated GitHub daily workflow once.')
         return
     report=json.loads(p06.read_text());benchmark=json.loads(p07.read_text())
+    v08_file=base.parent/'shadow_v08'/'discrimination_v08_report.json'
+    v08=None
+    if v08_file.exists():
+        v08=json.loads(v08_file.read_text(encoding='utf-8'))
+        if v08.get('status')!='SHADOW_NOT_PRICING_READY' or v08.get('market_definition')!='official_inclusive_v2':
+            st.error('V0.8 schema/status mismatch. Refusing challenger pricing.');return
     dist_file=base.parent/'shadow_v07'/'distribution_audit_v07.json'
     dist=json.loads(dist_file.read_text()) if dist_file.exists() else None
 
@@ -55,19 +66,40 @@ def render_trader_shadow(base:Path):
     a=c2.selectbox('Away',[v for v in ids if v!=h],format_func=lambda z:name[z],key='tv07_away')
     nextdate=d.GAME_DATE.max().date()+timedelta(days=1)
     asof=c3.date_input('Pregame as-of (UTC)', value=max(date.today(),nextdate),min_value=nextdate,key='tv07_day')
+    if v08:
+        selected=st.radio('Experimental coefficient version',
+            ['v0.8 team-state challenger','v0.6 reference'],
+            horizontal=True,index=0,key='tv08_model_choice')
+        challenger=v08['next_game_challenger'] if selected.startswith('v0.8') else None
+    else:
+        st.info('v0.8 report not found; using v0.6 coefficients. Run latest GitHub daily workflow to compare versions.')
+        selected='v0.6 reference'
+        challenger=None
+    st.caption('v0.8 changes pregame team-state coefficients, NOT the uncalibrated Monte Carlo variance. '
+               'Differences in projected lines are not proof of reliable odds.')
     sims=st.select_slider('MC draws (more = slower; NOT calibration)',options=[2000,5000,10000,20000],value=5000)
     if st.button('Generate shadow trader board',key='tv07_run',type='primary'):
         with st.spinner('Computing coherent regulation-game scenarios...'):
             model=report.get('next_game_shadow_coefficients') or report['coefficients']
             pred,sim=cached_sim(str(tp),str(pp),tp.stat().st_mtime,pp.stat().st_mtime,
-                p06.stat().st_mtime,p07.stat().st_mtime,last,h,a,asof,sims,2027,model)
+                p06.stat().st_mtime,(v08_file.stat().st_mtime if v08_file.exists() else p07.stat().st_mtime),
+                last,h,a,asof,sims,2027,model,challenger)
             cross=upcoming_efficiency_benchmark(d,benchmark,last,h,a,asof,pred['pace'])
             board=build_trader_board(sim,name[h],name[a])
-            st.session_state['v07_last']={'match':(h,a,str(asof)), 'pred':pred, 'board':board, 'sim':sim,'cross':cross}
+            st.session_state['v07_last']={'match':(h,a,str(asof),selected), 'pred':pred, 'board':board, 'sim':sim,'cross':cross}
     result=st.session_state.get('v07_last')
-    if not result or result['match']!=(h,a,str(asof)):
+    if not result or result['match']!=(h,a,str(asof),selected):
         st.info('Select matchup and run the preview. Coefficients are loaded from the GitHub trained shadow artifacts.');return
     pred,board,sim,cross=result['pred'],result['board'],result['sim'],result['cross']
+    st.caption('Active mean model: '+selected+'. Market probabilities remain research-only.')
+    if v08:
+        with st.expander('v0.8 coefficient audit — trained challenger vs v0.6'):
+            st.dataframe(pd.DataFrame([
+                {'Factor':k,'Selected':v['kind'],'CV RMSE':v['inner_cv_rmse']}
+                for k,v in v08['historical_challenger']['targets'].items()
+            ]),hide_index=True,use_container_width=True)
+            st.caption('Always compare the two versions on different matchups. '
+                       'No manual inflation of team variance. Rebound rate models may stay league-based.')
     st.markdown('#### Pregame totals consistency audit')
     cc1,cc2,cc3,cc4=st.columns(4)
     structural=pred['home']['PTS']+pred['away']['PTS']
