@@ -30,7 +30,7 @@ NUMERIC = {
     "REB": ("totalRebounds", "reboundsTotal", "rebounds"),
     "AST": ("assistances", "assists"),
     "STL": ("steals",),
-    "BLK": ("blocks", "blocksMade"),
+    "BLK": ("blocksFavour", "blocks", "blocksMade"),
     "TO": ("turnovers",),
     "PF": ("foulsCommited", "foulsCommitted", "personalFouls"),
     "FD": ("foulsReceived", "foulsDrawn"),

@@ -68,11 +68,23 @@ def sync(seasons: list[int], export_dir: Path = EXPORT_DIR, max_new_games: int |
     players_old = old_csv(player_path)
     audits_old = old_csv(audit_path)
     existing_ids = set(teams_old.GAME_ID.astype(str)) if 'GAME_ID' in teams_old else set()
+    # Existing exports may come from an older parser that did not understand
+    # EuroLeague's blocksFavour field. Reparse affected games rather than
+    # preserving missing blocks forever. Correct data is never overwritten.
+    repair_ids: set[str] = set()
+    for previous in (teams_old, players_old):
+        if not previous.empty and 'GAME_ID' in previous.columns:
+            if 'BLK' not in previous.columns:
+                repair_ids.update(previous.GAME_ID.astype(str).tolist())
+            else:
+                missing = pd.to_numeric(previous.BLK, errors='coerce').isna()
+                repair_ids.update(previous.loc[missing, 'GAME_ID'].astype(str).tolist())
     provider = provider or EuroLeagueProvider(root='data/euroleague', competition='E', minimum_interval=7.0)
     incoming_team: list[dict] = []
     incoming_player: list[dict] = []
     issues: list[dict] = []
     total_new_games = 0
+    repaired_ids: set[str] = set()
     for year in sorted(set(seasons)):
         schedule_path = provider.root / provider.competition / f'E{year}' / 'schedule_0.json'
         # Schedule is refetched each Actions run. Historical game boxscore changes are
@@ -89,9 +101,9 @@ def sync(seasons: list[int], export_dir: Path = EXPORT_DIR, max_new_games: int |
             if phase not in {'RS', 'REGULAR SEASON', 'REGULAR_SEASON'}:
                 continue
             gid = f'E{year}_{int(game["gameCode"])}'
-            if gid in existing_ids:
+            if gid in existing_ids and gid not in repair_ids:
                 continue
-            if max_new_games is not None and total_new_games >= max_new_games:
+            if max_new_games is not None and total_new_games + len(repaired_ids) >= max_new_games:
                 break
             try:
                 trows, prows, errors = provider.normalize_game(
@@ -106,15 +118,26 @@ def sync(seasons: list[int], export_dir: Path = EXPORT_DIR, max_new_games: int |
                 if len({str(t['TEAM_ID']) for t in trows}) != 2:
                     issues.append({'GAME_ID': gid, 'ISSUE': 'Two unique teams required'})
                     continue
+                # Blocks missing is not zero blocks. Ingestion must not silently
+                # backfill unknown stats with zeros or claim them as complete.
+                if any(t.get('BLK') is None for t in trows) or any(p.get('BLK') is None for p in prows):
+                    issues.append({'GAME_ID': gid, 'ISSUE': 'BLK missing from upstream game boxscore'})
+                    continue
                 incoming_team.extend(trows)
                 incoming_player.extend(prows)
-                existing_ids.add(gid)
-                total_new_games += 1
+                if gid in repair_ids:
+                    repaired_ids.add(gid)
+                else:
+                    existing_ids.add(gid)
+                    total_new_games += 1
             except Exception as exc:
                 issues.append({'GAME_ID': gid, 'ISSUE': f'{type(exc).__name__}: {exc}'})
-        print(f'E{year}: added {total_new_games} games so far', flush=True)
+        print(f'E{year}: added {total_new_games} new games; repaired {len(repaired_ids)} old games', flush=True)
 
     # Refuse to commit data from a malformed historical file or a broken parser.
+    if repaired_ids:
+        teams_old = teams_old.loc[~teams_old.GAME_ID.astype(str).isin(repaired_ids)].copy()
+        players_old = players_old.loc[~players_old.GAME_ID.astype(str).isin(repaired_ids)].copy()
     teams_all = combine_games(teams_old, incoming_team, ['GAME_ID', 'TEAM_ID'])
     players_all = combine_games(players_old, incoming_player, ['GAME_ID', 'PLAYER_ID'])
     if not teams_all.empty:
@@ -125,13 +148,13 @@ def sync(seasons: list[int], export_dir: Path = EXPORT_DIR, max_new_games: int |
     # Fit BEFORE overwriting any exported artifact. A good data refresh must not
     # discard the prior coefficient file merely because the data sample is small.
     fitted = None
-    if len(teams_all) >= 100 and total_new_games > 0:
+    if len(teams_all) >= 100 and (total_new_games > 0 or repaired_ids):
         try:
             fitted = estimate_coefficients(teams_all)
         except ValueError as exc:
             print('Calibration deferred:', exc, flush=True)
 
-    if total_new_games > 0:
+    if total_new_games > 0 or repaired_ids:
         atomic_csv(teams_all, team_path)
         atomic_csv(players_all, player_path)
         if fitted is not None:
@@ -145,15 +168,16 @@ def sync(seasons: list[int], export_dir: Path = EXPORT_DIR, max_new_games: int |
             'updated_at_utc': datetime.now(timezone.utc).isoformat(),
             'games': int(len(teams_all) // 2),
             'new_games': total_new_games,
+            'repaired_games': len(repaired_ids),
             'seasons': sorted({int(x) for x in teams_all.SEASON.dropna().unique()}),
             'coefficient_stage': 'shadow_only_not_pricing_ready',
         }, indent=2), encoding='utf-8')
         temp.replace(info_path)
     if issues:
         atomic_csv(audits_all, audit_path)
-    if total_new_games == 0:
+    if total_new_games == 0 and not repaired_ids:
         print('No new validated games. Existing CSV/model unchanged.', flush=True)
-    return {'new_games': total_new_games, 'issues': len(issues), 'all_games': int(len(teams_all) // 2)}
+    return {'new_games': total_new_games, 'repaired_games': len(repaired_ids), 'issues': len(issues), 'all_games': int(len(teams_all) // 2)}
 
 
 def main():
