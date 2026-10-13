@@ -11,6 +11,16 @@ on:
         options:
           - bootstrap
           - daily
+      season:
+        description: 'For bootstrap choose ONE season: 2026 to repair current data, then 2025, 2024, 2023'
+        required: false
+        type: choice
+        default: '2026'
+        options:
+          - '2026'
+          - '2025'
+          - '2024'
+          - '2023'
   schedule:
     # 06:37 Athens winter / 07:37 Athens summer; GitHub schedule is UTC.
     - cron: '37 4 * * *'
@@ -42,18 +52,39 @@ jobs:
         run: python -m pytest -q
       - name: Fetch historical data, incrementally
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'bootstrap' }}
-        run: python sync_cloud.py --mode bootstrap --seasons 2023 2024 2025 2026
+        run: python sync_cloud.py --mode bootstrap --seasons ${{ inputs.season || '2026' }}
       - name: Fetch latest season, incrementally
         if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.mode != 'bootstrap') }}
         run: python sync_cloud.py --mode daily
+      - name: Fit structural SHADOW v0.6 on complete history (when ready)
+        run: |
+          python - <<'PYSHADOW'
+          from pathlib import Path
+          import subprocess, sys
+          import pandas as pd
+          p = Path('data/euroleague/exports/team_games.csv')
+          if p.exists():
+              games = pd.read_csv(p, usecols=['GAME_ID', 'SEASON'])
+              if games.GAME_ID.nunique() >= 500 and games.SEASON.nunique() >= 3:
+                  subprocess.run([sys.executable, 'train_structural_v06.py'], check=True)
+              else:
+                  print('Shadow training skipped until 500 games and 3 seasons')
+          else:
+              print('Shadow training skipped: no exported data yet')
+          PYSHADOW
+      - name: Verify official-inclusive v0.6 release gate
+        run: python verify_release_v06.py
       - name: Commit only validated exports and trained coefficients
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/euroleague/exports/
+          if [ -d data/euroleague/shadow_v06 ]; then
+            git add data/euroleague/shadow_v06/
+          fi
           if git diff --cached --quiet; then
             echo 'No changed exported data.'
             exit 0
           fi
-          git commit -m 'data: update EuroLeague validated games and coefficient audit'
+          git commit -m 'data: update EuroLeague exports and structural shadow audit'
           git push
