@@ -1,7 +1,8 @@
 {
-  "updated_at_utc": "2026-10-13T00:43:33.992626+00:00",
+  "updated_at_utc": "2026-10-13T00:58:30.322989+00:00",
   "games": 40,
-  "new_games": 40,
+  "new_games": 0,
+  "repaired_games": 40,
   "seasons": [
     2026
   ],
