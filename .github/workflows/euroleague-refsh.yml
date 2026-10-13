@@ -78,6 +78,10 @@ jobs:
         run: python audit_totals_v07.py
       - name: Audit 90pct MC coverage - still shadow
         run: python audit_distributions_v07.py --draws 1500
+      - name: Fit team-state discrimination SHADOW v0.8
+        run: python train_discrimination_v08.py
+      - name: Verify team-state discrimination v0.8
+        run: python verify_discrimination_v08.py
       - name: Verify official-inclusive v0.6 release gate
         run: python verify_release_v06.py
       - name: Verify v0.7 settlement and model audit gates
@@ -97,7 +101,10 @@ jobs:
           if [ -d data/euroleague/shadow_v07 ]; then
             find data/euroleague/shadow_v07 -maxdepth 1 -type f -name '*.json' -print0 | xargs -0 -r git add -f --
           fi
-          echo 'Files staged for commit:'
+          if [ -d data/euroleague/shadow_v08 ]; then
+            find data/euroleague/shadow_v08 -maxdepth 1 -type f -name '*.json' -print0 | xargs -0 -r git add -f --
+          fi
+          echo 'Files staged for commit:' 
           git diff --cached --name-only
           if git diff --cached --quiet; then
             echo 'No changed exported data.'
