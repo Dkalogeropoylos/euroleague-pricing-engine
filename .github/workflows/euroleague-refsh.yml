@@ -72,8 +72,16 @@ jobs:
           else:
               print('Shadow training skipped: no exported data yet')
           PYSHADOW
+      - name: Fit independent pace-times-efficiency SHADOW v0.7
+        run: python train_efficiency_v07.py
+      - name: Independent pregame totals audit against structural v0.6
+        run: python audit_totals_v07.py
+      - name: Audit 90pct MC coverage - still shadow
+        run: python audit_distributions_v07.py --draws 1500
       - name: Verify official-inclusive v0.6 release gate
         run: python verify_release_v06.py
+      - name: Verify v0.7 settlement and model audit gates
+        run: python verify_shadow_v07.py
       - name: Commit only validated exports and trained coefficients
         run: |
           git config user.name "github-actions[bot]"
@@ -81,6 +89,9 @@ jobs:
           git add data/euroleague/exports/
           if [ -d data/euroleague/shadow_v06 ]; then
             git add data/euroleague/shadow_v06/
+          fi
+          if [ -d data/euroleague/shadow_v07 ]; then
+            git add data/euroleague/shadow_v07/
           fi
           if git diff --cached --quiet; then
             echo 'No changed exported data.'
