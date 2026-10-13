@@ -1,0 +1,30 @@
+{
+  "market_schema_version": "players_only_v1",
+  "team_game_rows": 80,
+  "OREB": {
+    "official_minus_players_total": 149,
+    "team_games_with_team_only_events": 66,
+    "average_official_minus_players": 1.8625
+  },
+  "DREB": {
+    "official_minus_players_total": 150,
+    "team_games_with_team_only_events": 69,
+    "average_official_minus_players": 1.875
+  },
+  "REB": {
+    "official_minus_players_total": 299,
+    "team_games_with_team_only_events": 77,
+    "average_official_minus_players": 3.7375
+  },
+  "TO": {
+    "official_minus_players_total": 47,
+    "team_games_with_team_only_events": 35,
+    "average_official_minus_players": 0.5875
+  },
+  "validated_games": 40,
+  "seasons": [
+    2026
+  ],
+  "model_training_ready": false,
+  "explanation": "Inspection of user-supplied current-season CSV only. Not a live historical training result."
+}

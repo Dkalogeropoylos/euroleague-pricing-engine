@@ -14,6 +14,9 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import Ridge
 
+# Contract: the market OREB/DREB/REB/TO count ONLY credited player events.
+PLAYER_SUM_MARKETS = ("OREB", "DREB", "TO")
+
 STAT_KEYS = ["FG2A", "FG3A", "FTA", "OREB", "DREB", "AST", "STL", "BLK", "TO", "PF", "FD"]
 MIN_TRAIN_ROWS = 70
 
@@ -30,6 +33,21 @@ def clean_games(raw: pd.DataFrame, exclude_ot: bool = True) -> pd.DataFrame:
         raise ValueError("Duplicate game/team rows")
     if not (df.groupby("GAME_ID").size() == 2).all():
         raise ValueError("Every completed game must contain exactly 2 team rows")
+    required_market_columns = {f"MARKET_{s}" for s in ("OREB", "DREB", "REB", "TO")}
+    absent_market = required_market_columns - set(df.columns)
+    if absent_market:
+        raise ValueError(f"Unreconciled player-sum markets: missing {sorted(absent_market)}. "
+                         "First run attach_market_truth(team_games, player_games).")
+    # Preserve official event counts for possession diagnostics; market targets
+    # and opponent allowed for rebounds/turnovers must ALWAYS be player credited.
+    for stat in ("OREB", "DREB", "REB", "TO"):
+        if f"OFFICIAL_{stat}" not in df.columns:
+            df[f"OFFICIAL_{stat}"] = pd.to_numeric(df[stat], errors="coerce")
+        df[stat] = pd.to_numeric(df[f"MARKET_{stat}"], errors="coerce")
+    if df[list(required_market_columns)].isna().any().any():
+        raise ValueError("Market counts have missing credited-player values")
+    if not (df["REB"] == df["OREB"] + df["DREB"]).all():
+        raise ValueError("Player credited REB identity failed")
     df["GAME_DATE"] = pd.to_datetime(df.GAME_DATE, utc=True, errors="coerce")
     df = df.dropna(subset=["GAME_DATE"])
     if "OT_FLAG" in df.columns and exclude_ot:
@@ -41,6 +59,9 @@ def clean_games(raw: pd.DataFrame, exclude_ot: bool = True) -> pd.DataFrame:
     for k in STAT_KEYS:
         df[k] = pd.to_numeric(df[k], errors="coerce")
         df["ALLOWED_" + k] = df.groupby("GAME_ID")[k].transform(lambda s: s.iloc[::-1].to_numpy())
+    # Market total REB is derived from player-sum OREB + DREB. We do NOT
+    # fit a third independent total rebound model.
+    df["ALLOWED_REB"] = df.groupby("GAME_ID")["REB"].transform(lambda s: s.iloc[::-1].to_numpy())
     return df.sort_values(["GAME_DATE", "GAME_ID", "TEAM_ID"]).reset_index(drop=True)
 
 
@@ -52,12 +73,15 @@ def pregame_features(data: pd.DataFrame, min_league_games: int = 20, prior_games
     8 league-average games until enough same-season information accumulates.
     """
     data = clean_games(data, exclude_ot=False) if "ALLOWED_FG2A" not in data else data.copy()
-    league_hist = deque()  # (date, per-stat counts, possessions)
+    league_hist = deque()  # (date, per-stat counts, official-pair pace proxy)
     team_hist = defaultdict(list)  # key (season,team) -> previous game rows
     results = []
     # Treat an entire calendar date as one embargoed block. At 18:00 we cannot
     # borrow a result from a game scheduled for 20:30, even if its game code is lower.
     data = data.copy()
+    # SAME GAME possession estimates may differ between teams; for a pace
+    # training LABEL we use their pair mean, never a pregame input.
+    data["_pace_target_only"] = data.groupby("GAME_ID")["POSS_RAW"].transform("mean")
     data["_asof_day"] = data.GAME_DATE.dt.floor("D")
     for asof_day, day_group in data.groupby("_asof_day", sort=True):
         while league_hist and (asof_day - league_hist[0][0]).days > 550:
@@ -71,20 +95,31 @@ def pregame_features(data: pd.DataFrame, min_league_games: int = 20, prior_games
                 season = int(r.SEASON)
                 team = str(r.TEAM_ID)
                 opp = str(r.OPP_ID)
-                row = {"GAME_ID": r.GAME_ID, "GAME_DATE": r.GAME_DATE,
-                       "SEASON": season, "TEAM_ID": team, "OPP_ID": opp,
-                       "HOME_AWAY": r.HOME_AWAY, "POSS": float(r.POSS_RAW),
-                       "HOME": 1.0 if r.HOME_AWAY == "H" else 0.0,
-                       "AWAY": 1.0 if r.HOME_AWAY == "A" else 0.0}
                 hist_o = team_hist[(season, team)]
                 hist_d = team_hist[(season, opp)]
+                # Purely past-known pace estimate. A game never sees its own
+                # POSS_RAW as count exposure: that was a critical leakage bug.
+                team_prepace = (sum(h["_pace_target_only"] for h in hist_o) +
+                                prior_games * avg_possessions) / (len(hist_o) + prior_games)
+                opp_prepace = (sum(h["_pace_target_only"] for h in hist_d) +
+                               prior_games * avg_possessions) / (len(hist_d) + prior_games)
+                prepace = (team_prepace + opp_prepace) / 2
+                row = {"GAME_ID": r.GAME_ID, "GAME_DATE": r.GAME_DATE,
+                       "SEASON": season, "TEAM_ID": team, "OPP_ID": opp,
+                       "HOME_AWAY": r.HOME_AWAY, "POSS": float(prepace),
+                       "PACE_BASE": float(avg_possessions),
+                       "PACE_TEAM_LOG": float(np.log(team_prepace / avg_possessions)),
+                       "PACE_OPP_LOG": float(np.log(opp_prepace / avg_possessions)),
+                       "PACE_TARGET_ONLY": float(r["_pace_target_only"]),
+                       "HOME": 1.0 if r.HOME_AWAY == "H" else 0.0,
+                       "AWAY": 1.0 if r.HOME_AWAY == "A" else 0.0}
                 for stat in STAT_KEYS:
                     base = baseline[stat]
                     if not np.isfinite(base) or base <= 0:
                         continue
                     prior_exposure = prior_games * avg_possessions
-                    off_expo = sum(h["POSS_RAW"] for h in hist_o)
-                    def_expo = sum(h["POSS_RAW"] for h in hist_d)
+                    off_expo = sum(h["_pace_target_only"] for h in hist_o)
+                    def_expo = sum(h["_pace_target_only"] for h in hist_d)
                     off_count = sum(h[stat] for h in hist_o if pd.notna(h[stat]))
                     def_count = sum(h["ALLOWED_" + stat] for h in hist_d if pd.notna(h["ALLOWED_" + stat]))
                     off = (off_count + base * prior_exposure) / (off_expo + prior_exposure)
@@ -97,9 +132,64 @@ def pregame_features(data: pd.DataFrame, min_league_games: int = 20, prior_games
         # Commit results only AFTER every match on the date has its predictions.
         for _, r in day_group.iterrows():
             obj = r.to_dict()
-            league_hist.append((asof_day, {s: float(r[s]) if pd.notna(r[s]) else 0.0 for s in STAT_KEYS}, float(r.POSS_RAW)))
+            league_hist.append((asof_day, {s: float(r[s]) if pd.notna(r[s]) else 0.0 for s in STAT_KEYS}, float(r["_pace_target_only"])))
             team_hist[(int(r.SEASON), str(r.TEAM_ID))].append(obj)
     return pd.DataFrame(results)
+
+
+def fit_shadow_pace(features: pd.DataFrame, training_games: set, test_games: set) -> dict:
+    """Fit a PRE-GAME pace adjustment using pairs of teams, not final pace inputs.
+
+    One observation per finished GAME_ID, taken from the home team's frozen
+    pregame context. PACE_TARGET_ONLY is a LABEL for evaluation, never a feature.
+    """
+    needed = ["PACE_TEAM_LOG", "PACE_OPP_LOG", "PACE_BASE", "PACE_TARGET_ONLY", "HOME_AWAY"]
+    vals = features.dropna(subset=needed).copy()
+    vals = vals[vals.HOME_AWAY == "H"]
+    vals = vals[(vals.PACE_BASE > 0) & (vals.PACE_TARGET_ONLY > 0)]
+    tr, te = vals[vals.GAME_ID.isin(training_games)], vals[vals.GAME_ID.isin(test_games)]
+    info = {"feature_names": ["previous_team_pace", "previous_opponent_pace"],
+            "train_games": len(tr), "test_games": len(te),
+            "training_target": "same-game pair-mean OFFICIAL box-score pace proxy, label only",
+            "prediction_exposure": "pregame-only team/league history"}
+    if len(tr) < 70 or len(te) < 20:
+        return {**info, "status": "INSUFFICIENT"}
+    cols = ["PACE_TEAM_LOG", "PACE_OPP_LOG"]
+    dates = sorted(tr.GAME_DATE.dt.floor('D').unique())
+    if len(dates) < 15:
+        return {**info, "status": "INSUFFICIENT_DATES"}
+    cutoff = dates[int(len(dates) * 0.75)]
+    inner_train = tr[tr.GAME_DATE.dt.floor('D') < cutoff]
+    inner_valid = tr[tr.GAME_DATE.dt.floor('D') >= cutoff]
+    if len(inner_train) < 45 or len(inner_valid) < 12:
+        return {**info, "status": "INSUFFICIENT_INNER_VALIDATION"}
+
+    def outcome(z):
+        return np.log(z.PACE_TARGET_ONLY.to_numpy(float)/z.PACE_BASE.to_numpy(float))
+
+    def estimates(model, z):
+        base = z.PACE_BASE.to_numpy(float)
+        return base if model is None else base*np.exp(np.clip(model.predict(z[cols].to_numpy(float)), -0.4, 0.4))
+
+    def rmse(model, z):
+        return float(np.sqrt(np.mean((estimates(model, z)-z.PACE_TARGET_ONLY.to_numpy(float))**2)))
+
+    chosen = None
+    best = rmse(None, inner_valid)
+    for alpha in (0.5, 5, 25, 100):
+        candidate = Ridge(alpha=alpha).fit(inner_train[cols].to_numpy(float), outcome(inner_train))
+        score = rmse(candidate, inner_valid)
+        if score < best:
+            chosen, best = alpha, score
+    fitted = Ridge(alpha=chosen).fit(tr[cols].to_numpy(float), outcome(tr)) if chosen is not None else None
+    held = rmse(fitted, te)
+    baseline = rmse(None, te)
+    return {**info, "status": "BASELINE_WINS" if fitted is None else
+            ("FITTED" if held < baseline else "OUTER_HOLDOUT_FAIL"),
+            "alpha": chosen, "coefficients": fitted.coef_.tolist() if fitted is not None else [0., 0.],
+            "intercept": float(fitted.intercept_) if fitted is not None else 0.,
+            "inner_rmse": best, "holdout_rmse": held, "holdout_baseline_rmse": baseline,
+            "improvement_pct": 100*(1-held/max(baseline, 1e-8))}
 
 
 def estimate_coefficients(df: pd.DataFrame, holdout_fraction: float = 0.20) -> dict:
@@ -125,11 +215,15 @@ def estimate_coefficients(df: pd.DataFrame, holdout_fraction: float = 0.20) -> d
     test_games = set(game_order.loc[game_order.DAY >= first_holdout_day, "GAME_ID"])
     if len(training_games) < 25 or len(test_games) < 10:
         raise ValueError("Not enough train/holdout games for calibration")
-    result = {"method": "pregame exposure-normalized Ridge log-rate, date-embargoed chronological holdout",
+    result = {"market_schema_version": "players_only_v1",
+              "method": "PREGAME pace-exposure Ridge log-rate, date-embargoed chronological holdout",
+              "market_targets": "player credited only for OREB/DREB/TO",
+              "pace_exposure": "prior team and league history only, never current-game possessions",
               "feature_prior_games": 8, "league_history_days": 550,
               "holdout": {"training_game_count": len(training_games), "test_game_count": len(test_games),
                           "start": str(first_holdout_day)},
               "markets": {}}
+    result["pace"] = fit_shadow_pace(features, training_games, test_games)
     for s in STAT_KEYS:
         cols = [f"{s}_OFF", f"{s}_DEF", "HOME", "AWAY"]
         needed = cols + [f"{s}_BASE", f"{s}_Y", "POSS"]

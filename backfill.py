@@ -3,6 +3,7 @@ import argparse
 from pathlib import Path
 import pandas as pd
 from providers.euroleague import EuroLeagueProvider
+from market_truth import attach_market_truth
 
 
 def main():
@@ -25,8 +26,14 @@ def main():
         audits.append(pack["audit"])
     dest = Path(args.data_dir) / "exports"
     dest.mkdir(parents=True, exist_ok=True)
-    for filename, chunks in (("team_games.csv", teams), ("player_games.csv", players), ("data_audit.csv", audits)):
-        df = pd.concat(chunks, ignore_index=True) if chunks else pd.DataFrame()
+    team_df = pd.concat(teams, ignore_index=True) if teams else pd.DataFrame()
+    player_df = pd.concat(players, ignore_index=True) if players else pd.DataFrame()
+    audit_df = pd.concat(audits, ignore_index=True) if audits else pd.DataFrame()
+    # Same market settlement contract as the GitHub incremental updater.
+    team_df = attach_market_truth(team_df, player_df)
+    for filename, df in (("team_games.csv", team_df),
+                         ("player_games.csv", player_df),
+                         ("data_audit.csv", audit_df)):
         df.to_csv(dest / filename, index=False)
         print(filename, len(df), "rows")
 

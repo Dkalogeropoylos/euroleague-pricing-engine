@@ -14,6 +14,7 @@ import pandas as pd
 
 from providers.euroleague import EuroLeagueProvider, scalar
 from league_coefficients import clean_games, estimate_coefficients
+from market_truth import attach_market_truth, market_audit, MARKET_SCHEMA_VERSION
 
 EXPORT_DIR = Path('data/euroleague/exports')
 
@@ -140,21 +141,32 @@ def sync(seasons: list[int], export_dir: Path = EXPORT_DIR, max_new_games: int |
         players_old = players_old.loc[~players_old.GAME_ID.astype(str).isin(repaired_ids)].copy()
     teams_all = combine_games(teams_old, incoming_team, ['GAME_ID', 'TEAM_ID'])
     players_all = combine_games(players_old, incoming_player, ['GAME_ID', 'PLAYER_ID'])
+    # Always derive market totals from individual box scores, for ALL seasons.
+    # This also migrates already-committed exports without fetching games again.
+    migration = (not teams_old.empty and
+                 ('MARKET_SCHEMA_VERSION' not in teams_old.columns or
+                  not (teams_old['MARKET_SCHEMA_VERSION'].astype(str) == MARKET_SCHEMA_VERSION).all()))
+    contract_audit = {}
     if not teams_all.empty:
-        clean_games(teams_all)  # checks two-sided, unique identities, date and possessions
+        teams_all = attach_market_truth(teams_all, players_all)  # fail-closed validation
+        contract_audit = market_audit(teams_all)
+        clean_games(teams_all)  # validates two-sided, IDs, date, market columns and pace
     audits_new = pd.DataFrame(issues, columns=['GAME_ID', 'ISSUE'])
     audits_all = pd.concat([audits_old, audits_new], ignore_index=True).drop_duplicates() if not audits_old.empty else audits_new
 
     # Fit BEFORE overwriting any exported artifact. A good data refresh must not
     # discard the prior coefficient file merely because the data sample is small.
     fitted = None
-    if len(teams_all) >= 100 and (total_new_games > 0 or repaired_ids):
+    # Training gate: >=3 distinct seasons, >=500 validated games. This is
+    # NOT a calibrated pricing certificate; models remain shadow-only.
+    enough_history = (len(teams_all) >= 1000 and teams_all.SEASON.nunique() >= 3)
+    if enough_history and (total_new_games > 0 or repaired_ids or migration):
         try:
             fitted = estimate_coefficients(teams_all)
         except ValueError as exc:
             print('Calibration deferred:', exc, flush=True)
 
-    if total_new_games > 0 or repaired_ids:
+    if total_new_games > 0 or repaired_ids or migration:
         atomic_csv(teams_all, team_path)
         atomic_csv(players_all, player_path)
         if fitted is not None:
@@ -171,13 +183,16 @@ def sync(seasons: list[int], export_dir: Path = EXPORT_DIR, max_new_games: int |
             'repaired_games': len(repaired_ids),
             'seasons': sorted({int(x) for x in teams_all.SEASON.dropna().unique()}),
             'coefficient_stage': 'shadow_only_not_pricing_ready',
+            'market_schema_version': MARKET_SCHEMA_VERSION,
+            'market_audit': contract_audit,
+            'training_gate': {'min_seasons': 3, 'min_games': 500, 'met': bool(enough_history)},
         }, indent=2), encoding='utf-8')
         temp.replace(info_path)
     if issues:
         atomic_csv(audits_all, audit_path)
-    if total_new_games == 0 and not repaired_ids:
+    if total_new_games == 0 and not repaired_ids and not migration:
         print('No new validated games. Existing CSV/model unchanged.', flush=True)
-    return {'new_games': total_new_games, 'repaired_games': len(repaired_ids), 'issues': len(issues), 'all_games': int(len(teams_all) // 2)}
+    return {'new_games': total_new_games, 'repaired_games': len(repaired_ids), 'migrated_market_schema': bool(migration), 'issues': len(issues), 'all_games': int(len(teams_all) // 2)}
 
 
 def main():

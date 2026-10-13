@@ -10,6 +10,7 @@ import json
 import os
 import re
 import time
+import math
 from pathlib import Path
 from typing import Any
 
@@ -105,6 +106,21 @@ def numeric_row(raw: dict) -> dict:
     out["FGA"] = (out["FG2A"] + out["FG3A"]) if out["FG2A"] is not None and out["FG3A"] is not None else None
     out["FGM"] = (out["FG2M"] + out["FG3M"]) if out["FG2M"] is not None and out["FG3M"] is not None else None
     return out
+
+
+def valid_team_minutes(total_minutes: float) -> bool:
+    """Five players times (40 regulation minutes + 5 per overtime).
+
+    EuroLeague E2023_170 (Real Madrid - Efes, four OTs) reaches 300
+    credited team-minutes; earlier builds wrongly rejected everything >280.
+    Every additional 5 minutes of overtime adds 25 player-minutes.
+    Treat non-multiple totals as an upstream data-quality failure rather
+    than interpreting them as an unverified number of overtime periods.
+    """
+    if not math.isfinite(total_minutes):
+        return False
+    return any(abs(total_minutes - (200.0 + 25.0 * n_overtimes)) <= 1.0
+               for n_overtimes in range(0, 9))
 
 
 class EuroLeagueProvider:
@@ -277,8 +293,9 @@ class EuroLeagueProvider:
                 mins = sum(p["MINUTES"] for p in ids if p["MINUTES"] is not None)
                 teams[idx]["TEAM_MINUTES"] = mins
                 teams[idx]["OT_FLAG"] = mins > 203.0
-                if mins and abs(mins - 200) > 8 and not (203 <= mins <= 280):
-                    errors.append(f"game={gc} {side}: player minutes sum atypical ({mins:.1f})")
+                if not valid_team_minutes(mins):
+                    errors.append(f"game={gc} {side}: player minutes sum atypical ({mins:.1f}); "
+                                  "expected 200 + 25 × integer overtime periods")
         return teams, players, errors
 
     def load_season(self, season: int, max_games: int | None = None, strict: bool = True, regular_only: bool = True) -> dict[str, pd.DataFrame]:

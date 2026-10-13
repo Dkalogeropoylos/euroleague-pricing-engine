@@ -34,7 +34,14 @@ class OfflineFakeProvider(EuroLeagueProvider):
         for side, label in [('local', 'AAA'), ('road', 'BBB')]:
             players = []
             for i in range(10):
-                stats = deepcopy(team)
+                # Valid fake: individual totals really reconcile to team boxscore.
+                stats = {}
+                for stat, total in team.items():
+                    if stat == 'points':
+                        continue
+                    stats[stat] = total // 10 + (1 if i < total % 10 else 0)
+                stats['points'] = (2 * stats['fieldGoalsMade2'] +
+                                   3 * stats['fieldGoalsMade3'] + stats['freeThrowsMade'])
                 stats['timePlayed'] = 1200
                 players.append({'player': {'person': {'code': f'{label}{i}', 'name': f'{label} {i}'},
                                            'position': 'G'}, 'stats': stats})

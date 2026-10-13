@@ -69,6 +69,9 @@ def mock_games(num=160):
                 avg = {"FG2A":39,"FG3A":25,"FTA":18,"OREB":10,"DREB":23,"AST":18,
                        "STL":6,"BLK":2,"TO":12,"PF":19,"FD":19}[s]
                 row[s] = int(rng.poisson(avg))
+            row["REB"] = row["OREB"] + row["DREB"]
+            for k in ("OREB", "DREB", "REB", "TO"):
+                row["MARKET_" + k] = row[k]
             rows.append(row)
     return pd.DataFrame(rows)
 
