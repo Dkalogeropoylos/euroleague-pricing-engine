@@ -6,16 +6,16 @@
   "alpha": 2.0,
   "model": {
     "coefficients": [
-      0.32382376960308146,
-      0.16805308714701678,
+      0.32382376960308124,
+      0.1680530871470169,
       0.04364926149413418
     ],
     "intercept": -0.02205215770531194
   },
   "next_game_model": {
     "coefficients": [
-      0.37682599057427485,
-      0.18812937588409148,
+      0.3768259905742748,
+      0.1881293758840915,
       0.043873573569227865
     ],
     "intercept": -0.022336638185590906
@@ -26,7 +26,7 @@
   "inner_best_candidate_rmse": 10.051582371016359,
   "outer_team_ppp_model_rmse_pts": 8.850924074767342,
   "outer_team_league_baseline_rmse_pts": 9.244436406782011,
-  "outer_total_ppp_model_rmse_pts": 13.609525581348288,
+  "outer_total_ppp_model_rmse_pts": 13.60952558134829,
   "outer_total_league_rmse_pts": 13.855039850406527,
   "outer_games": 194,
   "outer_team_rows": 388,

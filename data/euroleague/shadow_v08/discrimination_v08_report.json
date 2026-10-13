@@ -1,0 +1,1221 @@
+{
+  "model_version": "0.8-team-state-challenger",
+  "status": "SHADOW_NOT_PRICING_READY",
+  "market_definition": "official_inclusive_v2",
+  "games": 992,
+  "train_games": 777,
+  "audit_games": 194,
+  "cutoff_utc": "2026-01-16 00:00:00+00:00",
+  "no_same_day_leakage": true,
+  "training_data_through_utc": "2026-10-09 20:30:00+00:00",
+  "historical_challenger": {
+    "status": "SHADOW_NOT_PRICING_READY",
+    "market_definition": "official_inclusive_v2",
+    "model_version": "0.8-team-state-challenger",
+    "prior_games": 4.0,
+    "targets": {
+      "PACE": {
+        "kind": "multiscale",
+        "names": [
+          "recent_off",
+          "season_off",
+          "prev_off",
+          "recent_def",
+          "season_def",
+          "prev_def",
+          "home"
+        ],
+        "coefficients": [
+          0.1938947332016246,
+          0.2616463514737391,
+          0.09219969111062966,
+          0.15261199493206248,
+          0.23179420431063877,
+          0.1137262901726896,
+          0.0
+        ],
+        "intercept": 0.005225088695303108,
+        "alpha": 0.5,
+        "n": 777,
+        "inner_cv_rmse": 3.620449639008861,
+        "candidates": [
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 3.6204
+          },
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 3.6754
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 3.6933
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 3.7486
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 3.797
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 3.8137
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 3.8256
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 3.8281
+          },
+          {
+            "kind": "recent",
+            "alpha": 5.0,
+            "rmse": 3.8363
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 3.8417
+          }
+        ]
+      },
+      "THREE_SHARE": {
+        "kind": "multiscale",
+        "names": [
+          "recent_off",
+          "season_off",
+          "prev_off",
+          "recent_def",
+          "season_def",
+          "prev_def",
+          "home"
+        ],
+        "coefficients": [
+          0.4755099099450219,
+          0.5955040658829878,
+          0.13009703748855506,
+          0.210869520113519,
+          0.5278741172099155,
+          0.316047680997502,
+          -0.004296175421070506
+        ],
+        "intercept": -0.010410609229199824,
+        "alpha": 0.5,
+        "n": 1554,
+        "inner_cv_rmse": 4.38298946363797,
+        "candidates": [
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 4.383
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 4.4125
+          },
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 4.4306
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 4.4744
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 4.4798
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 4.5562
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 4.5622
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 4.5899
+          },
+          {
+            "kind": "recent",
+            "alpha": 5.0,
+            "rmse": 4.6745
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 4.7484
+          }
+        ]
+      },
+      "TWO_PCT": {
+        "kind": "carryover",
+        "names": [
+          "season_off",
+          "season_def",
+          "prev_off",
+          "prev_def",
+          "home"
+        ],
+        "coefficients": [
+          0.3310729454833462,
+          0.30561877478594823,
+          0.048397413469032674,
+          0.21572690467490502,
+          0.023332269269892975
+        ],
+        "intercept": -0.017551364028654943,
+        "alpha": 0.5,
+        "n": 1554,
+        "inner_cv_rmse": 3.065568261476361,
+        "candidates": [
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 3.0656
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 3.0669
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 3.0679
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 3.0824
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 3.0827
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 3.0832
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 3.0841
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 3.0906
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 3.0921
+          },
+          {
+            "kind": "recent",
+            "alpha": 5.0,
+            "rmse": 3.0926
+          }
+        ]
+      },
+      "THREE_PCT": {
+        "kind": "league",
+        "inner_cv_rmse": 2.567140702360997,
+        "candidates": [
+          {
+            "kind": "league",
+            "alpha": null,
+            "rmse": 2.5671
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 2.5671
+          },
+          {
+            "kind": "season",
+            "alpha": 25.0,
+            "rmse": 2.5772
+          },
+          {
+            "kind": "carryover",
+            "alpha": 25.0,
+            "rmse": 2.5772
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 2.5774
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 2.5776
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 2.5783
+          },
+          {
+            "kind": "recent",
+            "alpha": 25.0,
+            "rmse": 2.5786
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 2.5803
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 2.5807
+          }
+        ]
+      },
+      "FT_PCT": {
+        "kind": "multiscale",
+        "names": [
+          "recent_off",
+          "season_off",
+          "prev_off",
+          "recent_def",
+          "season_def",
+          "prev_def",
+          "home"
+        ],
+        "coefficients": [
+          0.10602997761929114,
+          0.2795817873261037,
+          0.19315330702226902,
+          -0.005860558184313669,
+          -0.0331054698583001,
+          0.1374972828270987,
+          0.002217619704230229
+        ],
+        "intercept": -0.00562738578405418,
+        "alpha": 0.5,
+        "n": 1554,
+        "inner_cv_rmse": 1.9634086129078268,
+        "candidates": [
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 1.9634
+          },
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 1.9637
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 1.9698
+          },
+          {
+            "kind": "league",
+            "alpha": null,
+            "rmse": 1.9718
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 1.9718
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 1.9741
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 1.9754
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 1.9777
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 1.9792
+          },
+          {
+            "kind": "recent",
+            "alpha": 5.0,
+            "rmse": 1.9805
+          }
+        ]
+      },
+      "FTA_RATE": {
+        "kind": "season",
+        "names": [
+          "season_off",
+          "season_def",
+          "home"
+        ],
+        "coefficients": [
+          0.7024367072769935,
+          0.693829225226566,
+          0.04894202877664191
+        ],
+        "intercept": -0.07158859770094779,
+        "alpha": 0.5,
+        "n": 1554,
+        "inner_cv_rmse": 6.085898348949337,
+        "candidates": [
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 6.0859
+          },
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 6.1001
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 6.1089
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 6.1361
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 6.1381
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 6.1509
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 6.1661
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 6.269
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 6.283
+          },
+          {
+            "kind": "carryover",
+            "alpha": 25.0,
+            "rmse": 6.2892
+          }
+        ]
+      },
+      "OREB_RATE": {
+        "kind": "league",
+        "inner_cv_rmse": 3.0353331426361008,
+        "candidates": [
+          {
+            "kind": "league",
+            "alpha": null,
+            "rmse": 3.0353
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 3.0353
+          },
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 3.0541
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 3.0552
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 3.0624
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 3.0757
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 3.0782
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 3.0827
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 3.0873
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 3.0948
+          }
+        ]
+      },
+      "DREB_RATE": {
+        "kind": "league",
+        "inner_cv_rmse": 1.2639037739287942,
+        "candidates": [
+          {
+            "kind": "league",
+            "alpha": null,
+            "rmse": 1.2639
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 1.2648
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 1.2655
+          },
+          {
+            "kind": "recent",
+            "alpha": 25.0,
+            "rmse": 1.2656
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 1.2656
+          },
+          {
+            "kind": "season",
+            "alpha": 25.0,
+            "rmse": 1.2656
+          },
+          {
+            "kind": "carryover",
+            "alpha": 25.0,
+            "rmse": 1.2656
+          },
+          {
+            "kind": "recent",
+            "alpha": 5.0,
+            "rmse": 1.2657
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 1.2658
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 1.2658
+          }
+        ]
+      }
+    },
+    "limitations": [
+      "No injuries or lineup changes",
+      "No PBP rebound opportunities",
+      "Repeated historical samples are NOT fresh independent evidence",
+      "Probability distributions remain uncalibrated"
+    ]
+  },
+  "next_game_challenger": {
+    "status": "SHADOW_NOT_PRICING_READY",
+    "market_definition": "official_inclusive_v2",
+    "model_version": "0.8-team-state-challenger",
+    "prior_games": 4.0,
+    "targets": {
+      "PACE": {
+        "kind": "multiscale",
+        "names": [
+          "recent_off",
+          "season_off",
+          "prev_off",
+          "recent_def",
+          "season_def",
+          "prev_def",
+          "home"
+        ],
+        "coefficients": [
+          0.22028684422274653,
+          0.26905786930798703,
+          0.10158886624997043,
+          0.18410986433031284,
+          0.2833018184196885,
+          0.14799866765298353,
+          0.0
+        ],
+        "intercept": 0.0047294313905691865,
+        "alpha": 0.5,
+        "n": 971,
+        "inner_cv_rmse": 3.620449639008861,
+        "candidates": [
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 3.6204
+          },
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 3.6754
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 3.6933
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 3.7486
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 3.797
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 3.8137
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 3.8256
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 3.8281
+          },
+          {
+            "kind": "recent",
+            "alpha": 5.0,
+            "rmse": 3.8363
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 3.8417
+          }
+        ]
+      },
+      "THREE_SHARE": {
+        "kind": "multiscale",
+        "names": [
+          "recent_off",
+          "season_off",
+          "prev_off",
+          "recent_def",
+          "season_def",
+          "prev_def",
+          "home"
+        ],
+        "coefficients": [
+          0.4387302714561162,
+          0.634428079898409,
+          0.11934535443300329,
+          0.25109525737706745,
+          0.5494311329592153,
+          0.3018231980747159,
+          -0.006723798331724295
+        ],
+        "intercept": -0.01108383766781161,
+        "alpha": 0.5,
+        "n": 1942,
+        "inner_cv_rmse": 4.38298946363797,
+        "candidates": [
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 4.383
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 4.4125
+          },
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 4.4306
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 4.4744
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 4.4798
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 4.5562
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 4.5622
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 4.5899
+          },
+          {
+            "kind": "recent",
+            "alpha": 5.0,
+            "rmse": 4.6745
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 4.7484
+          }
+        ]
+      },
+      "TWO_PCT": {
+        "kind": "carryover",
+        "names": [
+          "season_off",
+          "season_def",
+          "prev_off",
+          "prev_def",
+          "home"
+        ],
+        "coefficients": [
+          0.3797668312023808,
+          0.29866944987721294,
+          0.1385893947561264,
+          0.21443397056913635,
+          0.024464287885453417
+        ],
+        "intercept": -0.019232486179976385,
+        "alpha": 0.5,
+        "n": 1942,
+        "inner_cv_rmse": 3.065568261476361,
+        "candidates": [
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 3.0656
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 3.0669
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 3.0679
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 3.0824
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 3.0827
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 3.0832
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 3.0841
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 3.0906
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 3.0921
+          },
+          {
+            "kind": "recent",
+            "alpha": 5.0,
+            "rmse": 3.0926
+          }
+        ]
+      },
+      "THREE_PCT": {
+        "kind": "league",
+        "inner_cv_rmse": 2.567140702360997,
+        "candidates": [
+          {
+            "kind": "league",
+            "alpha": null,
+            "rmse": 2.5671
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 2.5671
+          },
+          {
+            "kind": "season",
+            "alpha": 25.0,
+            "rmse": 2.5772
+          },
+          {
+            "kind": "carryover",
+            "alpha": 25.0,
+            "rmse": 2.5772
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 2.5774
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 2.5776
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 2.5783
+          },
+          {
+            "kind": "recent",
+            "alpha": 25.0,
+            "rmse": 2.5786
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 2.5803
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 2.5807
+          }
+        ]
+      },
+      "FT_PCT": {
+        "kind": "multiscale",
+        "names": [
+          "recent_off",
+          "season_off",
+          "prev_off",
+          "recent_def",
+          "season_def",
+          "prev_def",
+          "home"
+        ],
+        "coefficients": [
+          0.13834050434276055,
+          0.3348232973359219,
+          0.21434726862280415,
+          -0.06419765363636713,
+          0.04511383217641956,
+          0.17670875365764366,
+          0.004808090274479898
+        ],
+        "intercept": -0.007380906930717166,
+        "alpha": 0.5,
+        "n": 1942,
+        "inner_cv_rmse": 1.9634086129078268,
+        "candidates": [
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 1.9634
+          },
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 1.9637
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 1.9698
+          },
+          {
+            "kind": "league",
+            "alpha": null,
+            "rmse": 1.9718
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 1.9718
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 1.9741
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 1.9754
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 1.9777
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 1.9792
+          },
+          {
+            "kind": "recent",
+            "alpha": 5.0,
+            "rmse": 1.9805
+          }
+        ]
+      },
+      "FTA_RATE": {
+        "kind": "season",
+        "names": [
+          "season_off",
+          "season_def",
+          "home"
+        ],
+        "coefficients": [
+          0.7135744112974299,
+          0.7403911850978474,
+          0.053353078309431236
+        ],
+        "intercept": -0.07566037704004511,
+        "alpha": 0.5,
+        "n": 1942,
+        "inner_cv_rmse": 6.085898348949337,
+        "candidates": [
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 6.0859
+          },
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 6.1001
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 6.1089
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 6.1361
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 6.1381
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 6.1509
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 6.1661
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 6.269
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 6.283
+          },
+          {
+            "kind": "carryover",
+            "alpha": 25.0,
+            "rmse": 6.2892
+          }
+        ]
+      },
+      "OREB_RATE": {
+        "kind": "league",
+        "inner_cv_rmse": 3.0353331426361008,
+        "candidates": [
+          {
+            "kind": "league",
+            "alpha": null,
+            "rmse": 3.0353
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 3.0353
+          },
+          {
+            "kind": "carryover",
+            "alpha": 0.5,
+            "rmse": 3.0541
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 3.0552
+          },
+          {
+            "kind": "season",
+            "alpha": 0.5,
+            "rmse": 3.0624
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 3.0757
+          },
+          {
+            "kind": "carryover",
+            "alpha": 5.0,
+            "rmse": 3.0782
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 3.0827
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 3.0873
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 3.0948
+          }
+        ]
+      },
+      "DREB_RATE": {
+        "kind": "league",
+        "inner_cv_rmse": 1.2639037739287942,
+        "candidates": [
+          {
+            "kind": "league",
+            "alpha": null,
+            "rmse": 1.2639
+          },
+          {
+            "kind": "v06",
+            "alpha": null,
+            "rmse": 1.2648
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 1.2655
+          },
+          {
+            "kind": "recent",
+            "alpha": 25.0,
+            "rmse": 1.2656
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 25.0,
+            "rmse": 1.2656
+          },
+          {
+            "kind": "season",
+            "alpha": 25.0,
+            "rmse": 1.2656
+          },
+          {
+            "kind": "carryover",
+            "alpha": 25.0,
+            "rmse": 1.2656
+          },
+          {
+            "kind": "recent",
+            "alpha": 5.0,
+            "rmse": 1.2657
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 5.0,
+            "rmse": 1.2658
+          },
+          {
+            "kind": "season",
+            "alpha": 5.0,
+            "rmse": 1.2658
+          }
+        ]
+      }
+    },
+    "limitations": [
+      "No injuries or lineup changes",
+      "No PBP rebound opportunities",
+      "Repeated historical samples are NOT fresh independent evidence",
+      "Probability distributions remain uncalibrated"
+    ]
+  },
+  "audit_against_v06": {
+    "POSS": {
+      "rmse_v06": 3.9831,
+      "rmse_v08": 3.7192,
+      "change_pct": 6.63,
+      "bias_v08": -0.0646,
+      "std_v06": 0.3087,
+      "std_v08": 0.8283,
+      "std_actual": 4.0478
+    },
+    "PTS": {
+      "rmse_v06": 10.4788,
+      "rmse_v08": 10.2732,
+      "change_pct": 1.96,
+      "bias_v08": -2.4677,
+      "std_v06": 1.2896,
+      "std_v08": 1.7423,
+      "std_actual": 10.4223
+    },
+    "FG2A": {
+      "rmse_v06": 5.5712,
+      "rmse_v08": 5.5104,
+      "change_pct": 1.09,
+      "bias_v08": -0.7015,
+      "std_v06": 1.0788,
+      "std_v08": 1.9595,
+      "std_actual": 5.7728
+    },
+    "FG3A": {
+      "rmse_v06": 5.0581,
+      "rmse_v08": 4.7373,
+      "change_pct": 6.34,
+      "bias_v08": -0.7464,
+      "std_v06": 0.9467,
+      "std_v08": 2.0831,
+      "std_actual": 5.3455
+    },
+    "FTA": {
+      "rmse_v06": 6.2813,
+      "rmse_v08": 6.2286,
+      "change_pct": 0.84,
+      "bias_v08": -0.7915,
+      "std_v06": 1.2623,
+      "std_v08": 1.6977,
+      "std_actual": 6.5208
+    },
+    "MARKET_OREB": {
+      "rmse_v06": 3.571,
+      "rmse_v08": 3.5434,
+      "change_pct": 0.77,
+      "bias_v08": -0.2498,
+      "std_v06": 0.1582,
+      "std_v08": 0.2936,
+      "std_actual": 3.5653
+    },
+    "MARKET_DREB": {
+      "rmse_v06": 4.0537,
+      "rmse_v08": 4.0041,
+      "change_pct": 1.23,
+      "bias_v08": -0.4316,
+      "std_v06": 0.1925,
+      "std_v08": 0.5106,
+      "std_actual": 4.0597
+    },
+    "MARKET_REB": {
+      "rmse_v06": 5.3967,
+      "rmse_v08": 5.305,
+      "change_pct": 1.7,
+      "bias_v08": -0.6815,
+      "std_v06": 0.2203,
+      "std_v08": 0.5955,
+      "std_actual": 5.3825
+    },
+    "MARKET_TO": {
+      "rmse_v06": 3.3153,
+      "rmse_v08": 3.3024,
+      "change_pct": 0.39,
+      "bias_v08": -0.323,
+      "std_v06": 0.5649,
+      "std_v08": 0.5769,
+      "std_actual": 3.414
+    },
+    "AST": {
+      "rmse_v06": 4.3436,
+      "rmse_v08": 4.3184,
+      "change_pct": 0.58,
+      "bias_v08": -1.1515,
+      "std_v06": 0.5172,
+      "std_v08": 0.5906,
+      "std_actual": 4.2682
+    }
+  },
+  "restrictions": [
+    "Results reuse an already scrutinized historical holdout",
+    "Not independent untouched validation",
+    "Official rebound totals include team-only events",
+    "No availability, venue relocation, fatigue, PBP/FT rebound classification",
+    "Monte Carlo variance not calibrated; fair odds diagnostic only",
+    "Do not manually inflate coefficients to achieve line separation"
+  ]
+}
