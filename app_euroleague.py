@@ -45,7 +45,9 @@ c2.metric("Team-game observations", len(teams))
 c3.metric("Player-game observations", len(players))
 c4.metric("Data quality flags", len(audit))
 
-page_data, page_matchup, page_coeff, page_audit = st.tabs(["League Baselines", "Matchup Audit", "Coefficients", "Data Audit"])
+page_data, page_matchup, page_coeff, page_audit, page_structural = st.tabs(
+    ["League Baselines", "Matchup Audit", "Coefficients", "Data Audit", "Structural SHADOW v0.5"]
+)
 st.info("**Market settlement rule:** Ομαδικά OREB, DREB, REB και turnovers είναι ΠΑΝΤΑ άθροισμα παικτών. Τα επίσημα team-only events κρατούνται χωριστά για pace/audit.")
 
 with page_data:
@@ -110,3 +112,8 @@ with page_audit:
     st.write("Unique team codes:", len(teams.TEAM_ID.unique()))
     if players.empty:
         st.warning("No player-level records were parsed yet.")
+
+
+with page_structural:
+    from app_structural_panel import render_shadow
+    render_shadow(base)
