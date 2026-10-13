@@ -25,7 +25,7 @@ if raw_teams.empty:
     st.warning("Δεν υπάρχουν validated team-game rows.")
     st.stop()
 if 'MARKET_SCHEMA_VERSION' not in raw_teams.columns or not (raw_teams.MARKET_SCHEMA_VERSION == MARKET_SCHEMA_VERSION).all():
-    st.error("Το market contract δεν έχει εφαρμοστεί. OREB/DREB/REB/TO must be player sums. Apply the unified upgrade after bootstrap.")
+    st.error("Το market contract δεν έχει εφαρμοστεί. OREB/DREB/REB/TO must be official-inclusive totals. Apply the unified upgrade after bootstrap.")
     st.stop()
 try:
     teams = clean_games(raw_teams)
@@ -46,9 +46,9 @@ c3.metric("Player-game observations", len(players))
 c4.metric("Data quality flags", len(audit))
 
 page_data, page_matchup, page_coeff, page_audit, page_structural = st.tabs(
-    ["League Baselines", "Matchup Audit", "Coefficients", "Data Audit", "Structural SHADOW v0.5"]
+    ["League Baselines", "Matchup Audit", "Coefficients", "Data Audit", "Structural SHADOW v0.6"]
 )
-st.info("**Market settlement rule:** Ομαδικά OREB, DREB, REB και turnovers είναι ΠΑΝΤΑ άθροισμα παικτών. Τα επίσημα team-only events κρατούνται χωριστά για pace/audit.")
+st.info("**Market settlement rule:** Ομαδικά OREB, DREB, REB και turnovers είναι τα ΕΠΙΣΗΜΑ team totals, μαζί με τα team-only events. Τα player sums κρατούνται χωριστά για player props/steal modeling.")
 
 with page_data:
     season = st.selectbox("Season start year", sorted(teams.SEASON.unique().astype(int), reverse=True))
@@ -60,7 +60,7 @@ with page_data:
     else:
         desc = pd.DataFrame([{"Metric": "Estimated possessions", "Per team-game": a.POSS_RAW.mean(), "Per 100 possessions": 100},
                              *[{"Metric": s, "Per team-game": a[s].mean(), "Per 100 possessions": a[s].sum()/exposure*100} for s in display_stats]])
-        desc['Definition'] = desc['Metric'].map(lambda x: 'PLAYER SUM' if x in ('OREB','DREB','REB','TO') else 'OFFICIAL/PREGAME AUDIT')
+        desc['Definition'] = desc['Metric'].map(lambda x: 'OFFICIAL INCLUSIVE' if x in ('OREB','DREB','REB','TO') else 'OFFICIAL/PREGAME AUDIT')
         st.dataframe(desc.style.format({"Per team-game": "{:.2f}", "Per 100 possessions": "{:.2f}"}), hide_index=True, use_container_width=True)
         st.info("Possessions are currently box-score estimates (FGA−OREB+TO+0.44FTA), not exact play-by-play counts.")
 
@@ -103,7 +103,7 @@ with page_coeff:
 
 with page_audit:
     st.subheader("Boxscore ingestion issues")
-    st.write("**Player credited vs team-only gaps:**", market_audit(raw_teams))
+    st.write("**Official-inclusive market, with credited/team-only reconciliation:**", market_audit(raw_teams))
     if audit.empty:
         st.success("No recorded ingestion issues in local backfill.")
     else:

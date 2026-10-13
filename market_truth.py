@@ -1,8 +1,8 @@
 """Market settlement truth vs official technical box-score events.
 
-The team's market OREB, DREB, REB and turnovers count ONLY the sum of
-individual players' credited box-score statistics.  Official totals can include
-team-only events, so retain them separately for analytical use.
+Team-market OREB, DREB, REB and turnovers INCLUDE all official team box-score
+events, including team-only events. Player-credited statistics remain separate
+for player props, credit-share audits, and steal opportunities.
 
 This module has NO network access and NEVER guesses missing individual numbers.
 """
@@ -12,10 +12,10 @@ import numpy as np
 import pandas as pd
 
 MARKET_STATS = ("OREB", "DREB", "REB", "TO")
-CONTROL_STATS = ("PTS", "FG2M", "FG2A", "FG3M", "FG3A", "FTM", "FTA", "AST", "STL", "BLK")
+CONTROL_STATS = ("PTS", "FG2M", "FG2A", "FG3M", "FG3A", "FTM", "FTA", "AST", "STL", "BLK", "PF", "FD")
 KEYS = ["GAME_ID", "TEAM_ID"]
 REQUIRED = set(KEYS) | set(MARKET_STATS) | set(CONTROL_STATS)
-MARKET_SCHEMA_VERSION = "players_only_v1"
+MARKET_SCHEMA_VERSION = "official_inclusive_v2"
 
 
 class MarketTruthError(ValueError):
@@ -37,8 +37,8 @@ def attach_market_truth(team_games: pd.DataFrame, player_games: pd.DataFrame) ->
     """Return enriched team rows with MARKET_*, OFFICIAL_* and TEAM_ONLY_* fields.
 
     Checks complete player coverage via all independently tallyable shot/point/
-    defensive event box-score fields. Never uses official REB/TO as a fallback.
-    Official POSS_RAW is kept unchanged and is NOT the player-sum TO/OREB pace.
+    defensive event box-score fields. Keeps official totals for team markets and individual sums as separate fields.
+    Official POSS_RAW is kept unchanged.
     """
     if team_games.empty or player_games.empty:
         raise MarketTruthError("Need both nonempty team and player game exports")
@@ -92,10 +92,11 @@ def attach_market_truth(team_games: pd.DataFrame, player_games: pd.DataFrame) ->
             raise MarketTruthError(f"Players {c} exceed official team {c}: "
                                    f"game {t.iloc[i].GAME_ID}, team {t.iloc[i].TEAM_ID}")
         t[f"OFFICIAL_{c}"] = official
-        t[f"MARKET_{c}"] = credited
+        t[f"PLAYER_CREDITED_{c}"] = credited
+        t[f"MARKET_{c}"] = official
         t[f"TEAM_ONLY_{c}"] = official - credited
     if not np.array_equal(t.MARKET_REB.to_numpy(), (t.MARKET_OREB + t.MARKET_DREB).to_numpy()):
-        raise MarketTruthError("Market REB identity failure")
+        raise MarketTruthError("Official-inclusive market REB identity failure")
     if "POSS_RAW" in t.columns:
         expected = (pd.to_numeric(t.FG2A) + pd.to_numeric(t.FG3A) + 0.44*pd.to_numeric(t.FTA)
                     - t.OFFICIAL_OREB + t.OFFICIAL_TO)

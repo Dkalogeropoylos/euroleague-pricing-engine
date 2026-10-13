@@ -14,8 +14,8 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import Ridge
 
-# Contract: the market OREB/DREB/REB/TO count ONLY credited player events.
-PLAYER_SUM_MARKETS = ("OREB", "DREB", "TO")
+# Contract: market OREB/DREB/REB/TO count official totals INCLUDING team-only.
+OFFICIAL_MARKETS = ("OREB", "DREB", "REB", "TO")
 
 STAT_KEYS = ["FG2A", "FG3A", "FTA", "OREB", "DREB", "AST", "STL", "BLK", "TO", "PF", "FD"]
 MIN_TRAIN_ROWS = 70
@@ -36,18 +36,20 @@ def clean_games(raw: pd.DataFrame, exclude_ot: bool = True) -> pd.DataFrame:
     required_market_columns = {f"MARKET_{s}" for s in ("OREB", "DREB", "REB", "TO")}
     absent_market = required_market_columns - set(df.columns)
     if absent_market:
-        raise ValueError(f"Unreconciled player-sum markets: missing {sorted(absent_market)}. "
+        raise ValueError(f"Unreconciled official-inclusive markets: missing {sorted(absent_market)}. "
                          "First run attach_market_truth(team_games, player_games).")
-    # Preserve official event counts for possession diagnostics; market targets
-    # and opponent allowed for rebounds/turnovers must ALWAYS be player credited.
+    # Market targets and opponent allowed must use inclusive team totals.
+    # Retain credited-only fields for player props and steal opportunities.
     for stat in ("OREB", "DREB", "REB", "TO"):
         if f"OFFICIAL_{stat}" not in df.columns:
             df[f"OFFICIAL_{stat}"] = pd.to_numeric(df[stat], errors="coerce")
         df[stat] = pd.to_numeric(df[f"MARKET_{stat}"], errors="coerce")
+        if not np.array_equal(df[stat].to_numpy(float), df[f"OFFICIAL_{stat}"].to_numpy(float)):
+            raise ValueError(f"Market {stat} does not match official-inclusive team total")
     if df[list(required_market_columns)].isna().any().any():
-        raise ValueError("Market counts have missing credited-player values")
+        raise ValueError("Market counts have missing official-inclusive values")
     if not (df["REB"] == df["OREB"] + df["DREB"]).all():
-        raise ValueError("Player credited REB identity failed")
+        raise ValueError("Official-inclusive REB identity failed")
     df["GAME_DATE"] = pd.to_datetime(df.GAME_DATE, utc=True, errors="coerce")
     df = df.dropna(subset=["GAME_DATE"])
     if "OT_FLAG" in df.columns and exclude_ot:
@@ -59,7 +61,7 @@ def clean_games(raw: pd.DataFrame, exclude_ot: bool = True) -> pd.DataFrame:
     for k in STAT_KEYS:
         df[k] = pd.to_numeric(df[k], errors="coerce")
         df["ALLOWED_" + k] = df.groupby("GAME_ID")[k].transform(lambda s: s.iloc[::-1].to_numpy())
-    # Market total REB is derived from player-sum OREB + DREB. We do NOT
+    # Market total REB is derived from official OREB + DREB. We do NOT
     # fit a third independent total rebound model.
     df["ALLOWED_REB"] = df.groupby("GAME_ID")["REB"].transform(lambda s: s.iloc[::-1].to_numpy())
     return df.sort_values(["GAME_DATE", "GAME_ID", "TEAM_ID"]).reset_index(drop=True)
@@ -215,7 +217,7 @@ def estimate_coefficients(df: pd.DataFrame, holdout_fraction: float = 0.20) -> d
     test_games = set(game_order.loc[game_order.DAY >= first_holdout_day, "GAME_ID"])
     if len(training_games) < 25 or len(test_games) < 10:
         raise ValueError("Not enough train/holdout games for calibration")
-    result = {"market_schema_version": "players_only_v1",
+    result = {"market_schema_version": "official_inclusive_v2",
               "method": "PREGAME pace-exposure Ridge log-rate, date-embargoed chronological holdout",
               "market_targets": "player credited only for OREB/DREB/TO",
               "pace_exposure": "prior team and league history only, never current-game possessions",

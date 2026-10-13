@@ -18,7 +18,7 @@ def _synthetic(tmp_path):
     return pd.DataFrame(team), pd.DataFrame(players)
 
 
-def test_player_sum_market_truth_and_official_pace_separation(tmp_path):
+def test_official_inclusive_market_truth_and_official_pace_separation(tmp_path):
     t, p = _synthetic(tmp_path)
     # Add team-only events WITHOUT crediting any player.
     ix = 0
@@ -29,19 +29,23 @@ def test_player_sum_market_truth_and_official_pace_separation(tmp_path):
     # Box-score possessions must use the official, not player-credited counts.
     t.loc[ix, 'POSS_RAW'] = t.loc[ix, 'FG2A'] + t.loc[ix, 'FG3A'] + .44*t.loc[ix, 'FTA'] - t.loc[ix, 'OREB'] + t.loc[ix, 'TO']
     m = attach_market_truth(t, p)
-    assert m.loc[ix, 'MARKET_OREB'] == 9
-    assert m.loc[ix, 'MARKET_DREB'] == 22
-    assert m.loc[ix, 'MARKET_REB'] == 31
-    assert m.loc[ix, 'MARKET_TO'] == 12
+    assert m.loc[ix, 'MARKET_OREB'] == 12
+    assert m.loc[ix, 'PLAYER_CREDITED_OREB'] == 9
+    assert m.loc[ix, 'MARKET_DREB'] == 24
+    assert m.loc[ix, 'PLAYER_CREDITED_DREB'] == 22
+    assert m.loc[ix, 'MARKET_REB'] == 36
+    assert m.loc[ix, 'PLAYER_CREDITED_REB'] == 31
+    assert m.loc[ix, 'MARKET_TO'] == 13
+    assert m.loc[ix, 'PLAYER_CREDITED_TO'] == 12
     assert m.loc[ix, 'TEAM_ONLY_OREB'] == 3
     assert m.loc[ix, 'TEAM_ONLY_DREB'] == 2
     assert m.loc[ix, 'TEAM_ONLY_TO'] == 1
     assert m.loc[ix, 'OFFICIAL_REB'] == 36
     assert m.loc[ix, 'POSS_RAW'] == t.loc[ix, 'POSS_RAW']
     trained = clean_games(m)
-    assert trained.loc[ix, 'OREB'] == 9
-    assert trained.loc[ix, 'DREB'] == 22
-    assert trained.loc[ix, 'TO'] == 12
+    assert trained.loc[ix, 'OREB'] == 12
+    assert trained.loc[ix, 'DREB'] == 24
+    assert trained.loc[ix, 'TO'] == 13
     assert trained.loc[ix, 'OFFICIAL_OREB'] == 12
     assert market_audit(m)['REB']['official_minus_players_total'] == 5
 
@@ -58,7 +62,7 @@ def test_incomplete_player_rows_fail_closed(tmp_path):
 
 def test_unreconciled_official_team_export_must_not_be_used_for_ml():
     raw = mock_games(40).drop(columns=['MARKET_OREB'])
-    with pytest.raises(ValueError, match='Unreconciled player-sum markets'):
+    with pytest.raises(ValueError, match='Unreconciled official-inclusive markets'):
         clean_games(raw)
 
 
@@ -104,4 +108,24 @@ def test_existing_cache_migrates_market_schema_without_api_game_download(tmp_pat
     assert converted['MARKET_TO'].notna().all()
     import json
     manifest = json.loads((export_dir / 'manifest.json').read_text())
-    assert manifest['market_schema_version'] == 'players_only_v1'
+    assert manifest['market_schema_version'] == 'official_inclusive_v2'
+
+
+def test_migration_replaces_legacy_market_targets_and_retains_player_splits(tmp_path):
+    t,p = _synthetic(tmp_path)
+    t.loc[0,'OREB'] += 4; t.loc[0,'DREB'] += 3
+    t.loc[0,'REB'] += 7; t.loc[0,'TO'] += 2
+    t.loc[0,'POSS_RAW'] = (t.loc[0,'FG2A']+t.loc[0,'FG3A'] + .44*t.loc[0,'FTA']
+                           - t.loc[0,'OREB']+t.loc[0,'TO'])
+    old = attach_market_truth(t,p)
+    old['MARKET_SCHEMA_VERSION']='players_only_v1'
+    for s in ('OREB','DREB','REB','TO'):
+        old[f'MARKET_{s}']=old[f'PLAYER_CREDITED_{s}']
+    upgraded=attach_market_truth(old,p)
+    for s in ('OREB','DREB','REB','TO'):
+        assert upgraded[f'MARKET_{s}'].equals(upgraded[f'OFFICIAL_{s}'])
+        assert (upgraded[f'MARKET_{s}']==upgraded[f'PLAYER_CREDITED_{s}']+upgraded[f'TEAM_ONLY_{s}']).all()
+    assert upgraded.loc[0,'MARKET_REB']==old.loc[0,'MARKET_REB']+7
+    assert upgraded.loc[0,'MARKET_TO']==old.loc[0,'MARKET_TO']+2
+    with pytest.raises(ValueError,match='official-inclusive'):
+        clean_games(old)

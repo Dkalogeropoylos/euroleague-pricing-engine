@@ -141,7 +141,7 @@ def sync(seasons: list[int], export_dir: Path = EXPORT_DIR, max_new_games: int |
         players_old = players_old.loc[~players_old.GAME_ID.astype(str).isin(repaired_ids)].copy()
     teams_all = combine_games(teams_old, incoming_team, ['GAME_ID', 'TEAM_ID'])
     players_all = combine_games(players_old, incoming_player, ['GAME_ID', 'PLAYER_ID'])
-    # Always derive market totals from individual box scores, for ALL seasons.
+    # Always reconcile credited player totals AND set official-inclusive markets for all seasons.
     # This also migrates already-committed exports without fetching games again.
     migration = (not teams_old.empty and
                  ('MARKET_SCHEMA_VERSION' not in teams_old.columns or
@@ -154,21 +154,33 @@ def sync(seasons: list[int], export_dir: Path = EXPORT_DIR, max_new_games: int |
     audits_new = pd.DataFrame(issues, columns=['GAME_ID', 'ISSUE'])
     audits_all = pd.concat([audits_old, audits_new], ignore_index=True).drop_duplicates() if not audits_old.empty else audits_new
 
-    # Fit BEFORE overwriting any exported artifact. A good data refresh must not
-    # discard the prior coefficient file merely because the data sample is small.
+    # Fit the NEW target schema BEFORE overwriting exported artifacts. Old
+    # players_only coefficients must never masquerade as official-inclusive.
     fitted = None
     # Training gate: >=3 distinct seasons, >=500 validated games. This is
     # NOT a calibrated pricing certificate; models remain shadow-only.
     enough_history = (len(teams_all) >= 1000 and teams_all.SEASON.nunique() >= 3)
-    if enough_history and (total_new_games > 0 or repaired_ids or migration):
+    coefficient_path = export_dir / "league_coefficients.json"
+    old_coeff_schema = None
+    if coefficient_path.exists():
+        try:
+            old_coeff_schema = json.loads(coefficient_path.read_text()).get("market_schema_version")
+        except (ValueError, OSError):
+            old_coeff_schema = "corrupt"
+    stale_coefficients = bool(enough_history and old_coeff_schema != MARKET_SCHEMA_VERSION)
+    if enough_history and (total_new_games > 0 or repaired_ids or migration or stale_coefficients):
         try:
             fitted = estimate_coefficients(teams_all)
         except ValueError as exc:
+            if migration or stale_coefficients:
+                raise RuntimeError('Official-inclusive coefficient retraining failed: refusing partial migration') from exc
             print('Calibration deferred:', exc, flush=True)
 
-    if total_new_games > 0 or repaired_ids or migration:
+    if total_new_games > 0 or repaired_ids or migration or stale_coefficients:
         atomic_csv(teams_all, team_path)
         atomic_csv(players_all, player_path)
+        if fitted is None and (migration or stale_coefficients) and enough_history:
+            raise RuntimeError('Updated settlement contract without updated coefficients: refused')
         if fitted is not None:
             coefficient_path = export_dir / 'league_coefficients.json'
             temp = coefficient_path.with_suffix('.json.tmp')
@@ -190,7 +202,7 @@ def sync(seasons: list[int], export_dir: Path = EXPORT_DIR, max_new_games: int |
         temp.replace(info_path)
     if issues:
         atomic_csv(audits_all, audit_path)
-    if total_new_games == 0 and not repaired_ids and not migration:
+    if total_new_games == 0 and not repaired_ids and not migration and not stale_coefficients:
         print('No new validated games. Existing CSV/model unchanged.', flush=True)
     return {'new_games': total_new_games, 'repaired_games': len(repaired_ids), 'migrated_market_schema': bool(migration), 'issues': len(issues), 'all_games': int(len(teams_all) // 2)}
 

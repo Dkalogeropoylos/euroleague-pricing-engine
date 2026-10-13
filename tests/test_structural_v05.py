@@ -1,14 +1,14 @@
 from __future__ import annotations
 import numpy as np
 import pandas as pd
-from core.structural_v05 import (FACTOR_NAMES,chronological_design,
+from core.structural_v06 import (FACTOR_NAMES,chronological_design,
                                  project_two_sides,simulate_two_sides,upcoming_pair)
 
 
 def faux_feature(team,side,game='SIM'):
     defaults={'PACE':73.,'TO_RATE':.169,'TO_CREDIT':.94,'FTA_RATE':.26,
               'THREE_SHARE':.41,'TWO_PCT':.55,'THREE_PCT':.35,'FT_PCT':.75,
-              'OREB_RATE':.32,'OREB_CREDIT':.82,'DREB_RATE':.88,
+              'OREB_RATE':.32,'OREB_CREDIT':.82,'DREB_RATE':.94,'DREB_CREDIT':.91,
               'AST_RATE':.65,'STL_RATE':.55,'BLK_RATE':.14}
     base={'GAME_ID':game,'TEAM_ID':team,'OPP_ID':'AWAY' if side=='H' else 'HOME',
           'HOME_AWAY':side,'HOME':float(side=='H')}
@@ -25,11 +25,14 @@ def test_structural_mean_coherence():
         d=p[side]
         assert np.isclose(d['PTS'],2*d['FG2M']+3*d['FG3M']+d['FTM'])
         assert np.isclose(d['MARKET_REB'],d['MARKET_OREB']+d['MARKET_DREB'])
-        assert np.isclose(d['FG2A']+d['FG3A'],d['POSS']-d['OFFICIAL_TO']-.44*d['FTA']+d['OFFICIAL_OREB'])
-        assert d['MARKET_OREB']<=d['OFFICIAL_OREB']
+        assert np.isclose(d['FG2A']+d['FG3A'],d['POSS']-d['OFFICIAL_TO']-.44*d['FTA']+d['PLAYER_CREDITED_OREB'])
+        assert d['PLAYER_CREDITED_OREB']<=d['OFFICIAL_OREB']
+        assert d['PLAYER_CREDITED_DREB']<=d['MARKET_DREB']
+        assert np.isclose(d['MARKET_REB'],d['PLAYER_CREDITED_REB']+d['TEAM_ONLY_REB'])
+        assert d['MARKET_TO']>=d['PLAYER_CREDITED_TO']
         assert d['FG2M']<=d['FG2A'] and d['FG3M']<=d['FG3A']
         assert d['AST']<=d['FG2M']+d['FG3M']
-    assert p['home']['STL']<=p['away']['MARKET_TO']
+    assert p['home']['STL']<=p['away']['PLAYER_CREDITED_TO']
     assert p['away']['BLK']<=p['home']['FG2_MISSES']
 
 
@@ -43,14 +46,16 @@ def test_montecarlo_draw_identities_and_reproducibility():
         x=sims[side]
         np.testing.assert_array_equal(x['PTS'],2*x['FG2M']+3*x['FG3M']+x['FTM'])
         np.testing.assert_array_equal(x['MARKET_REB'],x['MARKET_OREB']+x['MARKET_DREB'])
-        np.testing.assert_array_equal(x['FG2A']+x['FG3A'],x['BASE_FGA']+x['OFFICIAL_OREB'])
+        np.testing.assert_array_equal(x['FG2A']+x['FG3A'],x['BASE_FGA']+x['PLAYER_CREDITED_OREB'])
         assert (x['FG2M']<=x['FG2A']).all() and (x['FG3M']<=x['FG3A']).all()
         assert (x['AST']<=x['FG2M']+x['FG3M']).all()
-        assert (x['MARKET_OREB']<=x['OFFICIAL_OREB']).all()
-        assert (x['MARKET_TO']<=x['OFFICIAL_TO']).all()
+        assert (x['PLAYER_CREDITED_OREB']<=x['MARKET_OREB']).all()
+        assert (x['PLAYER_CREDITED_TO']<=x['MARKET_TO']).all()
+        assert (x['PLAYER_CREDITED_DREB']<=x['MARKET_DREB']).all()
+        np.testing.assert_array_equal(x['MARKET_REB'],x['PLAYER_CREDITED_REB']+x['TEAM_ONLY_REB'])
         assert all((x[k]>=0).all() for k in ['POSS','MARKET_TO','FG2A','FG3A','FG2M','FG3M','MARKET_REB','STL','BLK'])
-    assert (sims['home']['STL']<=sims['away']['MARKET_TO']).all()
-    assert (sims['away']['STL']<=sims['home']['MARKET_TO']).all()
+    assert (sims['home']['STL']<=sims['away']['PLAYER_CREDITED_TO']).all()
+    assert (sims['away']['STL']<=sims['home']['PLAYER_CREDITED_TO']).all()
     assert (sims['home']['BLK']<=sims['away']['FG2_MISSES']).all()
     assert (sims['away']['BLK']<=sims['home']['FG2_MISSES']).all()
 
