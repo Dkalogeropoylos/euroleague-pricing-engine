@@ -7,84 +7,84 @@
   "production_pricing_gate": false,
   "metrics": {
     "PTS": {
-      "n": 388,
-      "observed_90pct_coverage": 0.9227,
-      "binomial_sampling_95pct_lower": 0.8701,
-      "binomial_sampling_95pct_upper": 0.9299,
+      "n": 394,
+      "observed_90pct_coverage": 0.9036,
+      "binomial_sampling_95pct_lower": 0.8704,
+      "binomial_sampling_95pct_upper": 0.9296,
       "nominal_interval_coverage_flag": false,
-      "mean_error": -2.506
+      "mean_error": -3.337
     },
     "FG3A": {
-      "n": 388,
-      "observed_90pct_coverage": 0.9098,
-      "binomial_sampling_95pct_lower": 0.8701,
-      "binomial_sampling_95pct_upper": 0.9299,
+      "n": 394,
+      "observed_90pct_coverage": 0.9061,
+      "binomial_sampling_95pct_lower": 0.8704,
+      "binomial_sampling_95pct_upper": 0.9296,
       "nominal_interval_coverage_flag": false,
-      "mean_error": -0.823
+      "mean_error": -1.129
     },
     "FTA": {
-      "n": 388,
-      "observed_90pct_coverage": 0.7912,
-      "binomial_sampling_95pct_lower": 0.8701,
-      "binomial_sampling_95pct_upper": 0.9299,
+      "n": 394,
+      "observed_90pct_coverage": 0.7843,
+      "binomial_sampling_95pct_lower": 0.8704,
+      "binomial_sampling_95pct_upper": 0.9296,
       "nominal_interval_coverage_flag": true,
-      "mean_error": -0.84
+      "mean_error": -0.87
     },
     "MARKET_OREB": {
-      "n": 388,
-      "observed_90pct_coverage": 0.9381,
-      "binomial_sampling_95pct_lower": 0.8701,
-      "binomial_sampling_95pct_upper": 0.9299,
+      "n": 394,
+      "observed_90pct_coverage": 0.934,
+      "binomial_sampling_95pct_lower": 0.8704,
+      "binomial_sampling_95pct_upper": 0.9296,
       "nominal_interval_coverage_flag": true,
-      "mean_error": -0.245
+      "mean_error": -0.331
     },
     "MARKET_DREB": {
-      "n": 388,
-      "observed_90pct_coverage": 0.9948,
-      "binomial_sampling_95pct_lower": 0.8701,
-      "binomial_sampling_95pct_upper": 0.9299,
+      "n": 394,
+      "observed_90pct_coverage": 0.9975,
+      "binomial_sampling_95pct_lower": 0.8704,
+      "binomial_sampling_95pct_upper": 0.9296,
       "nominal_interval_coverage_flag": true,
-      "mean_error": -0.459
+      "mean_error": -0.672
     },
     "MARKET_REB": {
-      "n": 388,
-      "observed_90pct_coverage": 0.9871,
-      "binomial_sampling_95pct_lower": 0.8701,
-      "binomial_sampling_95pct_upper": 0.9299,
+      "n": 394,
+      "observed_90pct_coverage": 0.9848,
+      "binomial_sampling_95pct_lower": 0.8704,
+      "binomial_sampling_95pct_upper": 0.9296,
       "nominal_interval_coverage_flag": true,
-      "mean_error": -0.704
+      "mean_error": -1.003
     },
     "MARKET_TO": {
-      "n": 388,
-      "observed_90pct_coverage": 0.9304,
-      "binomial_sampling_95pct_lower": 0.8701,
-      "binomial_sampling_95pct_upper": 0.9299,
-      "nominal_interval_coverage_flag": true,
-      "mean_error": -0.33
+      "n": 394,
+      "observed_90pct_coverage": 0.9264,
+      "binomial_sampling_95pct_lower": 0.8704,
+      "binomial_sampling_95pct_upper": 0.9296,
+      "nominal_interval_coverage_flag": false,
+      "mean_error": 0.281
     },
     "AST": {
-      "n": 388,
-      "observed_90pct_coverage": 0.8918,
-      "binomial_sampling_95pct_lower": 0.8701,
-      "binomial_sampling_95pct_upper": 0.9299,
+      "n": 394,
+      "observed_90pct_coverage": 0.8807,
+      "binomial_sampling_95pct_lower": 0.8704,
+      "binomial_sampling_95pct_upper": 0.9296,
       "nominal_interval_coverage_flag": false,
-      "mean_error": -1.153
+      "mean_error": -1.35
     },
     "GAME_TOTAL": {
-      "n": 194,
-      "observed_90pct_coverage": 0.9124,
-      "binomial_sampling_95pct_lower": 0.8578,
-      "binomial_sampling_95pct_upper": 0.9422,
+      "n": 197,
+      "observed_90pct_coverage": 0.8934,
+      "binomial_sampling_95pct_lower": 0.8581,
+      "binomial_sampling_95pct_upper": 0.9419,
       "nominal_interval_coverage_flag": false,
-      "mean_error": -5.013
+      "mean_error": -6.674
     },
     "GAME_MARGIN": {
-      "n": 194,
-      "observed_90pct_coverage": 0.9691,
-      "binomial_sampling_95pct_lower": 0.8578,
-      "binomial_sampling_95pct_upper": 0.9422,
+      "n": 197,
+      "observed_90pct_coverage": 0.9645,
+      "binomial_sampling_95pct_lower": 0.8581,
+      "binomial_sampling_95pct_upper": 0.9419,
       "nominal_interval_coverage_flag": true,
-      "mean_error": -1.685
+      "mean_error": -2.574
     }
   }
 }
