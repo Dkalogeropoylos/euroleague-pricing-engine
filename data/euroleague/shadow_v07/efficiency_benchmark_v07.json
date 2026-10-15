@@ -6,30 +6,30 @@
   "alpha": 2.0,
   "model": {
     "coefficients": [
-      0.32571966872890473,
-      0.1705669922378527,
-      0.04381451910023597
+      0.3405750494661897,
+      0.1725535375625519,
+      0.04406094195243228
     ],
-    "intercept": -0.022477222964669565
+    "intercept": -0.02255446951129725
   },
   "next_game_model": {
     "coefficients": [
-      0.3725175003658914,
-      0.20184746609351636,
-      0.043322630725060235
+      0.37089413156377443,
+      0.20124938103874254,
+      0.04331250897378654
     ],
-    "intercept": -0.022076710186304988
+    "intercept": -0.02198005880658631
   },
-  "next_game_training_rows": 1942,
+  "next_game_training_rows": 1948,
   "notes": "Outer scoring audit uses observed pace only to isolate PPP error. Never substitute observed pace in pregame projections.",
-  "inner_baseline_rmse": 10.209435595679102,
-  "inner_best_candidate_rmse": 10.03853365799498,
-  "outer_team_ppp_model_rmse_pts": 8.923001771500305,
-  "outer_team_league_baseline_rmse_pts": 9.285973348203045,
-  "outer_total_ppp_model_rmse_pts": 13.730599976060061,
-  "outer_total_league_rmse_pts": 13.955456550966927,
-  "outer_games": 197,
-  "outer_team_rows": 394,
-  "outer_cutoff_day_utc": "2026-01-20 00:00:00+00:00",
+  "inner_baseline_rmse": 10.315174992067554,
+  "inner_best_candidate_rmse": 10.104751405113682,
+  "outer_team_ppp_model_rmse_pts": 8.777489324185025,
+  "outer_team_league_baseline_rmse_pts": 9.099746651059142,
+  "outer_total_ppp_model_rmse_pts": 13.419003611988977,
+  "outer_total_league_rmse_pts": 13.592572044583086,
+  "outer_games": 192,
+  "outer_team_rows": 384,
+  "outer_cutoff_day_utc": "2026-01-21 00:00:00+00:00",
   "future_validation_required": true
 }
