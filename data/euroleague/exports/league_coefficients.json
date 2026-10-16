@@ -7,7 +7,7 @@
   "league_history_days": 550,
   "holdout": {
     "training_game_count": 788,
-    "test_game_count": 192,
+    "test_game_count": 196,
     "start": "2026-01-21 00:00:00+00:00"
   },
   "markets": {
@@ -29,11 +29,11 @@
       "alpha": 0.5,
       "inner_baseline_rmse": 6.046782743063041,
       "inner_winner_rmse": 5.815340300852684,
-      "holdout_rmse": 5.636713470796966,
-      "baseline_rmse": 5.909482896844249,
-      "improvement_pct": 4.615791784302248,
+      "holdout_rmse": 5.606086206766949,
+      "baseline_rmse": 5.877647446666234,
+      "improvement_pct": 4.62023696323115,
       "train_rows": 1576,
-      "test_rows": 384
+      "test_rows": 392
     },
     "FG3A": {
       "status": "FITTED",
@@ -53,11 +53,11 @@
       "alpha": 0.5,
       "inner_baseline_rmse": 5.207189611768353,
       "inner_winner_rmse": 4.861482738637383,
-      "holdout_rmse": 4.677535679721069,
-      "baseline_rmse": 5.2469772767871445,
-      "improvement_pct": 10.852755158390137,
+      "holdout_rmse": 4.777073556731747,
+      "baseline_rmse": 5.332340710714632,
+      "improvement_pct": 10.41319720750683,
       "train_rows": 1576,
-      "test_rows": 384
+      "test_rows": 392
     },
     "FTA": {
       "status": "FITTED",
@@ -77,11 +77,11 @@
       "alpha": 0.5,
       "inner_baseline_rmse": 6.615830500915198,
       "inner_winner_rmse": 6.443921472694078,
-      "holdout_rmse": 6.127822922728912,
-      "baseline_rmse": 6.431338312736807,
-      "improvement_pct": 4.7193192963710935,
+      "holdout_rmse": 6.166054354994723,
+      "baseline_rmse": 6.4595028009550655,
+      "improvement_pct": 4.542895250652334,
       "train_rows": 1576,
-      "test_rows": 384
+      "test_rows": 392
     },
     "OREB": {
       "status": "BASELINE_WINS",
@@ -101,11 +101,11 @@
       "alpha": null,
       "inner_baseline_rmse": 3.7912604147766276,
       "inner_winner_rmse": 3.7912604147766276,
-      "holdout_rmse": 3.552613474325142,
-      "baseline_rmse": 3.552613474325142,
+      "holdout_rmse": 3.570296479471007,
+      "baseline_rmse": 3.570296479471007,
       "improvement_pct": 0.0,
       "train_rows": 1576,
-      "test_rows": 384
+      "test_rows": 392
     },
     "DREB": {
       "status": "FITTED",
@@ -125,11 +125,11 @@
       "alpha": 0.5,
       "inner_baseline_rmse": 4.337236562515786,
       "inner_winner_rmse": 4.308315651668684,
-      "holdout_rmse": 3.9396908033288747,
-      "baseline_rmse": 3.9509007758912107,
-      "improvement_pct": 0.2837320701835955,
+      "holdout_rmse": 3.9517480659559845,
+      "baseline_rmse": 3.9679208576537093,
+      "improvement_pct": 0.40758856534471866,
       "train_rows": 1576,
-      "test_rows": 384
+      "test_rows": 392
     },
     "AST": {
       "status": "FITTED",
@@ -149,11 +149,11 @@
       "alpha": 0.5,
       "inner_baseline_rmse": 4.07732085138958,
       "inner_winner_rmse": 3.897393665755099,
-      "holdout_rmse": 4.139754976766072,
-      "baseline_rmse": 4.208305580159344,
-      "improvement_pct": 1.628935971676182,
+      "holdout_rmse": 4.176399193538576,
+      "baseline_rmse": 4.241098621937985,
+      "improvement_pct": 1.5255346354064225,
       "train_rows": 1576,
-      "test_rows": 384
+      "test_rows": 392
     },
     "STL": {
       "status": "BASELINE_WINS",
@@ -173,11 +173,11 @@
       "alpha": null,
       "inner_baseline_rmse": 2.5869315714952594,
       "inner_winner_rmse": 2.5869315714952594,
-      "holdout_rmse": 2.508588141296936,
-      "baseline_rmse": 2.508588141296936,
+      "holdout_rmse": 2.501823867688029,
+      "baseline_rmse": 2.501823867688029,
       "improvement_pct": 0.0,
       "train_rows": 1576,
-      "test_rows": 384
+      "test_rows": 392
     },
     "BLK": {
       "status": "BASELINE_WINS",
@@ -197,11 +197,11 @@
       "alpha": null,
       "inner_baseline_rmse": 1.7619916987741329,
       "inner_winner_rmse": 1.7619916987741329,
-      "holdout_rmse": 1.6302646345453706,
-      "baseline_rmse": 1.6302646345453706,
+      "holdout_rmse": 1.7200595342762288,
+      "baseline_rmse": 1.7200595342762288,
       "improvement_pct": 0.0,
       "train_rows": 1576,
-      "test_rows": 384
+      "test_rows": 392
     },
     "TO": {
       "status": "FITTED",
@@ -221,11 +221,11 @@
       "alpha": 0.5,
       "inner_baseline_rmse": 3.525806790913279,
       "inner_winner_rmse": 3.491391574276296,
-      "holdout_rmse": 3.2541869097043903,
-      "baseline_rmse": 3.384864378360503,
-      "improvement_pct": 3.8606411970753096,
+      "holdout_rmse": 3.2577311494643855,
+      "baseline_rmse": 3.3856501170407833,
+      "improvement_pct": 3.778268963250253,
       "train_rows": 1576,
-      "test_rows": 384
+      "test_rows": 392
     },
     "PF": {
       "status": "FITTED",
@@ -245,11 +245,11 @@
       "alpha": 0.5,
       "inner_baseline_rmse": 3.3161940057842396,
       "inner_winner_rmse": 3.1375300788190787,
-      "holdout_rmse": 3.180235281848173,
-      "baseline_rmse": 3.3108999765020255,
-      "improvement_pct": 3.9465008179407457,
+      "holdout_rmse": 3.184107231504011,
+      "baseline_rmse": 3.311684500638803,
+      "improvement_pct": 3.852337658076521,
       "train_rows": 1576,
-      "test_rows": 384
+      "test_rows": 392
     },
     "FD": {
       "status": "FITTED",
@@ -269,11 +269,11 @@
       "alpha": 0.5,
       "inner_baseline_rmse": 3.268179237962296,
       "inner_winner_rmse": 3.1054510291168125,
-      "holdout_rmse": 3.098122884469766,
-      "baseline_rmse": 3.229335516125424,
-      "improvement_pct": 4.063146458472911,
+      "holdout_rmse": 3.112540332464351,
+      "baseline_rmse": 3.2378846441531177,
+      "improvement_pct": 3.8711790401523505,
       "train_rows": 1576,
-      "test_rows": 384
+      "test_rows": 392
     }
   },
   "pace": {
@@ -282,7 +282,7 @@
       "previous_opponent_pace"
     ],
     "train_games": 788,
-    "test_games": 192,
+    "test_games": 196,
     "training_target": "same-game pair-mean OFFICIAL box-score pace proxy, label only",
     "prediction_exposure": "pregame-only team/league history",
     "status": "FITTED",
@@ -293,9 +293,9 @@
     ],
     "intercept": 0.006180617161833784,
     "inner_rmse": 3.8567273864440526,
-    "holdout_rmse": 3.7993256037222265,
-    "holdout_baseline_rmse": 4.044502066247937,
-    "improvement_pct": 6.061969026341973
+    "holdout_rmse": 3.7729918737452692,
+    "holdout_baseline_rmse": 4.022746567455674,
+    "improvement_pct": 6.208561477149455
   },
   "descriptive_league_baselines": {
     "2023": {
@@ -350,20 +350,20 @@
       }
     },
     "2026": {
-      "team_games": 98,
-      "mean_possessions_est": 75.29591836734694,
+      "team_games": 106,
+      "mean_possessions_est": 75.36264150943396,
       "per_100_possessions": {
-        "FG2A": 50.76568640737227,
-        "FG3A": 36.07534896327416,
-        "FTA": 26.42634503320233,
-        "OREB": 15.517007724623932,
-        "DREB": 31.833581786149885,
-        "AST": 25.111803767448166,
-        "STL": 8.80878167773411,
-        "BLK": 3.5506166147174416,
-        "TO": 17.048380539368477,
-        "PF": 28.350725030491937,
-        "FD": 27.984821791570674
+        "FG2A": 50.71077707287031,
+        "FG3A": 36.127203809504735,
+        "FTA": 26.300504228610343,
+        "OREB": 15.522429911221716,
+        "DREB": 31.70831852026178,
+        "AST": 25.27402096028762,
+        "STL": 8.887842933038241,
+        "BLK": 3.6803180595961167,
+        "TO": 17.112227168258134,
+        "PF": 28.178217524322648,
+        "FD": 27.81519295381827
       }
     }
   }
