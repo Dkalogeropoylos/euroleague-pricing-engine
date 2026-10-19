@@ -4,7 +4,7 @@ from datetime import date,timedelta
 from pathlib import Path
 import numpy as np,pandas as pd
 import streamlit as st
-from core.matchup_v11 import tidy_data,live_features,projection,bootstrap_simulation,quality_gate,counts_audit,full_current_only_forecast
+from core.matchup_v11 import tidy_data,live_features,projection,bootstrap_simulation,quality_gate,counts_audit,full_current_only_forecast,COUNTS,RATES
 from core.trader_markets_v07 import build_trader_board,pricing_probabilities,MARKETS
 from core.rotation_audit_v11 import current_rotation_audit
 
@@ -54,6 +54,7 @@ def render_trader_shadow(base:Path):
    check=quality_gate(pred,h,a,ext if use_external else None,audit)
    board=build_trader_board(sim,nam[home],nam[away])
    st.session_state['v11_result']={'match':(home,away,str(asof),sims),
+       'live_raw':{'home':h,'away':a},
        'pred':pred,'sim':sim,'audit':counts_audit(pred,h,a),'check':check,'board':board}
   except Exception as ex:
    st.error('Forecast refused: '+str(ex));return
@@ -91,6 +92,45 @@ def render_trader_shadow(base:Path):
     for flag in flags:st.warning(flag)
    st.caption('Historical appearances are not an injury report. Verify CURRENT match availability, rotation, coach changes and minutes before operational use.')
   else:st.warning('Player_games.csv absent: lineup and position audit cannot run; HOLD')
+ with st.expander('IMPORTANT: shrinkage audit — current-season raw vs trained prior (ALL markets)',expanded=True):
+  st.caption('Prior N = equivalent CURRENT-LEAGUE games, NOT previous-season games from this team. ' 
+             'For count markets prior 16 with six matches means 72.7% current-league pooling. ' 
+             'Raw/allowed are current-season values before adjustment. High pooling does not prove a wrong forecast; ' 
+             'changing prior without historical evidence can worsen predictive accuracy.')
+  shown=[]
+  for side,code in [('home',home),('away',away)]:
+   raw=result['live_raw'][side]
+   for k in COUNTS+RATES:
+    setting=r['params'][k]
+    shown.append({'Team':nam[code],'Statistic':k,'Observed team':round(raw[k+'_RAW_OFF'],3),
+       'Opponent allowed':round(raw[k+'_RAW_DEF'],3),'Current league':round(raw[k+'_BASE'],3),
+       'Trained prior games':setting['prior'],
+       'League share offense':round(100*raw[k+'_PRIOR_SHARE_OFF'],1),
+       'League share allowed':round(100*raw[k+'_PRIOR_SHARE_DEF'],1),
+       'Opponent elasticity':setting['beta'],'Projected pre-reconciliation':round(raw[k+'_PRED'],3)})
+  auditdf=pd.DataFrame(shown)
+  st.dataframe(auditdf,use_container_width=True,hide_index=True)
+  st.download_button('Download EVERY current-season source and prior weight',
+       data=auditdf.to_csv(index=False).encode('utf-8'),
+       file_name='EUROLEAGUE_V111_PRIOR_TRANSPARENCY.csv',mime='text/csv',key='v111_prior_audit')
+  st.caption('Diagnostic only: how DREB/OREB/REB raw components would change with alternative priors. ' 
+             'This is NOT a recalculated joint forecast or a proposed bookmaker line.')
+  sensitivity=[]
+  for side,code in [('home',home),('away',away)]:
+   raw=result['live_raw'][side]
+   for k in ('MARKET_OREB','MARKET_DREB','MARKET_REB'):
+    for prior in (0,4,8,16):
+     lg=raw[k+'_BASE'];n=raw['N_OWN'];nopp=raw['N_OPP']
+     off=(n*raw[k+'_RAW_OFF']+prior*lg)/(n+prior)
+     defe=(nopp*raw[k+'_RAW_DEF']+prior*lg)/(nopp+prior)
+     v=off+r['params'][k]['beta']*(defe-lg)
+     sensitivity.append({'Team':nam[code],'Stat':k,'Prior games':prior,
+           'Raw own':round(raw[k+'_RAW_OFF'],2),'Raw allowed':round(raw[k+'_RAW_DEF'],2),
+           'Unreconciled component':round(v,2),'Historically selected?':prior==r['params'][k]['prior']})
+  st.dataframe(pd.DataFrame(sensitivity),use_container_width=True,hide_index=True)
+  heavy=auditdf[(auditdf['League share offense']>=65)|(auditdf['League share allowed']>=65)]
+  if not heavy.empty:
+   st.warning(f'{len(heavy)} team-market features are >=65% prior-driven. REVIEW their evidence; do not force a lower prior without chronological validation.')
  st.markdown('#### Joint team means — official team rebounds and turnovers')
  marks=[('Points','PTS'),('2PA','FG2A'),('2PM','FG2M'),('3PA','FG3A'),('3PM','FG3M'),('FTA','FTA'),('FTM','FTM'),('OREB','MARKET_OREB'),('DREB','MARKET_DREB'),('REB','MARKET_REB'),('AST','AST'),('TO','MARKET_TO'),('STL','STL'),('BLK','BLK')]
  means=pd.DataFrame([{'Market':name,nam[home]:round(pr['home'][k],2),nam[away]:round(pr['away'][k],2),

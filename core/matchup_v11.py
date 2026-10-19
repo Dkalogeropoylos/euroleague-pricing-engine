@@ -127,6 +127,13 @@ def live_features(d,config,season,home_id,away_id,asof):
    base=_base(lg,k);prior=opt['prior']
    off=_feat(his,base,lg,k,prior);defe=_feat(allowed,base,lg,k,prior)
    q[k+'_BASE']=base;q[k+'_OFF']=off;q[k+'_DEF']=defe
+   # Transparent current-season provenance: raw observed profiles and trained-prior share.
+   # For rate variables the weight is in effective opportunities, not just games.
+   _,lg_d=_moments(lg,k); _,own_d=_moments(his,k); _,opp_d=_moments(allowed,k)
+   pseudo=prior*lg_d/max(len(lg),1)
+   q[k+'_RAW_OFF']=_base(his,k);q[k+'_RAW_DEF']=_base(allowed,k)
+   q[k+'_PRIOR_SHARE_OFF']=pseudo/max(pseudo+own_d,EPS)
+   q[k+'_PRIOR_SHARE_DEF']=pseudo/max(pseudo+opp_d,EPS)
    q[k+'_PRED']=float(np.clip(off+opt['beta']*(defe-base),0,150))
   return q
  return row(home_id,away_id,'H'),row(away_id,home_id,'A')
@@ -221,7 +228,15 @@ def bootstrap_simulation(pred, residual_bank, *,n=5000,seed=11,sd=None):
  if not residual_bank:raise ValueError('No historical residual bank')
  rng=np.random.default_rng(seed)
  ix=rng.integers(0,len(residual_bank),size=n)
- arr={k:np.array([residual_bank[int(i)].get(k,0.) for i in ix],float) for k in residual_bank[0] if k!='GAME_ID'}
+ # Historical errors can have nonzero positional bias. Center EACH field on the
+ # full reference bank before resampling, preserving cross-market covariance.
+ # Otherwise MC shifts means, inverting 3-way most-stat probabilities.
+ arr={}
+ for k in residual_bank[0]:
+  if k=='GAME_ID':continue
+  population=np.array([r.get(k,0.) for r in residual_bank],dtype=float)
+  if not np.isfinite(population).all():raise ValueError('Non-finite calibration residual: '+k)
+  arr[k]=population[ix]-population.mean()
  def get(k):return arr.get(k,np.zeros(n,float))
  v=np.empty((n,11),float)
  v[:,0]=_safe(pred['pace']+get('POSS'),55,95)
