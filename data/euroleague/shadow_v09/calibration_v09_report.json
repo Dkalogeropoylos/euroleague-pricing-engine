@@ -1,0 +1,558 @@
+{
+  "study": "SHADOW_PARAMETER_CALIBRATION_NO_PRICE_DEPLOY",
+  "model_version": "0.9-count-only-calibration-audit",
+  "status": "SHADOW_NOT_PRICING_READY",
+  "market_definition": "official_inclusive_v2",
+  "dataset": {
+    "games": 1010,
+    "snapshots": 1948
+  },
+  "validation": "Two blocked rolling-year folds with each model fitted strictly before its validation range. 2026 used as watch diagnostics (previously inspected, not pristine holdout).",
+  "notes": [
+    "A dynamic team-count benchmark, not replacement for joint structural simulation.",
+    "Pregame history prior to UTC calendar day; 550-day league history.",
+    "All scored outputs are observed final counts, not realized exposure-adjusted rate targets.",
+    "The winning hyperparameter search and its CV score are NOT unbiased post-selection estimates.",
+    "Market settlement: official-inclusive team OREB, DREB, REB, TO."
+  ],
+  "markets": {
+    "POSS": {
+      "selected": {
+        "prior_games": 2.0,
+        "previous_season_weight_in_prior": 1.0,
+        "feature_mode": "multiscale",
+        "ridge_alpha": 1.0,
+        "trained_coefficients": [
+          0.177982,
+          0.190273,
+          0.168516,
+          0.154177,
+          0.0
+        ],
+        "intercept": 0.004901,
+        "mean_bias_correction": 1.001345
+      },
+      "blocked_cv": {
+        "n": 325,
+        "rmse_candidate": 3.7034,
+        "rmse_simple_prior": 3.95,
+        "mean_error": 0.0965
+      },
+      "watch_2026": {
+        "n": 58,
+        "rmse_candidate": 3.3285,
+        "rmse_league": 3.7994,
+        "bias_candidate": -0.5868,
+        "prediction_std": 0.913,
+        "actual_std": 3.4612
+      },
+      "top_candidates": [
+        {
+          "cv_rmse": 3.7034,
+          "prior": 2.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.714,
+          "prior": 2.0,
+          "prev_weight": 0.5,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.7256,
+          "prior": 4.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.7267,
+          "prior": 2.0,
+          "prev_weight": 0.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.741,
+          "prior": 4.0,
+          "prev_weight": 0.5,
+          "mode": "multiscale",
+          "alpha": 1.0
+        }
+      ]
+    },
+    "FG3A": {
+      "selected": {
+        "prior_games": 4.0,
+        "previous_season_weight_in_prior": 0.5,
+        "feature_mode": "multiscale",
+        "ridge_alpha": 1.0,
+        "trained_coefficients": [
+          0.678698,
+          0.54771,
+          0.27355,
+          0.330135,
+          0.00502
+        ],
+        "intercept": -0.018442,
+        "mean_bias_correction": 1.01643
+      },
+      "blocked_cv": {
+        "n": 650,
+        "rmse_candidate": 4.588,
+        "rmse_simple_prior": 5.3039,
+        "mean_error": 0.1801
+      },
+      "watch_2026": {
+        "n": 116,
+        "rmse_candidate": 4.9834,
+        "rmse_league": 5.6571,
+        "bias_candidate": -0.3287,
+        "prediction_std": 2.057,
+        "actual_std": 5.6198
+      },
+      "top_candidates": [
+        {
+          "cv_rmse": 4.588,
+          "prior": 4.0,
+          "prev_weight": 0.5,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 4.5938,
+          "prior": 8.0,
+          "prev_weight": 0.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 4.5957,
+          "prior": 4.0,
+          "prev_weight": 0.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 4.5969,
+          "prior": 2.0,
+          "prev_weight": 0.5,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 4.5991,
+          "prior": 2.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        }
+      ]
+    },
+    "STL": {
+      "selected": {
+        "prior_games": 32.0,
+        "previous_season_weight_in_prior": 0.5,
+        "feature_mode": "both",
+        "ridge_alpha": 1.0,
+        "trained_coefficients": [
+          0.474002,
+          0.967311,
+          0.066401
+        ],
+        "intercept": -0.109269,
+        "mean_bias_correction": 1.086892
+      },
+      "blocked_cv": {
+        "n": 650,
+        "rmse_candidate": 2.4702,
+        "rmse_simple_prior": 2.5115,
+        "mean_error": 0.1207
+      },
+      "watch_2026": {
+        "n": 116,
+        "rmse_candidate": 2.6309,
+        "rmse_league": 2.7088,
+        "bias_candidate": -0.2867,
+        "prediction_std": 0.4687,
+        "actual_std": 2.6897
+      },
+      "top_candidates": [
+        {
+          "cv_rmse": 2.4702,
+          "prior": 32.0,
+          "prev_weight": 0.5,
+          "mode": "both",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 2.4707,
+          "prior": 32.0,
+          "prev_weight": 0.5,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 2.4713,
+          "prior": 16.0,
+          "prev_weight": 0.5,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 2.4714,
+          "prior": 16.0,
+          "prev_weight": 0.5,
+          "mode": "both",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 2.4719,
+          "prior": 16.0,
+          "prev_weight": 1.0,
+          "mode": "both",
+          "alpha": 1.0
+        }
+      ]
+    },
+    "TO": {
+      "selected": {
+        "prior_games": 8.0,
+        "previous_season_weight_in_prior": 1.0,
+        "feature_mode": "both",
+        "ridge_alpha": 1.0,
+        "trained_coefficients": [
+          0.722203,
+          0.459549,
+          -0.085415
+        ],
+        "intercept": 0.004369,
+        "mean_bias_correction": 1.039646
+      },
+      "blocked_cv": {
+        "n": 650,
+        "rmse_candidate": 3.3393,
+        "rmse_simple_prior": 3.494,
+        "mean_error": 0.1229
+      },
+      "watch_2026": {
+        "n": 116,
+        "rmse_candidate": 3.1286,
+        "rmse_league": 3.293,
+        "bias_candidate": -0.4154,
+        "prediction_std": 0.9556,
+        "actual_std": 3.243
+      },
+      "top_candidates": [
+        {
+          "cv_rmse": 3.3393,
+          "prior": 8.0,
+          "prev_weight": 1.0,
+          "mode": "both",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.3403,
+          "prior": 16.0,
+          "prev_weight": 0.5,
+          "mode": "both",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.3407,
+          "prior": 4.0,
+          "prev_weight": 1.0,
+          "mode": "both",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.3408,
+          "prior": 8.0,
+          "prev_weight": 0.5,
+          "mode": "both",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.3426,
+          "prior": 4.0,
+          "prev_weight": 0.5,
+          "mode": "both",
+          "alpha": 1.0
+        }
+      ]
+    },
+    "OREB": {
+      "selected": {
+        "prior_games": 16.0,
+        "previous_season_weight_in_prior": 0.5,
+        "feature_mode": "multiscale",
+        "ridge_alpha": 1.0,
+        "trained_coefficients": [
+          0.652819,
+          0.194129,
+          0.347783,
+          0.089556,
+          0.012314
+        ],
+        "intercept": -0.059503,
+        "mean_bias_correction": 1.06118
+      },
+      "blocked_cv": {
+        "n": 650,
+        "rmse_candidate": 3.6034,
+        "rmse_simple_prior": 3.669,
+        "mean_error": -0.1301
+      },
+      "watch_2026": {
+        "n": 116,
+        "rmse_candidate": 3.4332,
+        "rmse_league": 3.5275,
+        "bias_candidate": -0.4311,
+        "prediction_std": 0.7445,
+        "actual_std": 3.4899
+      },
+      "top_candidates": [
+        {
+          "cv_rmse": 3.6034,
+          "prior": 16.0,
+          "prev_weight": 0.5,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.6056,
+          "prior": 32.0,
+          "prev_weight": 0.5,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.6065,
+          "prior": 8.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.6077,
+          "prior": 8.0,
+          "prev_weight": 0.5,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 3.6078,
+          "prior": 16.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        }
+      ]
+    },
+    "DREB": {
+      "selected": {
+        "prior_games": 8.0,
+        "previous_season_weight_in_prior": 1.0,
+        "feature_mode": "both",
+        "ridge_alpha": 1.0,
+        "trained_coefficients": [
+          0.483283,
+          0.428905,
+          0.022051
+        ],
+        "intercept": -0.023098,
+        "mean_bias_correction": 1.015919
+      },
+      "blocked_cv": {
+        "n": 650,
+        "rmse_candidate": 4.1236,
+        "rmse_simple_prior": 4.1987,
+        "mean_error": 0.1667
+      },
+      "watch_2026": {
+        "n": 116,
+        "rmse_candidate": 4.1616,
+        "rmse_league": 4.2911,
+        "bias_candidate": -0.2797,
+        "prediction_std": 0.8672,
+        "actual_std": 4.2627
+      },
+      "top_candidates": [
+        {
+          "cv_rmse": 4.1236,
+          "prior": 8.0,
+          "prev_weight": 1.0,
+          "mode": "both",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 4.1253,
+          "prior": 4.0,
+          "prev_weight": 1.0,
+          "mode": "both",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 4.1262,
+          "prior": 8.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 4.127,
+          "prior": 8.0,
+          "prev_weight": 0.5,
+          "mode": "both",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 4.1275,
+          "prior": 4.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        }
+      ]
+    },
+    "REB": {
+      "selected": {
+        "prior_games": 8.0,
+        "previous_season_weight_in_prior": 1.0,
+        "feature_mode": "multiscale",
+        "ridge_alpha": 1.0,
+        "trained_coefficients": [
+          0.447866,
+          0.33832,
+          0.181046,
+          0.149297,
+          0.020467
+        ],
+        "intercept": -0.019587,
+        "mean_bias_correction": 1.012675
+      },
+      "blocked_cv": {
+        "n": 650,
+        "rmse_candidate": 5.2568,
+        "rmse_simple_prior": 5.4136,
+        "mean_error": 0.0023
+      },
+      "watch_2026": {
+        "n": 116,
+        "rmse_candidate": 5.4934,
+        "rmse_league": 5.7937,
+        "bias_candidate": -0.6971,
+        "prediction_std": 1.6349,
+        "actual_std": 5.7074
+      },
+      "top_candidates": [
+        {
+          "cv_rmse": 5.2568,
+          "prior": 8.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 5.2571,
+          "prior": 16.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 5.263,
+          "prior": 8.0,
+          "prev_weight": 1.0,
+          "mode": "both",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 5.265,
+          "prior": 16.0,
+          "prev_weight": 1.0,
+          "mode": "both",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 5.2676,
+          "prior": 4.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        }
+      ]
+    },
+    "PTS": {
+      "selected": {
+        "prior_games": 4.0,
+        "previous_season_weight_in_prior": 1.0,
+        "feature_mode": "multiscale",
+        "ridge_alpha": 1.0,
+        "trained_coefficients": [
+          0.466611,
+          0.378554,
+          0.1465,
+          0.162925,
+          0.042863
+        ],
+        "intercept": -0.018736,
+        "mean_bias_correction": 1.00729
+      },
+      "blocked_cv": {
+        "n": 650,
+        "rmse_candidate": 10.2706,
+        "rmse_simple_prior": 11.0903,
+        "mean_error": -0.2568
+      },
+      "watch_2026": {
+        "n": 116,
+        "rmse_candidate": 9.7745,
+        "rmse_league": 10.559,
+        "bias_candidate": 0.0736,
+        "prediction_std": 3.7561,
+        "actual_std": 10.5293
+      },
+      "top_candidates": [
+        {
+          "cv_rmse": 10.2706,
+          "prior": 4.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 10.2723,
+          "prior": 2.0,
+          "prev_weight": 1.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 10.2738,
+          "prior": 4.0,
+          "prev_weight": 0.5,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 10.2777,
+          "prior": 2.0,
+          "prev_weight": 0.5,
+          "mode": "multiscale",
+          "alpha": 1.0
+        },
+        {
+          "cv_rmse": 10.2926,
+          "prior": 2.0,
+          "prev_weight": 0.0,
+          "mode": "multiscale",
+          "alpha": 1.0
+        }
+      ]
+    }
+  }
+}
