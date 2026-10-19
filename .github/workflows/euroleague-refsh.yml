@@ -86,6 +86,16 @@ jobs:
         run: python calibrate_shrinkage_v09.py
       - name: Verify count-only calibration report v0.9
         run: python verify_calibration_v09.py
+      - name: Fit CURRENT-SEASON ONLY SHADOW v1.0 (historical coeffs)
+        run: python train_current_only_v10.py
+      - name: Verify CURRENT-SEASON ONLY v1.0 forecast contract
+        run: python verify_current_only_v10.py
+      - name: Fit same-season opponent-adjusted SHADOW v1.1
+        run: python train_matchup_v11.py
+      - name: Audit paired-residual MC coverage v1.1 (not approved pricing)
+        run: python audit_distribution_v11.py --draws 1200
+      - name: Verify market chronology and quote HOLD gates v1.1
+        run: python verify_matchup_v11.py
       - name: Verify official-inclusive v0.6 release gate
         run: python verify_release_v06.py
       - name: Verify v0.7 settlement and model audit gates
@@ -110,6 +120,12 @@ jobs:
           fi
           if [ -d data/euroleague/shadow_v09 ]; then
             find data/euroleague/shadow_v09 -maxdepth 1 -type f -name '*.json' -print0 | xargs -0 -r git add -f --
+          fi
+          if [ -d data/euroleague/shadow_v11 ]; then
+            find data/euroleague/shadow_v11 -maxdepth 1 -type f -name '*.json' -print0 | xargs -0 -r git add -f --
+          fi
+          if [ -d data/euroleague/shadow_v10 ]; then
+            find data/euroleague/shadow_v10 -maxdepth 1 -type f -name '*.json' -print0 | xargs -0 -r git add -f --
           fi
           echo 'Files staged for commit:' 
           git diff --cached --name-only
