@@ -15,7 +15,7 @@
   "next_game_model": {
     "coefficients": [
       0.37129020091392007,
-      0.20687284689509272,
+      0.20687284689509283,
       0.04302515461321933
     ],
     "intercept": -0.02197738083140943
@@ -23,10 +23,10 @@
   "next_game_training_rows": 1966,
   "notes": "Outer scoring audit uses observed pace only to isolate PPP error. Never substitute observed pace in pregame projections.",
   "inner_baseline_rmse": 10.285775054142722,
-  "inner_best_candidate_rmse": 10.101958997475307,
-  "outer_team_ppp_model_rmse_pts": 8.941322817836205,
+  "inner_best_candidate_rmse": 10.10195899747531,
+  "outer_team_ppp_model_rmse_pts": 8.941322817836207,
   "outer_team_league_baseline_rmse_pts": 9.27539782462247,
-  "outer_total_ppp_model_rmse_pts": 13.84826495765373,
+  "outer_total_ppp_model_rmse_pts": 13.848264957653731,
   "outer_total_league_rmse_pts": 14.049362851732193,
   "outer_games": 194,
   "outer_team_rows": 388,

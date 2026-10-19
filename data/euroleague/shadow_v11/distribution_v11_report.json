@@ -10,85 +10,85 @@
   "markets": {
     "PTS": {
       "coverage_90": 0.908,
-      "RMSE": 10.634,
+      "RMSE": 10.621,
       "mean_predictive_sd": null,
       "n": 76
     },
     "FG2A": {
-      "coverage_90": 0.947,
-      "RMSE": 5.392,
+      "coverage_90": 0.921,
+      "RMSE": 5.417,
       "mean_predictive_sd": null,
       "n": 76
     },
     "FG3A": {
       "coverage_90": 0.855,
-      "RMSE": 5.141,
+      "RMSE": 5.116,
       "mean_predictive_sd": null,
       "n": 76
     },
     "FG2M": {
       "coverage_90": 0.961,
-      "RMSE": 3.423,
+      "RMSE": 3.392,
       "mean_predictive_sd": null,
       "n": 76
     },
     "FG3M": {
-      "coverage_90": 0.947,
-      "RMSE": 3.077,
+      "coverage_90": 0.921,
+      "RMSE": 3.097,
       "mean_predictive_sd": null,
       "n": 76
     },
     "FTA": {
-      "coverage_90": 0.868,
-      "RMSE": 7.09,
+      "coverage_90": 0.895,
+      "RMSE": 6.933,
       "mean_predictive_sd": null,
       "n": 76
     },
     "FTM": {
       "coverage_90": 0.855,
-      "RMSE": 5.815,
+      "RMSE": 5.753,
       "mean_predictive_sd": null,
       "n": 76
     },
     "MARKET_OREB": {
       "coverage_90": 0.921,
-      "RMSE": 3.648,
+      "RMSE": 3.623,
       "mean_predictive_sd": null,
       "n": 76
     },
     "MARKET_DREB": {
-      "coverage_90": 0.908,
-      "RMSE": 4.061,
+      "coverage_90": 0.934,
+      "RMSE": 4.038,
       "mean_predictive_sd": null,
       "n": 76
     },
     "MARKET_REB": {
-      "coverage_90": 0.895,
-      "RMSE": 5.372,
+      "coverage_90": 0.882,
+      "RMSE": 5.344,
       "mean_predictive_sd": null,
       "n": 76
     },
     "MARKET_TO": {
-      "coverage_90": 0.947,
-      "RMSE": 3.093,
+      "coverage_90": 0.908,
+      "RMSE": 3.182,
       "mean_predictive_sd": null,
       "n": 76
     },
     "AST": {
       "coverage_90": 0.947,
-      "RMSE": 3.759,
+      "RMSE": 3.758,
       "mean_predictive_sd": null,
       "n": 76
     },
     "STL": {
       "coverage_90": 0.895,
-      "RMSE": 2.503,
+      "RMSE": 2.51,
       "mean_predictive_sd": null,
       "n": 76
     },
     "BLK": {
       "coverage_90": 0.974,
-      "RMSE": 1.931,
+      "RMSE": 1.929,
       "mean_predictive_sd": null,
       "n": 76
     }
