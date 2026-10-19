@@ -1,0 +1,487 @@
+{
+  "version": "1.0-current-only-historical-coefficients",
+  "status": "SHADOW_NOT_PRICING_READY",
+  "market_definition": "official_inclusive_v2",
+  "training_seasons": [
+    2023,
+    2024,
+    2025
+  ],
+  "live_input_contract": "CURRENT_SEASON_ONLY_OFFENSE_ALLOWED_AND_LEAGUE",
+  "factors": {
+    "PACE": {
+      "prior_games": 0.0,
+      "model": {
+        "selected": "off_def",
+        "coefficients": [
+          0.2350229536690497,
+          0.23350608800124853,
+          0.0
+        ],
+        "intercept": 0.0018569629673188814,
+        "alpha": 1.0,
+        "train_rows": 883
+      },
+      "validation_2025_rate_rmse": 3.7884018475640198,
+      "league_2025_rate_rmse": 3.950791223782929,
+      "selected_2024_rmse": 3.698780992783945,
+      "validation_rows": 345
+    },
+    "TO_RATE": {
+      "prior_games": 8.0,
+      "model": {
+        "selected": "off_def_home",
+        "coefficients": [
+          0.8520555434042172,
+          0.5116400509033673,
+          -0.09240248038945992
+        ],
+        "intercept": -0.002139453549473244,
+        "alpha": 1.0,
+        "train_rows": 1766
+      },
+      "validation_2025_rate_rmse": 0.044108802568478385,
+      "league_2025_rate_rmse": 0.045593799732180106,
+      "selected_2024_rmse": 0.045132909846493714,
+      "validation_rows": 690
+    },
+    "TO_CREDIT": {
+      "prior_games": 0.0,
+      "model": {
+        "selected": "off_def",
+        "coefficients": [
+          0.09247863812323656,
+          0.08142541866154077,
+          0.0
+        ],
+        "intercept": 0.0003714238959155853,
+        "alpha": 1.0,
+        "train_rows": 1766
+      },
+      "validation_2025_rate_rmse": 0.0694082302207039,
+      "league_2025_rate_rmse": 0.06938113443511566,
+      "selected_2024_rmse": 0.0655755476732138,
+      "validation_rows": 690
+    },
+    "FTA_RATE": {
+      "prior_games": 2.0,
+      "model": {
+        "selected": "off_def_home",
+        "coefficients": [
+          0.7641899613912431,
+          0.7153472919946076,
+          0.06450185433658702
+        ],
+        "intercept": -0.09419309742701001,
+        "alpha": 1.0,
+        "train_rows": 1766
+      },
+      "validation_2025_rate_rmse": 0.0804221506617985,
+      "league_2025_rate_rmse": 0.08480557319896366,
+      "selected_2024_rmse": 0.08278006673659756,
+      "validation_rows": 690
+    },
+    "THREE_SHARE": {
+      "prior_games": 0.0,
+      "model": {
+        "selected": "off_def",
+        "coefficients": [
+          0.7150745811724767,
+          0.5342937489692647,
+          0.0
+        ],
+        "intercept": -0.01162860522381186,
+        "alpha": 1.0,
+        "train_rows": 1766
+      },
+      "validation_2025_rate_rmse": 0.06970752799219172,
+      "league_2025_rate_rmse": 0.07661257788299648,
+      "selected_2024_rmse": 0.0714933441224866,
+      "validation_rows": 690
+    },
+    "TWO_PCT": {
+      "prior_games": 0.0,
+      "model": {
+        "selected": "off_def_home",
+        "coefficients": [
+          0.24119536977371264,
+          0.23175083523948745,
+          0.025237637136036304
+        ],
+        "intercept": -0.016484563623536317,
+        "alpha": 1.0,
+        "train_rows": 1766
+      },
+      "validation_2025_rate_rmse": 0.08478474548842861,
+      "league_2025_rate_rmse": 0.08581559668234223,
+      "selected_2024_rmse": 0.08596704223809179,
+      "validation_rows": 690
+    },
+    "THREE_PCT": {
+      "prior_games": 0.0,
+      "model": {
+        "selected": "league",
+        "coefficients": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "intercept": 0.0,
+        "alpha": null
+      },
+      "validation_2025_rate_rmse": 0.09436878883722084,
+      "league_2025_rate_rmse": 0.09436878883722084,
+      "selected_2024_rmse": 0.10174943863586164,
+      "validation_rows": 690
+    },
+    "FT_PCT": {
+      "prior_games": 0.0,
+      "model": {
+        "selected": "off",
+        "coefficients": [
+          0.2681438335540048,
+          0.0,
+          0.0
+        ],
+        "intercept": -1.439531178631904e-05,
+        "alpha": 1.0,
+        "train_rows": 1766
+      },
+      "validation_2025_rate_rmse": 0.10133895906935948,
+      "league_2025_rate_rmse": 0.10159125854659531,
+      "selected_2024_rmse": 0.11182691434945975,
+      "validation_rows": 690
+    },
+    "OREB_RATE": {
+      "prior_games": 0.0,
+      "model": {
+        "selected": "league",
+        "coefficients": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "intercept": 0.0,
+        "alpha": null
+      },
+      "validation_2025_rate_rmse": 0.08770914403292249,
+      "league_2025_rate_rmse": 0.08770914403292249,
+      "selected_2024_rmse": 0.08994405592338481,
+      "validation_rows": 690
+    },
+    "OREB_CREDIT": {
+      "prior_games": 2.0,
+      "model": {
+        "selected": "off_def_home",
+        "coefficients": [
+          -0.1414033909308305,
+          0.03769510783865883,
+          0.010842996143947903
+        ],
+        "intercept": -0.012899603503831361,
+        "alpha": 1.0,
+        "train_rows": 1766
+      },
+      "validation_2025_rate_rmse": 0.12483550881436972,
+      "league_2025_rate_rmse": 0.1241438307974427,
+      "selected_2024_rmse": 0.12929511031021532,
+      "validation_rows": 690
+    },
+    "DREB_RATE": {
+      "prior_games": 8.0,
+      "model": {
+        "selected": "off",
+        "coefficients": [
+          -0.0019362834169619413,
+          0.0,
+          0.0
+        ],
+        "intercept": 0.0013316898518358578,
+        "alpha": 1.0,
+        "train_rows": 1766
+      },
+      "validation_2025_rate_rmse": 0.052983019066358245,
+      "league_2025_rate_rmse": 0.0530177925487006,
+      "selected_2024_rmse": 0.05677964819860169,
+      "validation_rows": 690
+    },
+    "DREB_CREDIT": {
+      "prior_games": 0.0,
+      "model": {
+        "selected": "off_def",
+        "coefficients": [
+          0.057260003627764164,
+          0.06974552010738873,
+          0.0
+        ],
+        "intercept": 0.001784638915691983,
+        "alpha": 1.0,
+        "train_rows": 1766
+      },
+      "validation_2025_rate_rmse": 0.05746239209189545,
+      "league_2025_rate_rmse": 0.057520786995956766,
+      "selected_2024_rmse": 0.056121523284453585,
+      "validation_rows": 690
+    },
+    "AST_RATE": {
+      "prior_games": 4.0,
+      "model": {
+        "selected": "off_def",
+        "coefficients": [
+          0.7283432524217862,
+          0.6037664399808405,
+          0.0
+        ],
+        "intercept": -0.00713291052309249,
+        "alpha": 1.0,
+        "train_rows": 1766
+      },
+      "validation_2025_rate_rmse": 0.11280611096158458,
+      "league_2025_rate_rmse": 0.1172530456298593,
+      "selected_2024_rmse": 0.12232350683731706,
+      "validation_rows": 690
+    },
+    "STL_RATE": {
+      "prior_games": 0.0,
+      "model": {
+        "selected": "league",
+        "coefficients": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "intercept": 0.0,
+        "alpha": null
+      },
+      "validation_2025_rate_rmse": 0.16070758111922728,
+      "league_2025_rate_rmse": 0.16070758111922728,
+      "selected_2024_rmse": 0.15775513863752594,
+      "validation_rows": 690
+    },
+    "BLK_RATE": {
+      "prior_games": 16.0,
+      "model": {
+        "selected": "off_def",
+        "coefficients": [
+          1.1000525476462135,
+          1.080666708795019,
+          0.0
+        ],
+        "intercept": -0.16123545162768915,
+        "alpha": 1.0,
+        "train_rows": 1766
+      },
+      "validation_2025_rate_rmse": 0.1073280108435086,
+      "league_2025_rate_rmse": 0.10561978652678229,
+      "selected_2024_rmse": 0.107731706305865,
+      "validation_rows": 690
+    }
+  },
+  "validation_2025": {
+    "PACE": {
+      "2025_rate_rmse": 3.7884018475640198,
+      "league_rate_rmse": 3.950791223782929,
+      "better_than_league": true
+    },
+    "TO_RATE": {
+      "2025_rate_rmse": 0.044108802568478385,
+      "league_rate_rmse": 0.045593799732180106,
+      "better_than_league": true
+    },
+    "TO_CREDIT": {
+      "2025_rate_rmse": 0.0694082302207039,
+      "league_rate_rmse": 0.06938113443511566,
+      "better_than_league": false
+    },
+    "FTA_RATE": {
+      "2025_rate_rmse": 0.0804221506617985,
+      "league_rate_rmse": 0.08480557319896366,
+      "better_than_league": true
+    },
+    "THREE_SHARE": {
+      "2025_rate_rmse": 0.06970752799219172,
+      "league_rate_rmse": 0.07661257788299648,
+      "better_than_league": true
+    },
+    "TWO_PCT": {
+      "2025_rate_rmse": 0.08478474548842861,
+      "league_rate_rmse": 0.08581559668234223,
+      "better_than_league": true
+    },
+    "THREE_PCT": {
+      "2025_rate_rmse": 0.09436878883722084,
+      "league_rate_rmse": 0.09436878883722084,
+      "better_than_league": false
+    },
+    "FT_PCT": {
+      "2025_rate_rmse": 0.10133895906935948,
+      "league_rate_rmse": 0.10159125854659531,
+      "better_than_league": true
+    },
+    "OREB_RATE": {
+      "2025_rate_rmse": 0.08770914403292249,
+      "league_rate_rmse": 0.08770914403292249,
+      "better_than_league": false
+    },
+    "OREB_CREDIT": {
+      "2025_rate_rmse": 0.12483550881436972,
+      "league_rate_rmse": 0.1241438307974427,
+      "better_than_league": false
+    },
+    "DREB_RATE": {
+      "2025_rate_rmse": 0.052983019066358245,
+      "league_rate_rmse": 0.0530177925487006,
+      "better_than_league": true
+    },
+    "DREB_CREDIT": {
+      "2025_rate_rmse": 0.05746239209189545,
+      "league_rate_rmse": 0.057520786995956766,
+      "better_than_league": true
+    },
+    "AST_RATE": {
+      "2025_rate_rmse": 0.11280611096158458,
+      "league_rate_rmse": 0.1172530456298593,
+      "better_than_league": true
+    },
+    "STL_RATE": {
+      "2025_rate_rmse": 0.16070758111922728,
+      "league_rate_rmse": 0.16070758111922728,
+      "better_than_league": false
+    },
+    "BLK_RATE": {
+      "2025_rate_rmse": 0.1073280108435086,
+      "league_rate_rmse": 0.10561978652678229,
+      "better_than_league": false
+    }
+  },
+  "dataset": {
+    "all_games": 1010,
+    "2026_games": 58,
+    "rows": 2020,
+    "last_utc": "2026-10-16 20:30:00+00:00"
+  },
+  "watch_2026": {
+    "games_evaluated": 38,
+    "games_skipped_before_minimum": 20,
+    "metrics": {
+      "PTS": {
+        "n_team_games": 76,
+        "rmse": 10.671,
+        "baseline_rmse": 11.089,
+        "bias": -1.542,
+        "std_pred": 1.998,
+        "std_actual": 10.869
+      },
+      "FG2A": {
+        "n_team_games": 76,
+        "rmse": 5.482,
+        "baseline_rmse": 5.431,
+        "bias": 0.306,
+        "std_pred": 2.08,
+        "std_actual": 5.309
+      },
+      "FG3A": {
+        "n_team_games": 76,
+        "rmse": 5.253,
+        "baseline_rmse": 5.819,
+        "bias": -0.925,
+        "std_pred": 2.383,
+        "std_actual": 5.707
+      },
+      "FG2M": {
+        "n_team_games": 76,
+        "rmse": 3.39,
+        "baseline_rmse": 3.444,
+        "bias": 0.233,
+        "std_pred": 1.274,
+        "std_actual": 3.376
+      },
+      "FG3M": {
+        "n_team_games": 76,
+        "rmse": 3.102,
+        "baseline_rmse": 3.224,
+        "bias": -0.367,
+        "std_pred": 0.829,
+        "std_actual": 3.183
+      },
+      "FTA": {
+        "n_team_games": 76,
+        "rmse": 7.273,
+        "baseline_rmse": 6.783,
+        "bias": -1.527,
+        "std_pred": 2.098,
+        "std_actual": 6.759
+      },
+      "FTM": {
+        "n_team_games": 76,
+        "rmse": 5.924,
+        "baseline_rmse": 5.725,
+        "bias": -0.906,
+        "std_pred": 1.666,
+        "std_actual": 5.72
+      },
+      "MARKET_OREB": {
+        "n_team_games": 76,
+        "rmse": 3.634,
+        "baseline_rmse": 3.68,
+        "bias": -0.335,
+        "std_pred": 0.374,
+        "std_actual": 3.599
+      },
+      "MARKET_DREB": {
+        "n_team_games": 76,
+        "rmse": 4.073,
+        "baseline_rmse": 4.165,
+        "bias": -0.488,
+        "std_pred": 0.677,
+        "std_actual": 4.034
+      },
+      "MARKET_REB": {
+        "n_team_games": 76,
+        "rmse": 5.431,
+        "baseline_rmse": 5.67,
+        "bias": -0.823,
+        "std_pred": 0.714,
+        "std_actual": 5.393
+      },
+      "MARKET_TO": {
+        "n_team_games": 76,
+        "rmse": 3.077,
+        "baseline_rmse": 3.159,
+        "bias": -0.419,
+        "std_pred": 0.755,
+        "std_actual": 3.113
+      },
+      "AST": {
+        "n_team_games": 76,
+        "rmse": 3.817,
+        "baseline_rmse": 3.882,
+        "bias": -0.363,
+        "std_pred": 0.837,
+        "std_actual": 3.811
+      },
+      "STL": {
+        "n_team_games": 76,
+        "rmse": 2.544,
+        "baseline_rmse": 2.524,
+        "bias": -0.171,
+        "std_pred": 0.395,
+        "std_actual": 2.489
+      },
+      "BLK": {
+        "n_team_games": 76,
+        "rmse": 1.949,
+        "baseline_rmse": 1.955,
+        "bias": -0.324,
+        "std_pred": 0.244,
+        "std_actual": 1.94
+      }
+    },
+    "limitations": [
+      "2026 previously scrutinized: NOT untouched holdout",
+      "Only current-season observational box score context, no lineups/injuries",
+      "Event-rate coefficient validation is NOT same as joint fair-odds calibration",
+      "DREB FT proxy not PBP; odds and simulation still SHADOW"
+    ]
+  }
+}

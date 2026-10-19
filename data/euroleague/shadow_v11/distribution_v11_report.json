@@ -1,0 +1,96 @@
+{
+  "status": "SHADOW_NOT_PRICING_READY",
+  "production_pricing_gate": false,
+  "market_definition": "official_inclusive_v2",
+  "test_season": 2026,
+  "distinct_games": 38,
+  "side_observations": 76,
+  "draws_each": 1200,
+  "source": "2025 paired game residual bootstrap with 2026 chronological watch; 2026 repeatedly examined, not independent",
+  "markets": {
+    "PTS": {
+      "coverage_90": 0.908,
+      "RMSE": 10.634,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "FG2A": {
+      "coverage_90": 0.947,
+      "RMSE": 5.392,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "FG3A": {
+      "coverage_90": 0.855,
+      "RMSE": 5.141,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "FG2M": {
+      "coverage_90": 0.961,
+      "RMSE": 3.423,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "FG3M": {
+      "coverage_90": 0.947,
+      "RMSE": 3.077,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "FTA": {
+      "coverage_90": 0.868,
+      "RMSE": 7.09,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "FTM": {
+      "coverage_90": 0.855,
+      "RMSE": 5.815,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "MARKET_OREB": {
+      "coverage_90": 0.921,
+      "RMSE": 3.648,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "MARKET_DREB": {
+      "coverage_90": 0.908,
+      "RMSE": 4.061,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "MARKET_REB": {
+      "coverage_90": 0.895,
+      "RMSE": 5.372,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "MARKET_TO": {
+      "coverage_90": 0.947,
+      "RMSE": 3.093,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "AST": {
+      "coverage_90": 0.947,
+      "RMSE": 3.759,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "STL": {
+      "coverage_90": 0.895,
+      "RMSE": 2.503,
+      "mean_predictive_sd": null,
+      "n": 76
+    },
+    "BLK": {
+      "coverage_90": 0.974,
+      "RMSE": 1.931,
+      "mean_predictive_sd": null,
+      "n": 76
+    }
+  }
+}
