@@ -10,6 +10,7 @@ from core.structural_v06 import verified_games,event_rate_rows,upcoming_pair,pro
 from core.trader_markets_v07 import build_trader_board,threshold_counts,pricing_probabilities,evaluate_external_odds,MARKETS
 from core.efficiency_benchmark_v07 import upcoming_efficiency_benchmark
 from core.discrimination_v08 import upcoming_with_state, calculate
+from matchup_diagnostic_v09 import run as count_only_audit
 
 @st.cache_data(show_spinner=False,ttl=3600)
 def load_verified(team_path,player_path,team_mtime,player_mtime):
@@ -52,6 +53,7 @@ def render_trader_shadow(base:Path):
         v08=json.loads(v08_file.read_text(encoding='utf-8'))
         if v08.get('status')!='SHADOW_NOT_PRICING_READY' or v08.get('market_definition')!='official_inclusive_v2':
             st.error('V0.8 schema/status mismatch. Refusing challenger pricing.');return
+    v09_file=base.parent/'shadow_v09'/'calibration_v09_report.json'
     dist_file=base.parent/'shadow_v07'/'distribution_audit_v07.json'
     dist=json.loads(dist_file.read_text()) if dist_file.exists() else None
 
@@ -92,6 +94,41 @@ def render_trader_shadow(base:Path):
         st.info('Select matchup and run the preview. Coefficients are loaded from the GitHub trained shadow artifacts.');return
     pred,board,sim,cross=result['pred'],result['board'],result['sim'],result['cross']
     st.caption('Active mean model: '+selected+'. Market probabilities remain research-only.')
+    if v09_file.exists():
+        try:
+            r09=json.loads(v09_file.read_text())
+            if r09.get('market_definition')!='official_inclusive_v2' or r09.get('status')!='SHADOW_NOT_PRICING_READY':
+                st.error('v0.9 report has an incompatible market schema/status; refusing the independent audit.')
+            else:
+                with st.expander('v0.9 independent count benchmark — DOES NOT CHANGE PRICES'):
+                    bench=count_only_audit(str(tp),str(v09_file),h,a,str(asof))
+                    audit=[]
+                    for metric,field in [('Pace','POSS'),('Points','PTS'),('3PA','FG3A'),
+                                         ('Steals','STL'),('Turnovers','MARKET_TO'),
+                                         ('OREB','MARKET_OREB'),('DREB','MARKET_DREB'),('Rebounds','MARKET_REB')]:
+                        for side,team in [('home',h),('away',a)]:
+                            if metric=='Pace' and side=='away':continue
+                            ref=float(pred['pace'] if metric=='Pace' else pred[side][field])
+                            key={'Pace':'POSS','Points':'PTS','3PA':'FG3A',
+                                 'Steals':'STL','Turnovers':'TO','OREB':'OREB',
+                                 'DREB':'DREB','Rebounds':'REB'}[metric]
+                            alt=bench.get(team,{}).get(key,float('nan'))
+                            audit.append({'Team':name[team],'Stat':metric,
+                                          'Structural mean':round(ref,2),'Independent count mean':alt,
+                                          'Difference':round(alt-ref,2)})
+                    st.dataframe(pd.DataFrame(audit),hide_index=True,use_container_width=True)
+                    st.caption('The independent benchmark estimates counts separately. It does NOT preserve '
+                               'all score, attempt and rebound identities, and must NOT replace structural '
+                               'means or feed fair/bookmaker odds automatically. Current fair odds still '
+                               'refer solely to the selected v0.6/v0.8 structural simulation.')
+                    cfg=r09['markets']
+                    st.dataframe(pd.DataFrame([{'Statistic':k,'Prior games':v['selected']['prior_games'],
+                               'Prev-season share of prior':v['selected']['previous_season_weight_in_prior'],
+                               'CV RMSE':v['blocked_cv']['rmse_candidate'],
+                               '2026 watch RMSE':v['watch_2026']['rmse_candidate']}
+                               for k,v in cfg.items()]),hide_index=True,use_container_width=True)
+        except Exception as e:
+            st.warning('Unable to open v0.9 count benchmark; historical price model unchanged: '+str(e))
     if v08:
         with st.expander('v0.8 coefficient audit — trained challenger vs v0.6'):
             st.dataframe(pd.DataFrame([
