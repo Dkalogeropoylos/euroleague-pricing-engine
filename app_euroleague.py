@@ -46,7 +46,7 @@ c3.metric("Player-game observations", len(players))
 c4.metric("Data quality flags", len(audit))
 
 page_data, page_matchup, page_coeff, page_audit, page_structural, page_trader = st.tabs(
-    ["League Baselines", "Matchup Audit", "Coefficients", "Data Audit", "Structural SHADOW v0.6", "Trader Board SHADOW v0.7"]
+    ["League Baselines", "Matchup Audit", "Coefficients", "Data Audit", "Structural SHADOW v0.6", "Trader Board v1.1 AUDITED"]
 )
 st.info("**Market settlement rule:** Ομαδικά OREB, DREB, REB και turnovers είναι τα ΕΠΙΣΗΜΑ team totals, μαζί με τα team-only events. Τα player sums κρατούνται χωριστά για player props/steal modeling.")
 
@@ -119,5 +119,5 @@ with page_structural:
     render_shadow(base)
 
 with page_trader:
-    from app_trader_panel_v07 import render_trader_shadow
+    from app_trader_panel_v11 import render_trader_shadow
     render_trader_shadow(base)
