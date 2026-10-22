@@ -3,94 +3,94 @@
   "production_pricing_gate": false,
   "market_definition": "official_inclusive_v2",
   "test_season": 2026,
-  "distinct_games": 38,
-  "side_observations": 76,
+  "distinct_games": 39,
+  "side_observations": 78,
   "draws_each": 1200,
   "source": "2025 paired game residual bootstrap with 2026 chronological watch; 2026 repeatedly examined, not independent",
   "markets": {
     "PTS": {
-      "coverage_90": 0.908,
-      "RMSE": 10.621,
+      "coverage_90": 0.91,
+      "RMSE": 10.499,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "FG2A": {
-      "coverage_90": 0.921,
-      "RMSE": 5.417,
+      "coverage_90": 0.923,
+      "RMSE": 5.405,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "FG3A": {
-      "coverage_90": 0.855,
-      "RMSE": 5.116,
+      "coverage_90": 0.859,
+      "RMSE": 5.125,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "FG2M": {
-      "coverage_90": 0.961,
-      "RMSE": 3.392,
+      "coverage_90": 0.962,
+      "RMSE": 3.419,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "FG3M": {
-      "coverage_90": 0.921,
-      "RMSE": 3.097,
+      "coverage_90": 0.923,
+      "RMSE": 3.062,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "FTA": {
-      "coverage_90": 0.895,
-      "RMSE": 6.933,
+      "coverage_90": 0.897,
+      "RMSE": 6.924,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "FTM": {
-      "coverage_90": 0.855,
-      "RMSE": 5.753,
+      "coverage_90": 0.859,
+      "RMSE": 5.721,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "MARKET_OREB": {
-      "coverage_90": 0.921,
-      "RMSE": 3.623,
+      "coverage_90": 0.91,
+      "RMSE": 3.724,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "MARKET_DREB": {
-      "coverage_90": 0.934,
-      "RMSE": 4.038,
+      "coverage_90": 0.936,
+      "RMSE": 4.006,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "MARKET_REB": {
-      "coverage_90": 0.882,
-      "RMSE": 5.344,
+      "coverage_90": 0.885,
+      "RMSE": 5.411,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "MARKET_TO": {
-      "coverage_90": 0.908,
-      "RMSE": 3.182,
+      "coverage_90": 0.91,
+      "RMSE": 3.157,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "AST": {
-      "coverage_90": 0.947,
-      "RMSE": 3.758,
+      "coverage_90": 0.936,
+      "RMSE": 3.874,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "STL": {
-      "coverage_90": 0.895,
-      "RMSE": 2.51,
+      "coverage_90": 0.897,
+      "RMSE": 2.497,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     },
     "BLK": {
       "coverage_90": 0.974,
-      "RMSE": 1.929,
+      "RMSE": 1.949,
       "mean_predictive_sd": null,
-      "n": 76
+      "n": 78
     }
   }
 }
