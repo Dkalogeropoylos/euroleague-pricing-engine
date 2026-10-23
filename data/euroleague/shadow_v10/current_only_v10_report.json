@@ -355,126 +355,126 @@
     }
   },
   "dataset": {
-    "all_games": 1011,
-    "2026_games": 59,
-    "rows": 2022,
-    "last_utc": "2026-10-21 18:00:00+00:00"
+    "all_games": 1016,
+    "2026_games": 64,
+    "rows": 2032,
+    "last_utc": "2026-10-22 20:30:00+00:00"
   },
   "watch_2026": {
-    "games_evaluated": 39,
+    "games_evaluated": 44,
     "games_skipped_before_minimum": 20,
     "metrics": {
       "PTS": {
-        "n_team_games": 78,
-        "rmse": 10.545,
-        "baseline_rmse": 10.973,
-        "bias": -1.51,
-        "std_pred": 1.988,
-        "std_actual": 10.753
+        "n_team_games": 88,
+        "rmse": 10.854,
+        "baseline_rmse": 11.262,
+        "bias": -2.094,
+        "std_pred": 1.982,
+        "std_actual": 10.917
       },
       "FG2A": {
-        "n_team_games": 78,
-        "rmse": 5.466,
-        "baseline_rmse": 5.459,
-        "bias": 0.256,
-        "std_pred": 2.067,
-        "std_actual": 5.317
+        "n_team_games": 88,
+        "rmse": 5.428,
+        "baseline_rmse": 5.507,
+        "bias": 0.174,
+        "std_pred": 2.056,
+        "std_actual": 5.369
       },
       "FG3A": {
-        "n_team_games": 78,
-        "rmse": 5.282,
-        "baseline_rmse": 5.797,
-        "bias": -0.99,
-        "std_pred": 2.365,
-        "std_actual": 5.676
+        "n_team_games": 88,
+        "rmse": 5.371,
+        "baseline_rmse": 5.899,
+        "bias": -0.964,
+        "std_pred": 2.378,
+        "std_actual": 5.787
       },
       "FG2M": {
-        "n_team_games": 78,
-        "rmse": 3.405,
-        "baseline_rmse": 3.447,
-        "bias": 0.279,
-        "std_pred": 1.261,
-        "std_actual": 3.385
+        "n_team_games": 88,
+        "rmse": 3.532,
+        "baseline_rmse": 3.651,
+        "bias": 0.125,
+        "std_pred": 1.264,
+        "std_actual": 3.577
       },
       "FG3M": {
-        "n_team_games": 78,
-        "rmse": 3.063,
-        "baseline_rmse": 3.183,
-        "bias": -0.357,
-        "std_pred": 0.822,
-        "std_actual": 3.143
+        "n_team_games": 88,
+        "rmse": 3.227,
+        "baseline_rmse": 3.375,
+        "bias": -0.51,
+        "std_pred": 0.829,
+        "std_actual": 3.32
       },
       "FTA": {
-        "n_team_games": 78,
-        "rmse": 7.28,
-        "baseline_rmse": 6.793,
-        "bias": -1.649,
-        "std_pred": 2.073,
-        "std_actual": 6.763
+        "n_team_games": 88,
+        "rmse": 7.126,
+        "baseline_rmse": 6.638,
+        "bias": -1.351,
+        "std_pred": 2.157,
+        "std_actual": 6.616
       },
       "FTM": {
-        "n_team_games": 78,
-        "rmse": 5.903,
-        "baseline_rmse": 5.7,
-        "bias": -0.997,
-        "std_pred": 1.645,
-        "std_actual": 5.695
+        "n_team_games": 88,
+        "rmse": 5.853,
+        "baseline_rmse": 5.65,
+        "bias": -0.816,
+        "std_pred": 1.71,
+        "std_actual": 5.645
       },
       "MARKET_OREB": {
-        "n_team_games": 78,
-        "rmse": 3.753,
-        "baseline_rmse": 3.807,
-        "bias": -0.475,
-        "std_pred": 0.372,
-        "std_actual": 3.705
+        "n_team_games": 88,
+        "rmse": 3.716,
+        "baseline_rmse": 3.767,
+        "bias": -0.31,
+        "std_pred": 0.373,
+        "std_actual": 3.695
       },
       "MARKET_DREB": {
-        "n_team_games": 78,
-        "rmse": 4.054,
-        "baseline_rmse": 4.154,
-        "bias": -0.544,
-        "std_pred": 0.672,
-        "std_actual": 4.008
+        "n_team_games": 88,
+        "rmse": 3.904,
+        "baseline_rmse": 4.012,
+        "bias": -0.432,
+        "std_pred": 0.662,
+        "std_actual": 3.899
       },
       "MARKET_REB": {
-        "n_team_games": 78,
-        "rmse": 5.537,
-        "baseline_rmse": 5.813,
-        "bias": -1.019,
-        "std_pred": 0.709,
-        "std_actual": 5.484
+        "n_team_games": 88,
+        "rmse": 5.381,
+        "baseline_rmse": 5.643,
+        "bias": -0.742,
+        "std_pred": 0.691,
+        "std_actual": 5.403
       },
       "MARKET_TO": {
-        "n_team_games": 78,
-        "rmse": 3.047,
-        "baseline_rmse": 3.153,
-        "bias": -0.373,
-        "std_pred": 0.762,
-        "std_actual": 3.104
+        "n_team_games": 88,
+        "rmse": 3.276,
+        "baseline_rmse": 3.327,
+        "bias": -0.47,
+        "std_pred": 0.758,
+        "std_actual": 3.29
       },
       "AST": {
-        "n_team_games": 78,
-        "rmse": 3.911,
-        "baseline_rmse": 3.988,
-        "bias": -0.221,
-        "std_pred": 0.844,
-        "std_actual": 3.94
+        "n_team_games": 88,
+        "rmse": 3.987,
+        "baseline_rmse": 4.05,
+        "bias": -0.476,
+        "std_pred": 0.856,
+        "std_actual": 3.968
       },
       "STL": {
-        "n_team_games": 78,
-        "rmse": 2.523,
-        "baseline_rmse": 2.514,
-        "bias": -0.163,
-        "std_pred": 0.398,
-        "std_actual": 2.479
+        "n_team_games": 88,
+        "rmse": 2.49,
+        "baseline_rmse": 2.465,
+        "bias": -0.136,
+        "std_pred": 0.396,
+        "std_actual": 2.431
       },
       "BLK": {
-        "n_team_games": 78,
-        "rmse": 1.988,
-        "baseline_rmse": 1.983,
-        "bias": -0.396,
-        "std_pred": 0.241,
-        "std_actual": 1.967
+        "n_team_games": 88,
+        "rmse": 2.064,
+        "baseline_rmse": 2.052,
+        "bias": -0.417,
+        "std_pred": 0.236,
+        "std_actual": 2.038
       }
     },
     "limitations": [

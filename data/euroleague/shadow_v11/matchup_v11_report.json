@@ -105,9 +105,9 @@
         "n": 345
       },
       "watch_2026": {
-        "rmse": 3.4566,
-        "base_rmse": 3.6627,
-        "n": 39
+        "rmse": 3.3591,
+        "base_rmse": 3.4882,
+        "n": 44
       }
     },
     "FG2A": {
@@ -117,9 +117,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 5.5813,
-        "base_rmse": 5.8583,
-        "n": 78
+        "rmse": 5.578,
+        "base_rmse": 5.8932,
+        "n": 88
       }
     },
     "FG3A": {
@@ -129,9 +129,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 5.0824,
-        "base_rmse": 5.7133,
-        "n": 78
+        "rmse": 5.2047,
+        "base_rmse": 5.7931,
+        "n": 88
       }
     },
     "FTA": {
@@ -141,9 +141,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 6.8702,
-        "base_rmse": 6.9332,
-        "n": 78
+        "rmse": 6.7358,
+        "base_rmse": 6.8042,
+        "n": 88
       }
     },
     "MARKET_TO": {
@@ -153,9 +153,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 3.1464,
-        "base_rmse": 3.1464,
-        "n": 78
+        "rmse": 3.3096,
+        "base_rmse": 3.3096,
+        "n": 88
       }
     },
     "MARKET_OREB": {
@@ -165,9 +165,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 3.7362,
-        "base_rmse": 3.7362,
-        "n": 78
+        "rmse": 3.7125,
+        "base_rmse": 3.7125,
+        "n": 88
       }
     },
     "MARKET_DREB": {
@@ -177,9 +177,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 3.9838,
-        "base_rmse": 3.9755,
-        "n": 78
+        "rmse": 3.8477,
+        "base_rmse": 3.8465,
+        "n": 88
       }
     },
     "STL": {
@@ -189,9 +189,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 2.4931,
-        "base_rmse": 2.4914,
-        "n": 78
+        "rmse": 2.459,
+        "base_rmse": 2.463,
+        "n": 88
       }
     },
     "BLK": {
@@ -201,9 +201,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 1.9579,
-        "base_rmse": 2.0052,
-        "n": 78
+        "rmse": 2.0235,
+        "base_rmse": 2.065,
+        "n": 88
       }
     },
     "AST": {
@@ -213,9 +213,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 3.8502,
-        "base_rmse": 3.939,
-        "n": 78
+        "rmse": 3.8995,
+        "base_rmse": 3.9912,
+        "n": 88
       }
     },
     "MARKET_REB": {
@@ -225,9 +225,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 5.3905,
-        "base_rmse": 5.4609,
-        "n": 78
+        "rmse": 5.2954,
+        "base_rmse": 5.3552,
+        "n": 88
       }
     },
     "PTS": {
@@ -237,9 +237,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 10.2739,
-        "base_rmse": 10.8705,
-        "n": 78
+        "rmse": 10.3712,
+        "base_rmse": 11.0152,
+        "n": 88
       }
     },
     "P2": {
@@ -249,9 +249,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 0.0811,
-        "base_rmse": 0.0812,
-        "n": 78
+        "rmse": 0.0827,
+        "base_rmse": 0.0827,
+        "n": 88
       }
     },
     "P3": {
@@ -261,9 +261,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 0.0942,
-        "base_rmse": 0.0942,
-        "n": 78
+        "rmse": 0.0982,
+        "base_rmse": 0.0982,
+        "n": 88
       }
     },
     "PF": {
@@ -273,9 +273,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 0.1092,
-        "base_rmse": 0.1092,
-        "n": 78
+        "rmse": 0.1068,
+        "base_rmse": 0.1068,
+        "n": 88
       }
     },
     "A_RATE": {
@@ -285,9 +285,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 0.1125,
-        "base_rmse": 0.1123,
-        "n": 78
+        "rmse": 0.1101,
+        "base_rmse": 0.1103,
+        "n": 88
       }
     },
     "CREDIT_TO": {
@@ -297,9 +297,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 0.0609,
-        "base_rmse": 0.0607,
-        "n": 78
+        "rmse": 0.0594,
+        "base_rmse": 0.059,
+        "n": 88
       }
     }
   },
@@ -408,83 +408,83 @@
   },
   "watch_2026": {
     "POSS": {
-      "rmse": 3.442,
-      "bias": 0.404,
+      "rmse": 3.348,
+      "bias": 0.187,
       "offense_only_baseline_rmse": null
     },
     "PTS": {
-      "rmse": 10.437,
-      "bias": 0.41,
+      "rmse": 10.673,
+      "bias": -0.233,
       "offense_only_baseline_rmse": null
     },
     "FG2A": {
-      "rmse": 5.428,
-      "bias": 0.257,
+      "rmse": 5.434,
+      "bias": 0.16,
       "offense_only_baseline_rmse": null
     },
     "FG3A": {
-      "rmse": 5.123,
-      "bias": -0.266,
-      "offense_only_baseline_rmse": 5.713
+      "rmse": 5.234,
+      "bias": -0.275,
+      "offense_only_baseline_rmse": 5.793
     },
     "FG2M": {
-      "rmse": 3.424,
-      "bias": 0.38,
+      "rmse": 3.56,
+      "bias": 0.213,
       "offense_only_baseline_rmse": null
     },
     "FG3M": {
-      "rmse": 3.043,
-      "bias": -0.109,
+      "rmse": 3.197,
+      "bias": -0.27,
       "offense_only_baseline_rmse": null
     },
     "FTA": {
-      "rmse": 6.882,
-      "bias": -0.422,
+      "rmse": 6.75,
+      "bias": -0.135,
       "offense_only_baseline_rmse": null
     },
     "FTM": {
-      "rmse": 5.691,
-      "bias": -0.022,
+      "rmse": 5.659,
+      "bias": 0.15,
       "offense_only_baseline_rmse": null
     },
     "MARKET_OREB": {
-      "rmse": 3.736,
-      "bias": -0.37,
+      "rmse": 3.715,
+      "bias": -0.213,
       "offense_only_baseline_rmse": null
     },
     "MARKET_DREB": {
-      "rmse": 3.984,
-      "bias": -0.155,
+      "rmse": 3.848,
+      "bias": -0.065,
       "offense_only_baseline_rmse": null
     },
     "MARKET_REB": {
-      "rmse": 5.393,
-      "bias": -0.525,
+      "rmse": 5.284,
+      "bias": -0.278,
       "offense_only_baseline_rmse": null
     },
     "MARKET_TO": {
-      "rmse": 3.166,
-      "bias": 0.23,
+      "rmse": 3.323,
+      "bias": 0.148,
       "offense_only_baseline_rmse": null
     },
     "AST": {
-      "rmse": 3.891,
-      "bias": 0.152,
+      "rmse": 3.969,
+      "bias": -0.116,
       "offense_only_baseline_rmse": null
     },
     "STL": {
-      "rmse": 2.493,
-      "bias": 0.137,
+      "rmse": 2.459,
+      "bias": 0.153,
       "offense_only_baseline_rmse": null
     },
     "BLK": {
-      "rmse": 1.958,
-      "bias": 0.013,
+      "rmse": 2.024,
+      "bias": -0.017,
       "offense_only_baseline_rmse": null
     }
   },
   "test_2025_sides": 690,
-  "watch_2026_sides": 78,
+  "watch_2026_sides": 88,
   "distribution_status": "UNVERIFIED_DO_NOT_QUOTE",
   "matched_holdout_2025_residuals": [
     {
