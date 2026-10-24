@@ -1,7 +1,7 @@
 {
-  "updated_at_utc": "2026-10-23T09:32:56.704472+00:00",
-  "games": 1058,
-  "new_games": 6,
+  "updated_at_utc": "2026-10-24T09:05:44.720898+00:00",
+  "games": 1061,
+  "new_games": 3,
   "repaired_games": 0,
   "seasons": [
     2023,
@@ -13,26 +13,26 @@
   "market_schema_version": "official_inclusive_v2",
   "market_audit": {
     "market_schema_version": "official_inclusive_v2",
-    "team_game_rows": 2116,
+    "team_game_rows": 2122,
     "OREB": {
-      "official_minus_players_total": 3729,
-      "team_games_with_team_only_events": 1696,
-      "average_official_minus_players": 1.7623
+      "official_minus_players_total": 3736,
+      "team_games_with_team_only_events": 1701,
+      "average_official_minus_players": 1.7606
     },
     "DREB": {
-      "official_minus_players_total": 3696,
-      "team_games_with_team_only_events": 1737,
-      "average_official_minus_players": 1.7467
+      "official_minus_players_total": 3714,
+      "team_games_with_team_only_events": 1742,
+      "average_official_minus_players": 1.7502
     },
     "REB": {
-      "official_minus_players_total": 7425,
-      "team_games_with_team_only_events": 2031,
-      "average_official_minus_players": 3.509
+      "official_minus_players_total": 7450,
+      "team_games_with_team_only_events": 2037,
+      "average_official_minus_players": 3.5108
     },
     "TO": {
-      "official_minus_players_total": 1370,
-      "team_games_with_team_only_events": 1017,
-      "average_official_minus_players": 0.6474
+      "official_minus_players_total": 1373,
+      "team_games_with_team_only_events": 1020,
+      "average_official_minus_players": 0.647
     }
   },
   "training_gate": {
