@@ -4,8 +4,8 @@
   "status": "SHADOW_NOT_PRICING_READY",
   "market_definition": "official_inclusive_v2",
   "dataset": {
-    "games": 1025,
-    "snapshots": 1978
+    "games": 1029,
+    "snapshots": 1986
   },
   "validation": "Two blocked rolling-year folds with each model fitted strictly before its validation range. 2026 used as watch diagnostics (previously inspected, not pristine holdout).",
   "notes": [
@@ -39,12 +39,12 @@
         "mean_error": 0.0965
       },
       "watch_2026": {
-        "n": 73,
-        "rmse_candidate": 3.491,
-        "rmse_league": 3.9814,
-        "bias_candidate": -0.5988,
-        "prediction_std": 0.8916,
-        "actual_std": 3.6468
+        "n": 77,
+        "rmse_candidate": 3.55,
+        "rmse_league": 3.9688,
+        "bias_candidate": -0.404,
+        "prediction_std": 0.8767,
+        "actual_std": 3.6979
       },
       "top_candidates": [
         {
@@ -107,12 +107,12 @@
         "mean_error": 0.1801
       },
       "watch_2026": {
-        "n": 146,
-        "rmse_candidate": 5.0586,
-        "rmse_league": 5.6536,
-        "bias_candidate": -0.2734,
-        "prediction_std": 2.2359,
-        "actual_std": 5.6072
+        "n": 154,
+        "rmse_candidate": 5.08,
+        "rmse_league": 5.6501,
+        "bias_candidate": -0.0974,
+        "prediction_std": 2.2552,
+        "actual_std": 5.6229
       },
       "top_candidates": [
         {
@@ -173,12 +173,12 @@
         "mean_error": 0.1207
       },
       "watch_2026": {
-        "n": 146,
-        "rmse_candidate": 2.5314,
-        "rmse_league": 2.5883,
-        "bias_candidate": -0.2845,
-        "prediction_std": 0.4668,
-        "actual_std": 2.5694
+        "n": 154,
+        "rmse_candidate": 2.5101,
+        "rmse_league": 2.5561,
+        "bias_candidate": -0.2023,
+        "prediction_std": 0.468,
+        "actual_std": 2.5442
       },
       "top_candidates": [
         {
@@ -239,12 +239,12 @@
         "mean_error": 0.1229
       },
       "watch_2026": {
-        "n": 146,
-        "rmse_candidate": 3.2349,
-        "rmse_league": 3.3164,
-        "bias_candidate": -0.342,
-        "prediction_std": 0.9575,
-        "actual_std": 3.2773
+        "n": 154,
+        "rmse_candidate": 3.2197,
+        "rmse_league": 3.2826,
+        "bias_candidate": -0.2314,
+        "prediction_std": 0.9524,
+        "actual_std": 3.2556
       },
       "top_candidates": [
         {
@@ -307,12 +307,12 @@
         "mean_error": -0.1301
       },
       "watch_2026": {
-        "n": 146,
-        "rmse_candidate": 3.5999,
-        "rmse_league": 3.6897,
-        "bias_candidate": -0.5011,
-        "prediction_std": 0.756,
-        "actual_std": 3.6389
+        "n": 154,
+        "rmse_candidate": 3.5728,
+        "rmse_league": 3.6699,
+        "bias_candidate": -0.4383,
+        "prediction_std": 0.7571,
+        "actual_std": 3.629
       },
       "top_candidates": [
         {
@@ -373,12 +373,12 @@
         "mean_error": 0.1667
       },
       "watch_2026": {
-        "n": 146,
-        "rmse_candidate": 4.005,
-        "rmse_league": 4.1816,
-        "bias_candidate": -0.3001,
-        "prediction_std": 0.8889,
-        "actual_std": 4.1527
+        "n": 154,
+        "rmse_candidate": 3.9661,
+        "rmse_league": 4.1521,
+        "bias_candidate": -0.2642,
+        "prediction_std": 0.8799,
+        "actual_std": 4.1259
       },
       "top_candidates": [
         {
@@ -441,12 +441,12 @@
         "mean_error": 0.0023
       },
       "watch_2026": {
-        "n": 146,
-        "rmse_candidate": 5.4831,
-        "rmse_league": 5.8689,
-        "bias_candidate": -0.7854,
-        "prediction_std": 1.6663,
-        "actual_std": 5.7671
+        "n": 154,
+        "rmse_candidate": 5.438,
+        "rmse_league": 5.8306,
+        "bias_candidate": -0.6822,
+        "prediction_std": 1.6419,
+        "actual_std": 5.7442
       },
       "top_candidates": [
         {
@@ -509,12 +509,12 @@
         "mean_error": -0.2568
       },
       "watch_2026": {
-        "n": 146,
-        "rmse_candidate": 9.9162,
-        "rmse_league": 10.9144,
-        "bias_candidate": -0.0727,
-        "prediction_std": 3.7808,
-        "actual_std": 10.8567
+        "n": 154,
+        "rmse_candidate": 10.1212,
+        "rmse_league": 11.0833,
+        "bias_candidate": -0.0132,
+        "prediction_std": 3.7254,
+        "actual_std": 11.0336
       },
       "top_candidates": [
         {
