@@ -105,9 +105,9 @@
         "n": 345
       },
       "watch_2026": {
-        "rmse": 3.692,
-        "base_rmse": 4.0613,
-        "n": 57
+        "rmse": 3.678,
+        "base_rmse": 4.0329,
+        "n": 60
       }
     },
     "FG2A": {
@@ -117,9 +117,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 5.6744,
-        "base_rmse": 6.0331,
-        "n": 114
+        "rmse": 5.616,
+        "base_rmse": 5.9695,
+        "n": 120
       }
     },
     "FG3A": {
@@ -129,9 +129,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 5.1748,
-        "base_rmse": 5.7394,
-        "n": 114
+        "rmse": 5.2342,
+        "base_rmse": 5.7217,
+        "n": 120
       }
     },
     "FTA": {
@@ -141,9 +141,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 6.648,
-        "base_rmse": 6.6976,
-        "n": 114
+        "rmse": 6.5396,
+        "base_rmse": 6.5842,
+        "n": 120
       }
     },
     "MARKET_TO": {
@@ -153,9 +153,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 3.1946,
-        "base_rmse": 3.1946,
-        "n": 114
+        "rmse": 3.2731,
+        "base_rmse": 3.2731,
+        "n": 120
       }
     },
     "MARKET_OREB": {
@@ -165,9 +165,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 3.7668,
-        "base_rmse": 3.7668,
-        "n": 114
+        "rmse": 3.773,
+        "base_rmse": 3.773,
+        "n": 120
       }
     },
     "MARKET_DREB": {
@@ -177,9 +177,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 3.8216,
-        "base_rmse": 3.8167,
-        "n": 114
+        "rmse": 3.775,
+        "base_rmse": 3.7588,
+        "n": 120
       }
     },
     "STL": {
@@ -189,9 +189,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 2.3937,
-        "base_rmse": 2.3933,
-        "n": 114
+        "rmse": 2.3724,
+        "base_rmse": 2.3661,
+        "n": 120
       }
     },
     "BLK": {
@@ -201,9 +201,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 1.906,
-        "base_rmse": 1.9252,
-        "n": 114
+        "rmse": 1.9321,
+        "base_rmse": 1.9621,
+        "n": 120
       }
     },
     "AST": {
@@ -213,9 +213,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 3.9247,
-        "base_rmse": 4.0608,
-        "n": 114
+        "rmse": 3.918,
+        "base_rmse": 4.0718,
+        "n": 120
       }
     },
     "MARKET_REB": {
@@ -225,9 +225,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 5.3509,
-        "base_rmse": 5.4382,
-        "n": 114
+        "rmse": 5.2736,
+        "base_rmse": 5.3453,
+        "n": 120
       }
     },
     "PTS": {
@@ -237,9 +237,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 10.7437,
-        "base_rmse": 11.4713,
-        "n": 114
+        "rmse": 10.6912,
+        "base_rmse": 11.47,
+        "n": 120
       }
     },
     "P2": {
@@ -249,9 +249,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 0.0831,
-        "base_rmse": 0.0837,
-        "n": 114
+        "rmse": 0.0835,
+        "base_rmse": 0.0845,
+        "n": 120
       }
     },
     "P3": {
@@ -261,9 +261,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 0.0948,
-        "base_rmse": 0.095,
-        "n": 114
+        "rmse": 0.0938,
+        "base_rmse": 0.094,
+        "n": 120
       }
     },
     "PF": {
@@ -273,9 +273,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 0.1081,
-        "base_rmse": 0.1081,
-        "n": 114
+        "rmse": 0.107,
+        "base_rmse": 0.107,
+        "n": 120
       }
     },
     "A_RATE": {
@@ -285,9 +285,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 0.1154,
-        "base_rmse": 0.116,
-        "n": 114
+        "rmse": 0.1133,
+        "base_rmse": 0.1139,
+        "n": 120
       }
     },
     "CREDIT_TO": {
@@ -297,9 +297,9 @@
         "n": 690
       },
       "watch_2026": {
-        "rmse": 0.0601,
-        "base_rmse": 0.0598,
-        "n": 114
+        "rmse": 0.0607,
+        "base_rmse": 0.0603,
+        "n": 120
       }
     }
   },
@@ -408,83 +408,83 @@
   },
   "watch_2026": {
     "POSS": {
-      "rmse": 3.678,
-      "bias": 0.403,
-      "offense_only_baseline_rmse": null
-    },
-    "PTS": {
-      "rmse": 11.001,
-      "bias": -0.064,
-      "offense_only_baseline_rmse": null
-    },
-    "FG2A": {
-      "rmse": 5.544,
-      "bias": -0.165,
-      "offense_only_baseline_rmse": null
-    },
-    "FG3A": {
-      "rmse": 5.191,
-      "bias": 0.041,
-      "offense_only_baseline_rmse": 5.739
-    },
-    "FG2M": {
-      "rmse": 3.773,
-      "bias": -0.01,
-      "offense_only_baseline_rmse": null
-    },
-    "FG3M": {
-      "rmse": 3.174,
-      "bias": -0.146,
-      "offense_only_baseline_rmse": null
-    },
-    "FTA": {
-      "rmse": 6.676,
-      "bias": -0.031,
-      "offense_only_baseline_rmse": null
-    },
-    "FTM": {
-      "rmse": 5.52,
-      "bias": 0.393,
-      "offense_only_baseline_rmse": null
-    },
-    "MARKET_OREB": {
-      "rmse": 3.776,
-      "bias": -0.202,
-      "offense_only_baseline_rmse": null
-    },
-    "MARKET_DREB": {
-      "rmse": 3.822,
-      "bias": -0.079,
-      "offense_only_baseline_rmse": null
-    },
-    "MARKET_REB": {
-      "rmse": 5.361,
-      "bias": -0.281,
-      "offense_only_baseline_rmse": null
-    },
-    "MARKET_TO": {
-      "rmse": 3.206,
+      "rmse": 3.66,
       "bias": 0.338,
       "offense_only_baseline_rmse": null
     },
+    "PTS": {
+      "rmse": 10.91,
+      "bias": -0.218,
+      "offense_only_baseline_rmse": null
+    },
+    "FG2A": {
+      "rmse": 5.485,
+      "bias": -0.106,
+      "offense_only_baseline_rmse": null
+    },
+    "FG3A": {
+      "rmse": 5.244,
+      "bias": -0.101,
+      "offense_only_baseline_rmse": 5.722
+    },
+    "FG2M": {
+      "rmse": 3.727,
+      "bias": 0.003,
+      "offense_only_baseline_rmse": null
+    },
+    "FG3M": {
+      "rmse": 3.156,
+      "bias": -0.198,
+      "offense_only_baseline_rmse": null
+    },
+    "FTA": {
+      "rmse": 6.57,
+      "bias": 0.038,
+      "offense_only_baseline_rmse": null
+    },
+    "FTM": {
+      "rmse": 5.437,
+      "bias": 0.372,
+      "offense_only_baseline_rmse": null
+    },
+    "MARKET_OREB": {
+      "rmse": 3.786,
+      "bias": -0.31,
+      "offense_only_baseline_rmse": null
+    },
+    "MARKET_DREB": {
+      "rmse": 3.775,
+      "bias": 0.01,
+      "offense_only_baseline_rmse": null
+    },
+    "MARKET_REB": {
+      "rmse": 5.273,
+      "bias": -0.3,
+      "offense_only_baseline_rmse": null
+    },
+    "MARKET_TO": {
+      "rmse": 3.284,
+      "bias": 0.218,
+      "offense_only_baseline_rmse": null
+    },
     "AST": {
-      "rmse": 3.971,
-      "bias": -0.105,
+      "rmse": 3.954,
+      "bias": -0.167,
       "offense_only_baseline_rmse": null
     },
     "STL": {
-      "rmse": 2.394,
-      "bias": 0.179,
+      "rmse": 2.372,
+      "bias": 0.128,
       "offense_only_baseline_rmse": null
     },
     "BLK": {
-      "rmse": 1.906,
-      "bias": 0.092,
+      "rmse": 1.932,
+      "bias": 0.111,
       "offense_only_baseline_rmse": null
     }
   },
   "test_2025_sides": 690,
-  "watch_2026_sides": 114,
+  "watch_2026_sides": 120,
   "distribution_status": "UNVERIFIED_DO_NOT_QUOTE",
   "matched_holdout_2025_residuals": [
     {
@@ -4068,9 +4068,9 @@
       "home_PF": -0.02451767947599548,
       "home_AST_RATE": 0.015385537936460691,
       "away_PTS": -9.273890879394827,
-      "away_FG2A": 2.2103276730485604,
+      "away_FG2A": 2.2103276730485675,
       "away_FG3A": 5.633554531644755,
-      "away_FG2M": 1.5092028612036295,
+      "away_FG2M": 1.509202861203633,
       "away_FG3M": -2.640559649908985,
       "away_FTA": -7.995131378140755,
       "away_FTM": -4.370617652075145,
@@ -9813,7 +9813,7 @@
       "home_FG2A": 0.21526728370812265,
       "home_FG3A": 1.6468703269997,
       "home_FG2M": 0.46800289189823374,
-      "home_FG3M": -0.022638859784374077,
+      "home_FG3M": -0.0226388597843723,
       "home_FTA": -0.40569143793839046,
       "home_FTM": 1.8764417994470044,
       "home_MARKET_OREB": -1.5591857528670623,
@@ -9824,12 +9824,12 @@
       "home_STL": -2.2060052473034686,
       "home_BLK": -0.5994657732705542,
       "home_P2": 0.009717624848703754,
-      "home_P3": -0.019396699484805546,
+      "home_P3": -0.01939669948480549,
       "home_PF": 0.09938598341562355,
       "home_AST_RATE": -0.0235207263310101,
       "away_PTS": 4.851904733289018,
       "away_FG2A": 0.9324663502150443,
-      "away_FG3A": -6.36190490958764,
+      "away_FG3A": -6.361904909587636,
       "away_FG2M": 0.10020469479728078,
       "away_FG3M": -2.5482474706502725,
       "away_FTA": 16.564967778964217,
@@ -9842,7 +9842,7 @@
       "away_STL": 3.135458167330677,
       "away_BLK": -1.2737081975129785,
       "away_P2": -0.011176443923485713,
-      "away_P3": -0.011423338553534945,
+      "away_P3": -0.011423338553535,
       "away_PF": -0.019881636311270268,
       "away_AST_RATE": 0.1669604549925644,
       "POSS": 1.0039063858490778
@@ -12637,7 +12637,7 @@
       "away_MARKET_OREB": -4.894656861174457,
       "away_MARKET_DREB": 4.372970106714391,
       "away_MARKET_REB": -0.5216867544600632,
-      "away_MARKET_TO": -1.043283539131048,
+      "away_MARKET_TO": -1.0432835391310498,
       "away_AST": 7.970929059865675,
       "away_STL": -0.1997110635863013,
       "away_BLK": -1.7331288149330089,
