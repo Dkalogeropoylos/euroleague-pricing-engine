@@ -2,12 +2,12 @@
   "model_version": "0.8-team-state-challenger",
   "status": "SHADOW_NOT_PRICING_READY",
   "market_definition": "official_inclusive_v2",
-  "games": 1032,
-  "train_games": 808,
-  "audit_games": 203,
-  "cutoff_utc": "2026-02-03 00:00:00+00:00",
+  "games": 1039,
+  "train_games": 816,
+  "audit_games": 202,
+  "cutoff_utc": "2026-02-04 00:00:00+00:00",
   "no_same_day_leakage": true,
-  "training_data_through_utc": "2026-10-29 20:45:00+00:00",
+  "training_data_through_utc": "2026-10-30 20:30:00+00:00",
   "historical_challenger": {
     "status": "SHADOW_NOT_PRICING_READY",
     "market_definition": "official_inclusive_v2",
@@ -26,68 +26,68 @@
           "home"
         ],
         "coefficients": [
-          0.19788038043995332,
-          0.26356055467078987,
-          0.08477154095632272,
-          0.15824073296940253,
-          0.23919101321593736,
-          0.12971789118906277,
+          0.19456621829141432,
+          0.2615632788220304,
+          0.08020966083256865,
+          0.16575161253106024,
+          0.2474826483789975,
+          0.13215028429509626,
           0.0
         ],
-        "intercept": 0.004358606091221916,
+        "intercept": 0.004401512592252247,
         "alpha": 0.5,
-        "n": 808,
-        "inner_cv_rmse": 3.6236384952116345,
+        "n": 816,
+        "inner_cv_rmse": 3.6328571951926025,
         "candidates": [
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 3.6236
+            "rmse": 3.6329
           },
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 3.6755
+            "rmse": 3.6848
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 3.6948
+            "rmse": 3.7032
           },
           {
             "kind": "recent",
             "alpha": 0.5,
-            "rmse": 3.7523
+            "rmse": 3.7621
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 3.8146
+            "rmse": 3.8235
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 3.816
+            "rmse": 3.8258
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 3.828
+            "rmse": 3.8378
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 3.8307
+            "rmse": 3.8404
           },
           {
             "kind": "recent",
             "alpha": 5.0,
-            "rmse": 3.8395
+            "rmse": 3.8494
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 3.8447
+            "rmse": 3.8546
           }
         ]
       },
@@ -103,68 +103,68 @@
           "home"
         ],
         "coefficients": [
-          0.4762785549280522,
-          0.584321974095106,
-          0.1356977356356516,
-          0.1898019848018571,
-          0.5365070463132317,
-          0.31369152126235633,
-          -0.004823497170911676
+          0.47658742863586945,
+          0.574168381226722,
+          0.14939690259278554,
+          0.18894468286257676,
+          0.545396204314476,
+          0.30152288611202804,
+          -0.0043878641590709925
         ],
-        "intercept": -0.009294653074840079,
+        "intercept": -0.009605427022595635,
         "alpha": 0.5,
-        "n": 1616,
-        "inner_cv_rmse": 4.318527217389711,
+        "n": 1632,
+        "inner_cv_rmse": 4.324926122831461,
         "candidates": [
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 4.3185
+            "rmse": 4.3249
           },
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 4.367
+            "rmse": 4.3731
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 4.3717
+            "rmse": 4.3803
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 4.4359
+            "rmse": 4.4383
           },
           {
             "kind": "recent",
             "alpha": 0.5,
-            "rmse": 4.4437
+            "rmse": 4.451
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 4.512
+            "rmse": 4.5135
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 4.5228
+            "rmse": 4.5226
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 4.5541
+            "rmse": 4.5559
           },
           {
             "kind": "recent",
             "alpha": 5.0,
-            "rmse": 4.6447
+            "rmse": 4.6454
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 4.7141
+            "rmse": 4.7109
           }
         ]
       },
@@ -178,199 +178,195 @@
           "home"
         ],
         "coefficients": [
-          0.33935250189486393,
-          0.30729471422930393,
-          0.04302749739731005,
-          0.21477857597780775,
-          0.02492617887443193
+          0.33000106882134445,
+          0.31808484981541274,
+          0.052554694066182336,
+          0.20474363323538072,
+          0.025439429823125425
         ],
-        "intercept": -0.017810968988324568,
+        "intercept": -0.01783835384774338,
         "alpha": 0.5,
-        "n": 1616,
-        "inner_cv_rmse": 3.067740809217238,
+        "n": 1632,
+        "inner_cv_rmse": 3.0634571425200567,
         "candidates": [
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 3.0677
+            "rmse": 3.0635
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 3.0706
+            "rmse": 3.0663
           },
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 3.071
+            "rmse": 3.0666
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 3.0843
+            "rmse": 3.0798
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 3.0845
+            "rmse": 3.08
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 3.0851
+            "rmse": 3.0801
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 3.0853
+            "rmse": 3.0807
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 3.0936
+            "rmse": 3.0891
           },
           {
             "kind": "carryover",
             "alpha": 25.0,
-            "rmse": 3.0941
+            "rmse": 3.0895
           },
           {
             "kind": "season",
             "alpha": 25.0,
-            "rmse": 3.0943
+            "rmse": 3.0897
           }
         ]
       },
       "THREE_PCT": {
         "kind": "league",
-        "inner_cv_rmse": 2.5728511907241987,
+        "inner_cv_rmse": 2.5651111719895363,
         "candidates": [
           {
             "kind": "league",
             "alpha": null,
-            "rmse": 2.5729
+            "rmse": 2.5651
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 2.5729
+            "rmse": 2.5651
           },
           {
             "kind": "season",
             "alpha": 25.0,
-            "rmse": 2.5858
+            "rmse": 2.579
           },
           {
             "kind": "carryover",
             "alpha": 25.0,
-            "rmse": 2.5861
+            "rmse": 2.5793
           },
           {
             "kind": "recent",
             "alpha": 25.0,
-            "rmse": 2.5867
+            "rmse": 2.58
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 2.587
+            "rmse": 2.5803
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 2.5873
+            "rmse": 2.5805
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 2.5884
+            "rmse": 2.5817
           },
           {
             "kind": "recent",
             "alpha": 5.0,
-            "rmse": 2.5897
+            "rmse": 2.5831
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 2.5911
+            "rmse": 2.5846
           }
         ]
       },
       "FT_PCT": {
-        "kind": "multiscale",
+        "kind": "carryover",
         "names": [
-          "recent_off",
           "season_off",
-          "prev_off",
-          "recent_def",
           "season_def",
+          "prev_off",
           "prev_def",
           "home"
         ],
         "coefficients": [
-          0.13606998745711504,
-          0.266136033355946,
-          0.20307591459925683,
-          -0.019870566421764668,
-          -0.023890405552236205,
-          0.16354504652215404,
-          0.0011054577546030105
+          0.35446310492677463,
+          -0.025441574676078316,
+          0.21557019273718897,
+          0.1691404277672022,
+          0.001794084853126116
         ],
-        "intercept": -0.005796618803435727,
+        "intercept": -0.00652862631943712,
         "alpha": 0.5,
-        "n": 1616,
-        "inner_cv_rmse": 1.9436355568315122,
+        "n": 1632,
+        "inner_cv_rmse": 1.9436686057181138,
         "candidates": [
-          {
-            "kind": "multiscale",
-            "alpha": 0.5,
-            "rmse": 1.9436
-          },
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 1.9439
+            "rmse": 1.9437
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 1.9438
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 1.9505
-          },
-          {
-            "kind": "recent",
-            "alpha": 0.5,
-            "rmse": 1.9551
+            "rmse": 1.9507
           },
           {
             "kind": "league",
             "alpha": null,
-            "rmse": 1.9554
+            "rmse": 1.9559
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 1.9554
+            "rmse": 1.9559
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 1.9565
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 1.9561
+            "rmse": 1.9565
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 1.9585
+            "rmse": 1.9587
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 1.9603
+            "rmse": 1.9607
           },
           {
             "kind": "recent",
             "alpha": 5.0,
-            "rmse": 1.9614
+            "rmse": 1.9622
           }
         ]
       },
@@ -386,180 +382,180 @@
           "home"
         ],
         "coefficients": [
-          0.004599709865628652,
-          0.5534914940185304,
-          0.5045941964839195,
-          -0.13097419826560625,
-          0.7254860089399395,
-          0.2535103338393142,
-          0.049515563290837186
+          0.004043122354883177,
+          0.5638054887743109,
+          0.5027890795650041,
+          -0.14598268768144146,
+          0.7317016291272151,
+          0.2516132101364827,
+          0.04925874064001494
         ],
-        "intercept": -0.05680492705837796,
+        "intercept": -0.0574351515491887,
         "alpha": 0.5,
-        "n": 1616,
-        "inner_cv_rmse": 6.003174269518347,
+        "n": 1632,
+        "inner_cv_rmse": 5.9944397762519825,
         "candidates": [
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 6.0032
+            "rmse": 5.9944
           },
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 6.004
+            "rmse": 5.9955
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 6.0103
+            "rmse": 6.0012
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 6.0207
+            "rmse": 6.0111
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 6.0273
+            "rmse": 6.0183
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 6.0566
+            "rmse": 6.0467
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 6.0588
+            "rmse": 6.0477
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 6.1373
+            "rmse": 6.126
           },
           {
             "kind": "carryover",
             "alpha": 25.0,
-            "rmse": 6.1522
+            "rmse": 6.1399
           },
           {
             "kind": "season",
             "alpha": 25.0,
-            "rmse": 6.1787
+            "rmse": 6.1664
           }
         ]
       },
       "OREB_RATE": {
         "kind": "league",
-        "inner_cv_rmse": 2.981907632516851,
+        "inner_cv_rmse": 2.9902477437181565,
         "candidates": [
           {
             "kind": "league",
             "alpha": null,
-            "rmse": 2.9819
+            "rmse": 2.9902
           },
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 2.9963
+            "rmse": 3.005
           },
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 2.9976
+            "rmse": 3.0062
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 3.0012
+            "rmse": 3.0097
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 3.0042
+            "rmse": 3.0126
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 3.0146
+            "rmse": 3.0234
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 3.0171
+            "rmse": 3.0258
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 3.0221
+            "rmse": 3.0307
           },
           {
             "kind": "recent",
             "alpha": 0.5,
-            "rmse": 3.0284
+            "rmse": 3.0376
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 3.0357
+            "rmse": 3.0445
           }
         ]
       },
       "DREB_RATE": {
         "kind": "league",
-        "inner_cv_rmse": 1.2283639557196167,
+        "inner_cv_rmse": 1.2265334610399719,
         "candidates": [
           {
             "kind": "league",
             "alpha": null,
-            "rmse": 1.2284
+            "rmse": 1.2265
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 1.2297
+            "rmse": 1.2277
           },
           {
             "kind": "recent",
             "alpha": 0.5,
-            "rmse": 1.2304
+            "rmse": 1.2284
           },
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 1.2308
+            "rmse": 1.2288
           },
           {
             "kind": "recent",
             "alpha": 25.0,
-            "rmse": 1.2308
+            "rmse": 1.2288
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 1.2308
+            "rmse": 1.2288
           },
           {
             "kind": "season",
             "alpha": 25.0,
-            "rmse": 1.2309
+            "rmse": 1.2288
           },
           {
             "kind": "carryover",
             "alpha": 25.0,
-            "rmse": 1.2309
+            "rmse": 1.2288
           },
           {
             "kind": "recent",
             "alpha": 5.0,
-            "rmse": 1.2309
+            "rmse": 1.2288
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 1.231
+            "rmse": 1.2289
           }
         ]
       }
@@ -589,68 +585,68 @@
           "home"
         ],
         "coefficients": [
-          0.2133871376724073,
-          0.2659550696797299,
-          0.10868545102999004,
-          0.19396231552210627,
-          0.29157973303922785,
-          0.15301437568737797,
+          0.214292612117232,
+          0.2637823023843055,
+          0.11501148276139884,
+          0.19259660681180382,
+          0.28851338830158624,
+          0.1522274731268845,
           0.0
         ],
-        "intercept": 0.004814406210504003,
+        "intercept": 0.004570834308172227,
         "alpha": 0.5,
-        "n": 1011,
-        "inner_cv_rmse": 3.6236384952116345,
+        "n": 1018,
+        "inner_cv_rmse": 3.6328571951926025,
         "candidates": [
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 3.6236
+            "rmse": 3.6329
           },
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 3.6755
+            "rmse": 3.6848
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 3.6948
+            "rmse": 3.7032
           },
           {
             "kind": "recent",
             "alpha": 0.5,
-            "rmse": 3.7523
+            "rmse": 3.7621
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 3.8146
+            "rmse": 3.8235
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 3.816
+            "rmse": 3.8258
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 3.828
+            "rmse": 3.8378
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 3.8307
+            "rmse": 3.8404
           },
           {
             "kind": "recent",
             "alpha": 5.0,
-            "rmse": 3.8395
+            "rmse": 3.8494
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 3.8447
+            "rmse": 3.8546
           }
         ]
       },
@@ -666,68 +662,68 @@
           "home"
         ],
         "coefficients": [
-          0.44366185395987695,
-          0.6142604906031727,
-          0.1357412068957714,
-          0.25448106309000346,
-          0.5658620102724176,
-          0.290430169449765,
-          -0.004147269438160903
+          0.44362082755891585,
+          0.61662670188674,
+          0.1324967395681521,
+          0.24654736127695615,
+          0.5631349076047023,
+          0.30354358780497664,
+          -0.0034197802971761304
         ],
-        "intercept": -0.012748818381846407,
+        "intercept": -0.01313843002927829,
         "alpha": 0.5,
-        "n": 2022,
-        "inner_cv_rmse": 4.318527217389711,
+        "n": 2036,
+        "inner_cv_rmse": 4.324926122831461,
         "candidates": [
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 4.3185
+            "rmse": 4.3249
           },
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 4.367
+            "rmse": 4.3731
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 4.3717
+            "rmse": 4.3803
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 4.4359
+            "rmse": 4.4383
           },
           {
             "kind": "recent",
             "alpha": 0.5,
-            "rmse": 4.4437
+            "rmse": 4.451
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 4.512
+            "rmse": 4.5135
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 4.5228
+            "rmse": 4.5226
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 4.5541
+            "rmse": 4.5559
           },
           {
             "kind": "recent",
             "alpha": 5.0,
-            "rmse": 4.6447
+            "rmse": 4.6454
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 4.7141
+            "rmse": 4.7109
           }
         ]
       },
@@ -741,199 +737,195 @@
           "home"
         ],
         "coefficients": [
-          0.35146974165461703,
-          0.33371544382973733,
-          0.1403022408376555,
-          0.19994220182964859,
-          0.024722596513200842
+          0.3413178132158071,
+          0.321860856490822,
+          0.12585767861270417,
+          0.21739737880234639,
+          0.025698563258179746
         ],
-        "intercept": -0.019510652953804584,
+        "intercept": -0.019695822257526134,
         "alpha": 0.5,
-        "n": 2022,
-        "inner_cv_rmse": 3.067740809217238,
+        "n": 2036,
+        "inner_cv_rmse": 3.0634571425200567,
         "candidates": [
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 3.0677
+            "rmse": 3.0635
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 3.0706
+            "rmse": 3.0663
           },
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 3.071
+            "rmse": 3.0666
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 3.0843
+            "rmse": 3.0798
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 3.0845
+            "rmse": 3.08
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 3.0851
+            "rmse": 3.0801
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 3.0853
+            "rmse": 3.0807
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 3.0936
+            "rmse": 3.0891
           },
           {
             "kind": "carryover",
             "alpha": 25.0,
-            "rmse": 3.0941
+            "rmse": 3.0895
           },
           {
             "kind": "season",
             "alpha": 25.0,
-            "rmse": 3.0943
+            "rmse": 3.0897
           }
         ]
       },
       "THREE_PCT": {
         "kind": "league",
-        "inner_cv_rmse": 2.5728511907241987,
+        "inner_cv_rmse": 2.5651111719895363,
         "candidates": [
           {
             "kind": "league",
             "alpha": null,
-            "rmse": 2.5729
+            "rmse": 2.5651
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 2.5729
+            "rmse": 2.5651
           },
           {
             "kind": "season",
             "alpha": 25.0,
-            "rmse": 2.5858
+            "rmse": 2.579
           },
           {
             "kind": "carryover",
             "alpha": 25.0,
-            "rmse": 2.5861
+            "rmse": 2.5793
           },
           {
             "kind": "recent",
             "alpha": 25.0,
-            "rmse": 2.5867
+            "rmse": 2.58
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 2.587
+            "rmse": 2.5803
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 2.5873
+            "rmse": 2.5805
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 2.5884
+            "rmse": 2.5817
           },
           {
             "kind": "recent",
             "alpha": 5.0,
-            "rmse": 2.5897
+            "rmse": 2.5831
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 2.5911
+            "rmse": 2.5846
           }
         ]
       },
       "FT_PCT": {
-        "kind": "multiscale",
+        "kind": "carryover",
         "names": [
-          "recent_off",
           "season_off",
-          "prev_off",
-          "recent_def",
           "season_def",
+          "prev_off",
           "prev_def",
           "home"
         ],
         "coefficients": [
-          0.14798892667226193,
-          0.34807041875220335,
-          0.18303917603919959,
-          -0.04315301155759643,
-          0.06031933659121389,
-          0.1676969478913364,
-          0.0076457116356324645
+          0.43278061759341957,
+          0.03583025840323053,
+          0.1940884178958905,
+          0.16090670746361468,
+          0.007225431858728822
         ],
-        "intercept": -0.009811687816361544,
+        "intercept": -0.009819245853285568,
         "alpha": 0.5,
-        "n": 2022,
-        "inner_cv_rmse": 1.9436355568315122,
+        "n": 2036,
+        "inner_cv_rmse": 1.9436686057181138,
         "candidates": [
-          {
-            "kind": "multiscale",
-            "alpha": 0.5,
-            "rmse": 1.9436
-          },
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 1.9439
+            "rmse": 1.9437
+          },
+          {
+            "kind": "multiscale",
+            "alpha": 0.5,
+            "rmse": 1.9438
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 1.9505
-          },
-          {
-            "kind": "recent",
-            "alpha": 0.5,
-            "rmse": 1.9551
+            "rmse": 1.9507
           },
           {
             "kind": "league",
             "alpha": null,
-            "rmse": 1.9554
+            "rmse": 1.9559
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 1.9554
+            "rmse": 1.9559
+          },
+          {
+            "kind": "recent",
+            "alpha": 0.5,
+            "rmse": 1.9565
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 1.9561
+            "rmse": 1.9565
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 1.9585
+            "rmse": 1.9587
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 1.9603
+            "rmse": 1.9607
           },
           {
             "kind": "recent",
             "alpha": 5.0,
-            "rmse": 1.9614
+            "rmse": 1.9622
           }
         ]
       },
@@ -949,180 +941,180 @@
           "home"
         ],
         "coefficients": [
-          -0.052445735212469924,
-          0.6003278961565366,
-          0.45649961656303134,
-          -0.10283818851723657,
-          0.7476526534942508,
-          0.22878810708620254,
-          0.04436329431393961
+          -0.035481627106040296,
+          0.5861602614962113,
+          0.4617564000164195,
+          -0.108596975864256,
+          0.7488751817564165,
+          0.2270250628507025,
+          0.045943578858698285
         ],
-        "intercept": -0.057688524716810734,
+        "intercept": -0.058159215493132674,
         "alpha": 0.5,
-        "n": 2022,
-        "inner_cv_rmse": 6.003174269518347,
+        "n": 2036,
+        "inner_cv_rmse": 5.9944397762519825,
         "candidates": [
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 6.0032
+            "rmse": 5.9944
           },
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 6.004
+            "rmse": 5.9955
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 6.0103
+            "rmse": 6.0012
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 6.0207
+            "rmse": 6.0111
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 6.0273
+            "rmse": 6.0183
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 6.0566
+            "rmse": 6.0467
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 6.0588
+            "rmse": 6.0477
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 6.1373
+            "rmse": 6.126
           },
           {
             "kind": "carryover",
             "alpha": 25.0,
-            "rmse": 6.1522
+            "rmse": 6.1399
           },
           {
             "kind": "season",
             "alpha": 25.0,
-            "rmse": 6.1787
+            "rmse": 6.1664
           }
         ]
       },
       "OREB_RATE": {
         "kind": "league",
-        "inner_cv_rmse": 2.981907632516851,
+        "inner_cv_rmse": 2.9902477437181565,
         "candidates": [
           {
             "kind": "league",
             "alpha": null,
-            "rmse": 2.9819
+            "rmse": 2.9902
           },
           {
             "kind": "carryover",
             "alpha": 0.5,
-            "rmse": 2.9963
+            "rmse": 3.005
           },
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 2.9976
+            "rmse": 3.0062
           },
           {
             "kind": "season",
             "alpha": 0.5,
-            "rmse": 3.0012
+            "rmse": 3.0097
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 3.0042
+            "rmse": 3.0126
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 3.0146
+            "rmse": 3.0234
           },
           {
             "kind": "carryover",
             "alpha": 5.0,
-            "rmse": 3.0171
+            "rmse": 3.0258
           },
           {
             "kind": "season",
             "alpha": 5.0,
-            "rmse": 3.0221
+            "rmse": 3.0307
           },
           {
             "kind": "recent",
             "alpha": 0.5,
-            "rmse": 3.0284
+            "rmse": 3.0376
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 3.0357
+            "rmse": 3.0445
           }
         ]
       },
       "DREB_RATE": {
         "kind": "league",
-        "inner_cv_rmse": 1.2283639557196167,
+        "inner_cv_rmse": 1.2265334610399719,
         "candidates": [
           {
             "kind": "league",
             "alpha": null,
-            "rmse": 1.2284
+            "rmse": 1.2265
           },
           {
             "kind": "v06",
             "alpha": null,
-            "rmse": 1.2297
+            "rmse": 1.2277
           },
           {
             "kind": "recent",
             "alpha": 0.5,
-            "rmse": 1.2304
+            "rmse": 1.2284
           },
           {
             "kind": "multiscale",
             "alpha": 0.5,
-            "rmse": 1.2308
+            "rmse": 1.2288
           },
           {
             "kind": "recent",
             "alpha": 25.0,
-            "rmse": 1.2308
+            "rmse": 1.2288
           },
           {
             "kind": "multiscale",
             "alpha": 25.0,
-            "rmse": 1.2308
+            "rmse": 1.2288
           },
           {
             "kind": "season",
             "alpha": 25.0,
-            "rmse": 1.2309
+            "rmse": 1.2288
           },
           {
             "kind": "carryover",
             "alpha": 25.0,
-            "rmse": 1.2309
+            "rmse": 1.2288
           },
           {
             "kind": "recent",
             "alpha": 5.0,
-            "rmse": 1.2309
+            "rmse": 1.2288
           },
           {
             "kind": "multiscale",
             "alpha": 5.0,
-            "rmse": 1.231
+            "rmse": 1.2289
           }
         ]
       }
@@ -1136,94 +1128,94 @@
   },
   "audit_against_v06": {
     "POSS": {
-      "rmse_v06": 3.9294,
-      "rmse_v08": 3.6701,
-      "change_pct": 6.6,
-      "bias_v08": -0.3971,
-      "std_v06": 0.4147,
-      "std_v08": 0.9176,
-      "std_actual": 3.9667
+      "rmse_v06": 3.9103,
+      "rmse_v08": 3.6651,
+      "change_pct": 6.27,
+      "bias_v08": -0.2607,
+      "std_v06": 0.4253,
+      "std_v08": 0.9307,
+      "std_actual": 3.9455
     },
     "PTS": {
-      "rmse_v06": 11.2553,
-      "rmse_v08": 10.9233,
-      "change_pct": 2.95,
-      "bias_v08": -3.6727,
-      "std_v06": 1.0072,
-      "std_v08": 1.4226,
-      "std_actual": 10.5821
+      "rmse_v06": 10.8603,
+      "rmse_v08": 10.526,
+      "change_pct": 3.08,
+      "bias_v08": -2.9051,
+      "std_v06": 1.5677,
+      "std_v08": 1.829,
+      "std_actual": 10.5592
     },
     "FG2A": {
-      "rmse_v06": 5.9461,
-      "rmse_v08": 5.7815,
-      "change_pct": 2.77,
-      "bias_v08": -1.4708,
-      "std_v06": 0.8339,
-      "std_v08": 1.7833,
-      "std_actual": 5.8903
+      "rmse_v06": 5.7876,
+      "rmse_v08": 5.6238,
+      "change_pct": 2.83,
+      "bias_v08": -1.0729,
+      "std_v06": 0.9748,
+      "std_v08": 1.9202,
+      "std_actual": 5.8845
     },
     "FG3A": {
-      "rmse_v06": 5.3594,
-      "rmse_v08": 5.0383,
-      "change_pct": 5.99,
-      "bias_v08": -1.0659,
-      "std_v06": 0.9984,
-      "std_v08": 2.1941,
-      "std_actual": 5.5426
+      "rmse_v06": 5.2636,
+      "rmse_v08": 4.942,
+      "change_pct": 6.11,
+      "bias_v08": -0.7727,
+      "std_v06": 0.9163,
+      "std_v08": 2.1289,
+      "std_actual": 5.5123
     },
     "FTA": {
-      "rmse_v06": 6.2424,
-      "rmse_v08": 6.1839,
-      "change_pct": 0.94,
-      "bias_v08": -0.7474,
-      "std_v06": 1.2417,
-      "std_v08": 2.0056,
-      "std_actual": 6.4427
+      "rmse_v06": 6.2858,
+      "rmse_v08": 6.2231,
+      "change_pct": 1.0,
+      "bias_v08": -0.7909,
+      "std_v06": 1.2634,
+      "std_v08": 2.0443,
+      "std_actual": 6.4914
     },
     "MARKET_OREB": {
-      "rmse_v06": 3.7746,
-      "rmse_v08": 3.7066,
-      "change_pct": 1.8,
-      "bias_v08": -0.4729,
-      "std_v06": 0.3002,
-      "std_v08": 0.382,
-      "std_actual": 3.6977
+      "rmse_v06": 3.7092,
+      "rmse_v08": 3.6499,
+      "change_pct": 1.6,
+      "bias_v08": -0.3693,
+      "std_v06": 0.3252,
+      "std_v08": 0.3473,
+      "std_actual": 3.6486
     },
     "MARKET_DREB": {
-      "rmse_v06": 3.9452,
-      "rmse_v08": 3.9303,
-      "change_pct": 0.38,
-      "bias_v08": -0.749,
-      "std_v06": 0.4479,
-      "std_v08": 0.6161,
-      "std_actual": 3.9187
+      "rmse_v06": 3.944,
+      "rmse_v08": 3.9243,
+      "change_pct": 0.5,
+      "bias_v08": -0.5537,
+      "std_v06": 0.3297,
+      "std_v08": 0.5558,
+      "std_actual": 3.9484
     },
     "MARKET_REB": {
-      "rmse_v06": 5.5945,
-      "rmse_v08": 5.4982,
-      "change_pct": 1.72,
-      "bias_v08": -1.222,
-      "std_v06": 0.6157,
-      "std_v08": 0.6958,
-      "std_actual": 5.4546
+      "rmse_v06": 5.4748,
+      "rmse_v08": 5.3922,
+      "change_pct": 1.51,
+      "bias_v08": -0.923,
+      "std_v06": 0.5563,
+      "std_v08": 0.6447,
+      "std_actual": 5.412
     },
     "MARKET_TO": {
-      "rmse_v06": 3.4221,
-      "rmse_v08": 3.4116,
-      "change_pct": 0.31,
-      "bias_v08": 0.2026,
-      "std_v06": 0.0372,
-      "std_v08": 0.1356,
-      "std_actual": 3.419
+      "rmse_v06": 3.3776,
+      "rmse_v08": 3.3678,
+      "change_pct": 0.29,
+      "bias_v08": -0.2485,
+      "std_v06": 0.5844,
+      "std_v08": 0.6,
+      "std_actual": 3.4565
     },
     "AST": {
-      "rmse_v06": 4.4245,
-      "rmse_v08": 4.3788,
-      "change_pct": 1.03,
-      "bias_v08": -1.5064,
-      "std_v06": 0.4854,
-      "std_v08": 0.525,
-      "std_actual": 4.182
+      "rmse_v06": 4.291,
+      "rmse_v08": 4.2486,
+      "change_pct": 0.99,
+      "bias_v08": -1.1959,
+      "std_v06": 0.5587,
+      "std_v08": 0.5892,
+      "std_actual": 4.147
     }
   },
   "restrictions": [
